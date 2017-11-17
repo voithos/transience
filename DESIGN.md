@@ -21,7 +21,7 @@ restoring health, or otherwise dodging attacks.
 ### Explicit stats
 
 - Health: decreases when damage is taken, increases when healed
-- Flux: decreases when attacking or using a throwback, regenerating when moving
+- Flux: decreases when attacking or using a throwback, regenerates when moving
 
 ### Abilities
 
