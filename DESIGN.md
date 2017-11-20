@@ -38,11 +38,18 @@ Movement:
 
 ## Enemies
 
-Enemies are other transient, ethereal beings.
+Enemies are other transient, ethereal beings. All battle gameplay involves
+melee attacks (no projectiles). Enemies release health-particles upon defeat
+that the player can absorb.
 
 Enemies:
 
-- TODO
+- Jumper
+  Octopus-like (?) mob enemy, little health, swarms in numbers
+  Winds-up and jumps at the player
+
+- Fighter
+  Humanoid enemy, stronger, more health, similar attacks as player
 
 Boss:
 
@@ -66,7 +73,7 @@ not have save states.
 
 Idea: add fuzzy/static-y shader effect to main menu (and while transitioning scenes?).
 
-### Game levels
+### Game level design
 
 TODO
 
@@ -81,7 +88,7 @@ Enemies have no health bar. Boss might...?
 
 ## Story
 
-TODO
+Up for interpretation. :)
 
 ### Cutscenes
 
