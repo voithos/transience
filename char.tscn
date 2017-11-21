@@ -1,55 +1,85 @@
 [gd_scene load_steps=9 format=1]
 
 [ext_resource path="res://char.gd" type="Script" id=1]
-[ext_resource path="res://assets/char/char-up.png" type="Texture" id=2]
+[ext_resource path="res://assets/char/char-side.png" type="Texture" id=2]
 [ext_resource path="res://assets/char/char-down.png" type="Texture" id=3]
-[ext_resource path="res://assets/char/char-side.png" type="Texture" id=4]
+[ext_resource path="res://assets/char/char-up.png" type="Texture" id=4]
 
 [sub_resource type="Animation" id=3]
 
 resource/name = "down_idle"
-length = 1.0
-loop = false
-step = 0.1
+length = 5.0
+loop = true
+step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
 tracks/0/imported = false
 tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 3 ) ] }
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:hframes")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ 3 ] }
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:frame")
+tracks/2/interp = 1
+tracks/2/imported = false
+tracks/2/keys = { "times":FloatArray( 0, 1, 1.05, 1.1, 1.15, 4.55, 4.6, 4.65, 4.7 ), "transitions":FloatArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ), "update":1, "values":[ 0, 1, 2, 1, 0, 1, 2, 1, 0 ] }
 
 [sub_resource type="Animation" id=4]
 
 resource/name = "left_idle"
-length = 1.0
-loop = false
-step = 0.1
+length = 5.0
+loop = true
+step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 4 ) ] }
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 2 ) ] }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:flip_h")
 tracks/1/interp = 1
 tracks/1/imported = false
 tracks/1/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ true ] }
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:hframes")
+tracks/2/interp = 1
+tracks/2/imported = false
+tracks/2/keys = { "times":FloatArray( 1 ), "transitions":FloatArray( 1 ), "update":1, "values":[ 3 ] }
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprite:frame")
+tracks/3/interp = 1
+tracks/3/imported = false
+tracks/3/keys = { "times":FloatArray( 0, 1, 1.05, 1.1, 1.15, 4.5, 4.55, 4.6, 4.65 ), "transitions":FloatArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ), "update":1, "values":[ 0, 1, 2, 1, 0, 1, 2, 1, 0 ] }
 
 [sub_resource type="Animation" id=5]
 
 resource/name = "right_idle"
-length = 1.0
-loop = false
-step = 0.1
+length = 5.0
+loop = true
+step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 4 ) ] }
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 2 ) ] }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:flip_h")
 tracks/1/interp = 1
 tracks/1/imported = false
 tracks/1/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ false ] }
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:hframes")
+tracks/2/interp = 1
+tracks/2/imported = false
+tracks/2/keys = { "times":FloatArray( 1 ), "transitions":FloatArray( 1 ), "update":1, "values":[ 3 ] }
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprite:frame")
+tracks/3/interp = 1
+tracks/3/imported = false
+tracks/3/keys = { "times":FloatArray( 0, 1, 1.05, 1.1, 1.15, 4.5, 4.55, 4.6, 4.65 ), "transitions":FloatArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ), "update":1, "values":[ 0, 1, 2, 1, 0, 1, 2, 1, 0 ] }
 
 [sub_resource type="Animation" id=6]
 
@@ -61,7 +91,12 @@ tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 2 ) ] }
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 4 ) ] }
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:hframes")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ 1 ] }
 
 [node name="Char" type="KinematicBody2D"]
 
@@ -77,6 +112,8 @@ SPEED = 160
 
 transform/pos = Vector2( 0, -0.0769463 )
 texture = ExtResource( 2 )
+flip_h = true
+hframes = 3
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
