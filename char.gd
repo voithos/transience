@@ -5,6 +5,7 @@ export (int) var SPEED = 160 # Pixels/second
 
 # Sprites
 var animation_player
+var last_dir = "down"
 
 func _ready():
 	set_fixed_process(true)
@@ -12,20 +13,25 @@ func _ready():
 
 func _fixed_process(delta):
 	var motion = Vector2()
+	var dir = null
 	
 	if Input.is_action_pressed("ui_up"):
 		motion.y -= 1
-		animation_player.play("up_idle")
+		dir = "up"
 	if Input.is_action_pressed("ui_down"):
 		motion.y += 1
-		animation_player.play("down_idle")
+		dir = "down"
 	if Input.is_action_pressed("ui_left"):
 		motion.x -= 1
-		animation_player.play("left_idle")
+		dir = "left"
 	if Input.is_action_pressed("ui_right"):
 		motion.x += 1
-		animation_player.play("right_idle")
+		dir = "right"
 	
+	if dir and dir != last_dir:
+		animation_player.play(dir + "_idle")
+	last_dir = dir
+
 	motion = motion.normalized() * SPEED * delta
 	motion = move(motion)
 	
