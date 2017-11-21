@@ -6,4 +6,6 @@
 
 [node name="Char" parent="." instance=ExtResource( 1 )]
 
+transform/pos = Vector2( 32.3498, 32.1561 )
+
 
