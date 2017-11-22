@@ -1,5 +1,4 @@
-
-extends KinematicBody2D
+extends "res://scripts/entity.gd"
 
 export (int) var SPEED = 160 # Pixels/second
 

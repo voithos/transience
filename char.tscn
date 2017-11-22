@@ -1,9 +1,15 @@
-[gd_scene load_steps=9 format=1]
+[gd_scene load_steps=10 format=1]
 
 [ext_resource path="res://char.gd" type="Script" id=1]
-[ext_resource path="res://assets/char/char-down.png" type="Texture" id=2]
-[ext_resource path="res://assets/char/char-side.png" type="Texture" id=3]
+[ext_resource path="res://assets/char/char-side.png" type="Texture" id=2]
+[ext_resource path="res://assets/char/char-down.png" type="Texture" id=3]
 [ext_resource path="res://assets/char/char-up.png" type="Texture" id=4]
+
+[sub_resource type="CapsuleShape2D" id=5]
+
+custom_solver_bias = 0.0
+radius = 7.14335
+height = 13.0756
 
 [sub_resource type="Animation" id=1]
 
@@ -15,7 +21,7 @@ tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 2 ) ] }
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 3 ) ] }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:hframes")
 tracks/1/interp = 1
@@ -37,7 +43,7 @@ tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 3 ) ] }
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 2 ) ] }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:flip_h")
 tracks/1/interp = 1
@@ -64,7 +70,7 @@ tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 3 ) ] }
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 2 ) ] }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:flip_h")
 tracks/1/interp = 1
@@ -101,11 +107,15 @@ tracks/1/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "updat
 [node name="Char" type="KinematicBody2D"]
 
 input/pickable = false
+shapes/0/shape = SubResource( 5 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 7.62939e-06, -1.35598 )
+shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
 collision/margin = 0.08
 script/script = ExtResource( 1 )
 __meta__ = { "_edit_group_":true }
+max_health = 10
 SPEED = 160
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -147,5 +157,12 @@ playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
 autoplay = ""
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+transform/pos = Vector2( 7.62939e-06, -1.35598 )
+shape = SubResource( 5 )
+trigger = false
+_update_shape_index = 0
 
 
