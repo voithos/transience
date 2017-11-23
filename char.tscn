@@ -117,6 +117,7 @@ script/script = ExtResource( 1 )
 __meta__ = { "_edit_group_":true }
 MAX_HEALTH = 100
 SPEED = 100
+MAX_FLUX = 100
 
 [node name="Sprite" type="Sprite" parent="."]
 

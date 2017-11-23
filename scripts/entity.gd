@@ -5,9 +5,9 @@ extends KinematicBody2D
 signal health_changed
 signal died
 
-var health
 export (int) var MAX_HEALTH = 100
 export (int) var SPEED = 100 # Pixels/second
+onready var health = MAX_HEALTH
 
 onready var animation_player = get_node("AnimationPlayer")
 
@@ -23,9 +23,6 @@ var previous_state = STATE_IDLE
 # Valid dirs are "up", "down", "left", "right", and null, denoting idleness.
 var current_dir = null
 var previous_dir = null
-
-func _ready():
-	health = MAX_HEALTH
 
 func change_state(new_state):
 	if new_state == current_state:
@@ -71,7 +68,11 @@ func take_damage(damage):
 		emit_signal("health_changed", health)
 
 func heal(amount):
+	var previous_health = health
 	health = min(health + amount, MAX_HEALTH)
+	
+	if health != previous_health:
+		emit_signal("health_changed", health)
 
 func health_ratio():
 	return health / MAX_HEALTH

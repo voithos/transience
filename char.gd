@@ -1,4 +1,4 @@
-extends "res://scripts/entity.gd"
+extends "res://scripts/flux_entity.gd"
 
 func _ready():
 	set_fixed_process(true)
