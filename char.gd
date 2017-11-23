@@ -2,6 +2,7 @@ extends "res://scripts/flux_entity.gd"
 
 func _ready():
 	set_fixed_process(true)
+	add_to_group("char")
 
 func _fixed_process(delta):
 	var motion = Vector2()

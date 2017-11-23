@@ -11,11 +11,11 @@ onready var health = MAX_HEALTH
 
 onready var animation_player = get_node("AnimationPlayer")
 
-const STATE_IDLE = 0
-const STATE_MOVE = 1
-const STATE_ATTACK = 2
-const STATE_DYING = 3
-const STATE_DEAD = 4
+const STATE_IDLE = "IDLE"
+const STATE_MOVE = "MOVE"
+const STATE_ATTACK = "ATTACK"
+const STATE_DYING = "DYING"
+const STATE_DEAD = "DEAD"
 
 var current_state = STATE_IDLE
 var previous_state = STATE_IDLE
@@ -27,7 +27,6 @@ var previous_dir = null
 func change_state(new_state):
 	if new_state == current_state:
 		return
-	print("State changed to ", new_state)
 	previous_state = current_state
 	current_state = new_state
 
@@ -65,14 +64,14 @@ func take_damage(damage):
 		health = 0
 		emit_signal("died")
 	else:
-		emit_signal("health_changed", health)
+		emit_signal("health_changed", health_ratio())
 
 func heal(amount):
 	var previous_health = health
 	health = min(health + amount, MAX_HEALTH)
 	
 	if health != previous_health:
-		emit_signal("health_changed", health)
+		emit_signal("health_changed", health_ratio())
 
 func health_ratio():
 	return health / MAX_HEALTH
