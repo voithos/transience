@@ -30,7 +30,8 @@ func change_state(new_state):
 	previous_state = current_state
 	current_state = new_state
 
-# Moves the entity in a given direction.
+# Moves the entity in a given direction, and returns how much motion
+# remained before collision (if motion was completely successful, returns (0, 0)).
 #   motion: A Vector2() containing x/y motion.
 #   dir: One of "up", "down", "left", "right", used for animation.
 #        Can also be null to designate no direction (idle)
@@ -47,7 +48,8 @@ func move_entity(motion, dir):
 		if previous_dir:
 			animation_player.play(previous_dir + "_idle")
 
-	motion = move(motion)
+	var remainder = move(motion)
+	motion = remainder
 
 	# Make character slide nicely through the world
 	var slide_attempts = 4
@@ -55,6 +57,8 @@ func move_entity(motion, dir):
 		motion = get_collision_normal().slide(motion)
 		motion = move(motion)
 		slide_attempts -= 1
+
+	return remainder
 
 func take_damage(damage):
 	# TODO: Add state management so that take_damage/heal are no-ops
