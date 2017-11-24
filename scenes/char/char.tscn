@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=1]
 
-[ext_resource path="res://char.gd" type="Script" id=1]
+[ext_resource path="res://scenes/char/char.gd" type="Script" id=1]
 [ext_resource path="res://assets/char/char-side.png" type="Texture" id=2]
 [ext_resource path="res://assets/char/char-down.png" type="Texture" id=3]
 [ext_resource path="res://assets/char/char-up.png" type="Texture" id=4]
