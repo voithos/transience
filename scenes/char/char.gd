@@ -6,6 +6,7 @@ func _ready():
 	add_to_group("char")
 
 func _fixed_process(delta):
+	flux_fixed_process(delta)
 	react_to_motion_controls(delta)
 
 func _input(event):

@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=1]
+[gd_scene load_steps=12 format=1]
 
 [ext_resource path="res://scenes/char/char.gd" type="Script" id=1]
-[ext_resource path="res://assets/char/char-side.png" type="Texture" id=2]
-[ext_resource path="res://assets/char/char-down.png" type="Texture" id=3]
-[ext_resource path="res://assets/char/char-up.png" type="Texture" id=4]
+[ext_resource path="res://assets/char/footprint.png" type="Texture" id=2]
+[ext_resource path="res://assets/char/char-side.png" type="Texture" id=3]
+[ext_resource path="res://assets/char/char-down.png" type="Texture" id=4]
+[ext_resource path="res://assets/char/char-up.png" type="Texture" id=5]
 
 [sub_resource type="CapsuleShape2D" id=1]
 
@@ -11,7 +12,12 @@ custom_solver_bias = 0.0
 radius = 7.14335
 height = 13.0756
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="ColorRamp" id=2]
+
+offsets = FloatArray( 0, 1 )
+colors = ColorArray( 0.490196, 0.490196, 0.490196, 1, 1, 1, 1, 0 )
+
+[sub_resource type="Animation" id=3]
 
 length = 5.0
 loop = true
@@ -20,7 +26,7 @@ tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 3 ) ] }
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 4 ) ] }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:hframes")
 tracks/1/interp = 1
@@ -32,7 +38,7 @@ tracks/2/interp = 1
 tracks/2/imported = false
 tracks/2/keys = { "times":FloatArray( 0, 1, 1.05, 1.1, 1.15, 4.55, 4.6, 4.65, 4.7 ), "transitions":FloatArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ), "update":1, "values":[ 0, 1, 2, 1, 0, 1, 2, 1, 0 ] }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=4]
 
 length = 5.0
 loop = true
@@ -41,7 +47,7 @@ tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 2 ) ] }
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 3 ) ] }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:flip_h")
 tracks/1/interp = 1
@@ -58,7 +64,7 @@ tracks/3/interp = 1
 tracks/3/imported = false
 tracks/3/keys = { "times":FloatArray( 0, 1, 1.05, 1.1, 1.15, 4.5, 4.55, 4.6, 4.65 ), "transitions":FloatArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ), "update":1, "values":[ 0, 1, 2, 1, 0, 1, 2, 1, 0 ] }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=5]
 
 length = 5.0
 loop = true
@@ -67,7 +73,7 @@ tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 2 ) ] }
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 3 ) ] }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:flip_h")
 tracks/1/interp = 1
@@ -84,7 +90,7 @@ tracks/3/interp = 1
 tracks/3/imported = false
 tracks/3/keys = { "times":FloatArray( 0, 1, 1.05, 1.1, 1.15, 4.5, 4.55, 4.6, 4.65 ), "transitions":FloatArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ), "update":1, "values":[ 0, 1, 2, 1, 0, 1, 2, 1, 0 ] }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=6]
 
 length = 1.0
 loop = false
@@ -93,7 +99,7 @@ tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 4 ) ] }
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 5 ) ] }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:hframes")
 tracks/1/interp = 1
@@ -115,10 +121,38 @@ MAX_HEALTH = 100
 SPEED = 120
 MAX_FLUX = 100
 
+[node name="FootprintParticles" type="Particles2D" parent="."]
+
+visibility/self_opacity = 0.8
+visibility/blend_mode = 1
+transform/pos = Vector2( 0, 11 )
+config/amount = 25
+config/lifetime = 3.0
+config/emitting = false
+config/local_space = false
+config/texture = ExtResource( 2 )
+params/direction = 0.0
+params/spread = 2.0
+params/linear_velocity = 0.0
+params/spin_velocity = 0.0
+params/orbit_velocity = 0.0
+params/gravity_direction = 0.0
+params/gravity_strength = 0.0
+params/radial_accel = 0.0
+params/tangential_accel = 0.0
+params/damping = 0.0
+params/initial_angle = 0.0
+params/initial_size = 1.0
+params/final_size = 1.0
+params/hue_variation = 0.0
+params/anim_speed_scale = 1.0
+params/anim_initial_pos = 0.0
+color/color_ramp = SubResource( 2 )
+
 [node name="Sprite" type="Sprite" parent="."]
 
 transform/pos = Vector2( 0, -0.0769463 )
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 flip_h = true
 hframes = 3
 
@@ -146,10 +180,10 @@ drag_margin/bottom = 0.0
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/down_idle = SubResource( 2 )
-anims/left_idle = SubResource( 3 )
-anims/right_idle = SubResource( 4 )
-anims/up_idle = SubResource( 5 )
+anims/down_idle = SubResource( 3 )
+anims/left_idle = SubResource( 4 )
+anims/right_idle = SubResource( 5 )
+anims/up_idle = SubResource( 6 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]

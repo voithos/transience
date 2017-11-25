@@ -1,7 +1,7 @@
 extends "res://scripts/entity.gd"
 
 # Flux-based entity management. This contains a lot of the logic for the
-# player character.
+# player character (perhaps the filename is a misnomer...).
 
 signal flux_changed
 
@@ -21,20 +21,56 @@ const THROWBACK_TWEEN_TIME = 0.15
 onready var tween_node = get_node("Tween")
 var is_animating = false
 
+onready var footprint_particles = get_node("FootprintParticles")
+const FOOTPRINT_PARTICLE_OFFSET_Y = 11
+const FOOTPRINT_PARTICLE_DISPLACEMENT_X = 2
+const FOOTPRINT_PARTICLE_DISPLACEMENT_Y = 1
+var footprint_swapped = false
+var footprint_switch_threshold
+var footprint_switch_delta = 0
+
 func _ready():
 	throwback_positions.resize(MAX_THROWBACKS)
 	tween_node.connect("tween_complete", self, "on_throwback_complete")
+	footprint_switch_threshold = footprint_particles.get_lifetime() / footprint_particles.get_amount()
+
+func flux_fixed_process(delta):
+	footprint_switch_delta += delta
+	if footprint_switch_delta > footprint_switch_threshold:
+		footprint_swapped = not footprint_swapped
+		footprint_switch_delta = fmod(footprint_switch_delta, footprint_switch_threshold)
 
 func move_entity(motion, dir):
 	var remainder = .move_entity(motion, dir)
 
-	# Only heal and cache throwback when we actually move,
-	# and do so without collisions.
-	if motion.length_squared() and not remainder.length_squared():
-		heal_flux(motion.length_squared() * FLUX_GAIN_RATE)
-		cache_throwback_position()
+	# Perform certain operations only when we actually move without collisions, or is "sliding".
+	var is_sliding = remainder.x and remainder.y
+	if motion.length_squared() and (not remainder.length_squared() or is_sliding):
+		on_actual_move(motion, dir)
+	else:
+		on_non_actual_move(motion, dir)
 	return remainder
+
+func on_actual_move(motion, dir):
+	heal_flux(motion.length_squared() * FLUX_GAIN_RATE)
+	cache_throwback_position()
+
+	# Update footprint particles.
+	footprint_particles.set_emitting(true)
+	var offset
+	if dir == "right" or dir == "left":
+		offset = Vector2(0, FOOTPRINT_PARTICLE_DISPLACEMENT_Y)
+	else:
+		offset = Vector2(FOOTPRINT_PARTICLE_DISPLACEMENT_X, 0)
 	
+	if footprint_swapped:
+		offset *= -1
+
+	footprint_particles.set_pos(Vector2(0, FOOTPRINT_PARTICLE_OFFSET_Y) + offset)
+
+func on_non_actual_move(motion, dir):
+	footprint_particles.set_emitting(false)
+
 func heal_flux(amount):
 	var previous_flux = flux
 	flux = min(flux + amount, MAX_FLUX)
@@ -77,12 +113,14 @@ func on_throwback_start():
 	set_layer_mask(0)
 	set_collision_mask(0)
 	is_animating = true
+	footprint_particles.set_emitting(false)
 
 func on_throwback_complete(object, key):
 	# Re-enable collisions.
 	set_layer_mask(1)
 	set_collision_mask(1)
 	is_animating = false
+	footprint_particles.set_emitting(true)
 
 func react_to_motion_controls(delta):
 	if is_animating:
