@@ -112,7 +112,7 @@ collision/margin = 0.08
 script/script = ExtResource( 1 )
 __meta__ = { "_edit_group_":true }
 MAX_HEALTH = 100
-SPEED = 100
+SPEED = 120
 MAX_FLUX = 100
 
 [node name="Sprite" type="Sprite" parent="."]

@@ -8,12 +8,11 @@ signal flux_changed
 export (int) var MAX_FLUX = 100
 onready var flux = 0
 
-const FLUX_PER_THROWBACK_STEP = 1 # Arbitrary, for now
-const FLUX_GAIN_RATE = .2 # Arbitrary, for now
-# TODO: Make delta-throwback based on how long button is held.
-const THROWBACK_STEPS = 50
+const FLUX_PER_THROWBACK_STEP = .4 # Multiplied with THROWBACK_STEPS
+const FLUX_GAIN_RATE = .1 # Arbitrary, for now
+const THROWBACK_STEPS = 64
 
-const MAX_THROWBACKS = 256
+const MAX_THROWBACKS = 512
 var throwback_positions = []
 var throwback_i = 0
 var throwback_count = 0

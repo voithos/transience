@@ -6,7 +6,7 @@ signal health_changed
 signal died
 
 export (int) var MAX_HEALTH = 100
-export (int) var SPEED = 100 # Pixels/second
+export (int) var SPEED = 120 # Pixels/second
 onready var health = MAX_HEALTH
 
 onready var animation_player = get_node("AnimationPlayer")

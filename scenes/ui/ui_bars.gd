@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-const BAR_TWEEN_TIME = 0.5
+const BAR_TWEEN_TIME = 0.2
 
 onready var health_bar = get_node("HealthBar")
 onready var flux_bar = get_node("FluxBar")
