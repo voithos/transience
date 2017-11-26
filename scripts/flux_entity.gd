@@ -10,7 +10,7 @@ onready var flux = 0
 
 const FLUX_PER_THROWBACK_STEP = .4 # Multiplied with THROWBACK_STEPS
 const FLUX_GAIN_RATE = .1 # Arbitrary, for now
-const THROWBACK_STEPS = 64
+const THROWBACK_STEPS = 32
 
 const MAX_THROWBACKS = 512
 var throwback_positions = []

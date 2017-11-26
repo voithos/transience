@@ -1,15 +1,18 @@
-[gd_scene load_steps=5 format=1]
+[gd_scene load_steps=6 format=1]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://scenes/char/char.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/ui/ui_bars.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/char/char-side.png" type="Texture" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
 extents = Vector2( 32.0678, 32.0098 )
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="YSort"]
+
+sort/enabled = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
@@ -41,5 +44,10 @@ _update_shape_index = 0
 transform/pos = Vector2( 33.2958, 69.2076 )
 
 [node name="CanvasLayer" parent="." instance=ExtResource( 3 )]
+
+[node name="Sprite" type="Sprite" parent="."]
+
+transform/pos = Vector2( 64.4511, 141.745 )
+texture = ExtResource( 4 )
 
 
