@@ -2,15 +2,14 @@
 
 [ext_resource path="res://scenes/char/char.gd" type="Script" id=1]
 [ext_resource path="res://assets/char/footprint.png" type="Texture" id=2]
-[ext_resource path="res://assets/char/char-side.png" type="Texture" id=3]
-[ext_resource path="res://assets/char/char-down.png" type="Texture" id=4]
+[ext_resource path="res://assets/char/char-down.png" type="Texture" id=3]
+[ext_resource path="res://assets/char/char-side.png" type="Texture" id=4]
 [ext_resource path="res://assets/char/char-up.png" type="Texture" id=5]
 
-[sub_resource type="CapsuleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=7]
 
 custom_solver_bias = 0.0
-radius = 7.14335
-height = 13.0756
+extents = Vector2( 10, 10 )
 
 [sub_resource type="ColorRamp" id=2]
 
@@ -26,7 +25,7 @@ tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 4 ) ] }
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 3 ) ] }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:hframes")
 tracks/1/interp = 1
@@ -47,7 +46,7 @@ tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 3 ) ] }
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 4 ) ] }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:flip_h")
 tracks/1/interp = 1
@@ -73,7 +72,7 @@ tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 3 ) ] }
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 4 ) ] }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:flip_h")
 tracks/1/interp = 1
@@ -109,8 +108,8 @@ tracks/1/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "updat
 [node name="Char" type="KinematicBody2D"]
 
 input/pickable = false
-shapes/0/shape = SubResource( 1 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, 7.62939e-06, -1.35598 )
+shapes/0/shape = SubResource( 7 )
+shapes/0/transform = Matrix32( 0.379173, 0, 0, 0.339025, -0.00850701, 8.55884 )
 shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
@@ -191,8 +190,9 @@ autoplay = ""
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
-transform/pos = Vector2( 7.62939e-06, -1.35598 )
-shape = SubResource( 1 )
+transform/pos = Vector2( -0.00850701, 8.55884 )
+transform/scale = Vector2( 0.379173, 0.339025 )
+shape = SubResource( 7 )
 trigger = false
 _update_shape_index = 0
 
