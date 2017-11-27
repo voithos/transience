@@ -6,7 +6,7 @@
 [ext_resource path="res://assets/char/char-side.png" type="Texture" id=4]
 [ext_resource path="res://assets/char/char-up.png" type="Texture" id=5]
 
-[sub_resource type="RectangleShape2D" id=7]
+[sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
@@ -108,7 +108,7 @@ tracks/1/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "updat
 [node name="Char" type="KinematicBody2D"]
 
 input/pickable = false
-shapes/0/shape = SubResource( 7 )
+shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Matrix32( 0.379173, 0, 0, 0.339025, -0.00850701, 8.55884 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -192,7 +192,7 @@ autoplay = ""
 
 transform/pos = Vector2( -0.00850701, 8.55884 )
 transform/scale = Vector2( 0.379173, 0.339025 )
-shape = SubResource( 7 )
+shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
 

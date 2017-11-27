@@ -1,5 +1,4 @@
-extends YSort
+extends "res://scripts/level_controller.gd"
 
 func _ready():
-	var music = get_node("/root/music")
 	music.play_level1()

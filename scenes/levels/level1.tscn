@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=1]
+[gd_scene load_steps=8 format=1]
 
 [ext_resource path="res://scenes/levels/level1.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
 [ext_resource path="res://scenes/char/char.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/ui/ui_bars.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/char/char-side.png" type="Texture" id=5]
+[ext_resource path="res://scenes/enemies/jumper.tscn" type="PackedScene" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -51,5 +52,9 @@ transform/pos = Vector2( 33.2958, 69.2076 )
 
 transform/pos = Vector2( 64.4511, 141.745 )
 texture = ExtResource( 5 )
+
+[node name="Jumper" parent="." instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 418.675, 55.1062 )
 
 

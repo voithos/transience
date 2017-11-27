@@ -25,7 +25,9 @@ func play_level1():
 	last_player = level1_player
 
 func battle_start():
-	pass
+	last_player.stop()
+	battle_player.play()
 
 func battle_end():
-	pass
+	battle_player.stop()
+	last_player.play()
