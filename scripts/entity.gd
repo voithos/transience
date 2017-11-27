@@ -1,6 +1,9 @@
 extends KinematicBody2D
 
 # Common entity (player, enemy) management.
+# Expects the following child nodes (with the given name):
+# - AnimationPlayer
+# - Sprite
 
 signal health_changed
 signal died
@@ -10,6 +13,7 @@ export (int) var SPEED = 120 # Pixels/second
 onready var health = MAX_HEALTH
 
 onready var animation_player = get_node("AnimationPlayer")
+onready var sprite = get_node("Sprite")
 
 const STATE_IDLE = "IDLE"
 const STATE_MOVE = "MOVE"

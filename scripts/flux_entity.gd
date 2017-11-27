@@ -2,6 +2,8 @@ extends "res://scripts/entity.gd"
 
 # Flux-based entity management. This contains a lot of the logic for the
 # player character (perhaps the filename is a misnomer...).
+# Expects the following child nodes (with the given name):
+# - Tween
 
 signal flux_changed
 
@@ -19,6 +21,7 @@ var throwback_count = 0
 
 const THROWBACK_TWEEN_TIME = 0.15
 onready var tween_node = get_node("Tween")
+const THROWBACK_OPACITY = 0.2
 var is_animating = false
 
 onready var footprint_particles = get_node("FootprintParticles")
@@ -112,6 +115,7 @@ func on_throwback_start():
 	# Disable collisions - e.g. enemy attacks, etc.
 	set_layer_mask(0)
 	set_collision_mask(0)
+	sprite.set_opacity(THROWBACK_OPACITY)
 	is_animating = true
 	footprint_particles.set_emitting(false)
 
@@ -119,6 +123,7 @@ func on_throwback_complete(object, key):
 	# Re-enable collisions.
 	set_layer_mask(1)
 	set_collision_mask(1)
+	sprite.set_opacity(1)
 	is_animating = false
 	footprint_particles.set_emitting(true)
 
