@@ -12,6 +12,7 @@ collision/margin = 0.08
 script/script = ExtResource( 1 )
 MAX_HEALTH = 100
 SPEED = 120
+TRIGGER_DISTANCE = 100
 
 [node name="Sprite" type="Sprite" parent="."]
 

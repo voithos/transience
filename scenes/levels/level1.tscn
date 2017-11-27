@@ -56,5 +56,6 @@ texture = ExtResource( 5 )
 [node name="Jumper" parent="." instance=ExtResource( 6 )]
 
 transform/pos = Vector2( 418.675, 55.1062 )
+TRIGGER_DISTANCE = 100
 
 

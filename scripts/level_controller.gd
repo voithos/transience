@@ -4,9 +4,6 @@ extends YSort
 var char
 var music
 
-const ENEMY_TRIGGER_DISTANCE = 100
-const ENEMY_TRIGGER_DISTANCE_SQUARED = ENEMY_TRIGGER_DISTANCE * ENEMY_TRIGGER_DISTANCE
-
 const STATE_IDLE = "IDLE"
 const STATE_BATTLE = "BATTLE"
 
@@ -37,7 +34,7 @@ func check_battle_triggers():
 
 	for enemy in enemies:
 		var d = charpos.distance_squared_to(enemy.get_global_pos())
-		if d < ENEMY_TRIGGER_DISTANCE_SQUARED:
+		if d < enemy.TRIGGER_DISTANCE_SQUARED:
 			start_battle()
 			return
 
