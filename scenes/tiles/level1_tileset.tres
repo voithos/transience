@@ -209,4 +209,12 @@ extents = Vector2( 13, 13 )
 24/navigation_offset = Vector2( 8, 8 )
 24/shape_offset = Vector2( 8, 8 )
 24/shapes = [ SubResource( 1 ) ]
+25/name = "invisible_edge"
+25/texture = ExtResource( 1 )
+25/tex_offset = Vector2( 0, 0 )
+25/region = Rect2( 16, 48, 16, 16 )
+25/occluder_offset = Vector2( 8, 8 )
+25/navigation_offset = Vector2( 8, 8 )
+25/shape_offset = Vector2( 8, 8 )
+25/shapes = [ SubResource( 1 ) ]
 

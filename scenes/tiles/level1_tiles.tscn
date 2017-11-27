@@ -349,6 +349,7 @@ _update_shape_index = 0
 
 [node name="block_2" type="Sprite" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( 8, 56 )
 texture = ExtResource( 1 )
 vframes = 4
@@ -369,6 +370,35 @@ friction = 1.0
 bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="block_2/StaticBody2D"]
+
+transform/pos = Vector2( 2.38419e-07, -2.38419e-07 )
+transform/scale = Vector2( 0.615385, 0.615385 )
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="invisible_edge" type="Sprite" parent="."]
+
+transform/pos = Vector2( 24, 56 )
+texture = ExtResource( 1 )
+vframes = 4
+hframes = 8
+frame = 25
+
+[node name="StaticBody2D" type="StaticBody2D" parent="invisible_edge"]
+
+input/pickable = false
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 0.615385, 0, 0, 0.615385, 2.38419e-07, -2.38419e-07 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="invisible_edge/StaticBody2D"]
 
 transform/pos = Vector2( 2.38419e-07, -2.38419e-07 )
 transform/scale = Vector2( 0.615385, 0.615385 )
