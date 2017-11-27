@@ -1,5 +1,8 @@
 extends Node
 
+# Music management. Battle track vs background tracks are logically separate;
+# battle tracks are restarted every time they play, background tracks are merely paused.
+
 const FADE_TIME = 2.5
 const MIN_DB = -80.0
 const MAX_DB = 0.0
@@ -22,10 +25,12 @@ func _ready():
 	level1_tween = Tween.new()
 	add_child(level1_tween)
 	level1_tween.connect("tween_complete", self, "on_fade_complete")
+
 	battle_player = create_player(battle_theme)
 	battle_tween = Tween.new()
 	add_child(battle_tween)
 	battle_tween.connect("tween_complete", self, "on_fade_complete")
+	battle_player.set_volume_db(MIN_DB)
 
 func create_player(stream):
 	var player = StreamPlayer.new()
@@ -35,12 +40,12 @@ func create_player(stream):
 	return player
 
 func on_fade_complete(object, key):
-	if object.get_volume() == 0:
-		object.stop()
+	if object.get_volume() == MIN_DB:
+		object.set_paused(true)
 
 func fade_in(player, tween):
 	player.set_volume(0)
-	player.play()
+	player.set_paused(false)
 	tween.interpolate_property(player, "stream/volume_db", player.get_volume_db(), MAX_DB, \
 			FADE_TIME, Tween.TRANS_EXPO, Tween.EASE_OUT)
 	tween.start()
@@ -57,6 +62,9 @@ func play_level1():
 
 func battle_start():
 	fade_out(last_player, last_tween)
+
+	# Battle music restarts each time.
+	battle_player.play(0)
 	fade_in(battle_player, battle_tween)
 
 func battle_end():
