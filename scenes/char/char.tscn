@@ -107,6 +107,7 @@ tracks/1/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "updat
 
 [node name="Char" type="KinematicBody2D"]
 
+transform/pos = Vector2( 0, -8 )
 input/pickable = false
 shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Matrix32( 0.379173, 0, 0, 0.339025, -0.00850701, 8.55884 )
@@ -150,8 +151,9 @@ color/color_ramp = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 
-transform/pos = Vector2( 0, -0.0769463 )
+transform/pos = Vector2( 0, 8 )
 texture = ExtResource( 3 )
+offset = Vector2( 0, -8.07695 )
 flip_h = true
 hframes = 3
 
