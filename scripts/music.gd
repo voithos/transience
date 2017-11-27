@@ -24,12 +24,12 @@ func _ready():
 	level1_player = create_player(level1_theme)
 	level1_tween = Tween.new()
 	add_child(level1_tween)
-	level1_tween.connect("tween_complete", self, "on_fade_complete")
+	level1_tween.connect("tween_complete", self, "on_fade_complete", [level1_tween])
 
 	battle_player = create_player(battle_theme)
 	battle_tween = Tween.new()
 	add_child(battle_tween)
-	battle_tween.connect("tween_complete", self, "on_fade_complete")
+	battle_tween.connect("tween_complete", self, "on_fade_complete", [battle_tween])
 	battle_player.set_volume_db(MIN_DB)
 
 func create_player(stream):
@@ -39,18 +39,20 @@ func create_player(stream):
 	player.set_loop(true)
 	return player
 
-func on_fade_complete(object, key):
-	if object.get_volume() == MIN_DB:
+func on_fade_complete(object, key, tween):
+	if object.get_volume_db() == MIN_DB:
+		tween.remove_all()
 		object.set_paused(true)
 
 func fade_in(player, tween):
-	player.set_volume(0)
 	player.set_paused(false)
+	tween.remove_all()
 	tween.interpolate_property(player, "stream/volume_db", player.get_volume_db(), MAX_DB, \
 			FADE_TIME, Tween.TRANS_EXPO, Tween.EASE_OUT)
 	tween.start()
 
 func fade_out(player, tween):
+	tween.remove_all()
 	tween.interpolate_property(player, "stream/volume_db", player.get_volume_db(), MIN_DB, \
 			FADE_TIME, Tween.TRANS_EXPO, Tween.EASE_IN)
 	tween.start()
@@ -63,8 +65,9 @@ func play_level1():
 func battle_start():
 	fade_out(last_player, last_tween)
 
-	# Battle music restarts each time.
-	battle_player.play(0)
+	# Battle music restarts each time (unless the fade-out isn't done).
+	if not battle_tween.is_active():
+		battle_player.play(0)
 	fade_in(battle_player, battle_tween)
 
 func battle_end():
