@@ -32,14 +32,16 @@ func check_battle_triggers():
 	var enemies = get_tree().get_nodes_in_group("enemies")
 	var charpos = char.get_global_pos()
 
+	var enemy_in_range = false
 	for enemy in enemies:
 		var d = charpos.distance_squared_to(enemy.get_global_pos())
 		if d < enemy.TRIGGER_DISTANCE_SQUARED:
+			enemy_in_range = true
 			start_battle()
-			return
+			enemy.start_battle()
 
-	# If we reach here, then we aren't in a battle.
-	stop_battle()
+	if not enemy_in_range:
+		stop_battle()
 
 func start_battle():
 	if current_state == STATE_BATTLE:

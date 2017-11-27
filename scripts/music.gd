@@ -1,17 +1,31 @@
 extends Node
 
-var level1_theme = preload("res://assets/music/level1.ogg")
-var battle_theme = preload("res://assets/music/battle.ogg")
+const FADE_TIME = 2.5
+const MIN_DB = -80.0
+const MAX_DB = 0.0
 
+# TODO: Clean this up into a class.
+var level1_theme = preload("res://assets/music/level1.ogg")
 var level1_player
+var level1_tween
+
+var battle_theme = preload("res://assets/music/battle.ogg")
 var battle_player
+var battle_tween
 
 # The last StreamPlayer that was active.
 var last_player = null
+var last_tween = null
 
 func _ready():
 	level1_player = create_player(level1_theme)
+	level1_tween = Tween.new()
+	add_child(level1_tween)
+	level1_tween.connect("tween_complete", self, "on_fade_complete")
 	battle_player = create_player(battle_theme)
+	battle_tween = Tween.new()
+	add_child(battle_tween)
+	battle_tween.connect("tween_complete", self, "on_fade_complete")
 
 func create_player(stream):
 	var player = StreamPlayer.new()
@@ -20,14 +34,31 @@ func create_player(stream):
 	player.set_loop(true)
 	return player
 
+func on_fade_complete(object, key):
+	if object.get_volume() == 0:
+		object.stop()
+
+func fade_in(player, tween):
+	player.set_volume(0)
+	player.play()
+	tween.interpolate_property(player, "stream/volume_db", player.get_volume_db(), MAX_DB, \
+			FADE_TIME, Tween.TRANS_EXPO, Tween.EASE_OUT)
+	tween.start()
+
+func fade_out(player, tween):
+	tween.interpolate_property(player, "stream/volume_db", player.get_volume_db(), MIN_DB, \
+			FADE_TIME, Tween.TRANS_EXPO, Tween.EASE_IN)
+	tween.start()
+
 func play_level1():
 	level1_player.play()
 	last_player = level1_player
+	last_tween = level1_tween
 
 func battle_start():
-	last_player.stop()
-	battle_player.play()
+	fade_out(last_player, last_tween)
+	fade_in(battle_player, battle_tween)
 
 func battle_end():
-	battle_player.stop()
-	last_player.play()
+	fade_out(battle_player, battle_tween)
+	fade_in(last_player, last_tween)

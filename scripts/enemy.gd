@@ -10,3 +10,8 @@ func _ready():
 	# Cache the square since sqrt() operations are slow.
 	TRIGGER_DISTANCE_SQUARED = TRIGGER_DISTANCE * TRIGGER_DISTANCE
 	add_to_group("enemies")
+
+# Initiates a battle with an enemy.
+# TODO: Handle AI here.
+func start_battle():
+	pass
