@@ -23,6 +23,8 @@ const THROWBACK_TWEEN_TIME = 0.15
 onready var tween_node = get_node("Tween")
 const THROWBACK_OPACITY = 0.2
 
+const FLUX_PER_ATTACK = 5
+
 onready var footprint_particles = get_node("FootprintParticles")
 const FOOTPRINT_PARTICLE_OFFSET_Y = 11
 const FOOTPRINT_PARTICLE_DISPLACEMENT_X = 2
@@ -80,6 +82,11 @@ func heal_flux(amount):
 	if flux != previous_flux:
 		emit_signal("flux_changed", flux_ratio())
 
+func use_flux(amount):
+	assert(amount <= flux)
+	flux -= amount
+	emit_signal("flux_changed", flux_ratio())
+
 func flux_ratio():
 	return flux / MAX_FLUX
 
@@ -96,8 +103,7 @@ func cache_throwback_position():
 
 func throwback(steps):
 	assert(can_throwback(steps))
-	flux -= steps * FLUX_PER_THROWBACK_STEP
-	emit_signal("flux_changed", flux_ratio())
+	use_flux(steps * FLUX_PER_THROWBACK_STEP)
 	
 	# GDScript's modulo operator doesn't work on negatives, so "wrap" manually.
 	throwback_i -= steps
@@ -125,6 +131,19 @@ func on_throwback_complete(object, key):
 	sprite.set_opacity(1)
 	change_state(STATE_IDLE)
 	footprint_particles.set_emitting(true)
+
+func can_attack():
+	return FLUX_PER_ATTACK <= flux
+
+func attack():
+	assert(can_attack())
+	use_flux(FLUX_PER_ATTACK)
+	footprint_particles.set_emitting(false)
+	.attack()
+
+func on_attack_finished():
+	footprint_particles.set_emitting(true)
+	.on_attack_finished()
 
 func react_to_motion_controls(delta):
 	if not can_accept_input():
@@ -156,3 +175,6 @@ func react_to_action_controls(event):
 	if event.is_action_pressed("trans_accept"):
 		if can_throwback(THROWBACK_STEPS):
 			throwback(THROWBACK_STEPS)
+	if event.is_action_pressed("trans_cancel"):
+		if can_attack():
+			attack()

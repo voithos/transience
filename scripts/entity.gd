@@ -14,6 +14,7 @@ onready var health = MAX_HEALTH
 
 onready var animation_player = get_node("AnimationPlayer")
 onready var sprite = get_node("Sprite")
+var previous_animation = null
 
 const STATE_IDLE = "IDLE"
 const STATE_MOVE = "MOVE"
@@ -24,10 +25,26 @@ const STATE_DEAD = "DEAD"
 
 var current_state = STATE_IDLE
 var previous_state = STATE_IDLE
+var next_state = null
 
 # Valid dirs are "up", "down", "left", "right", and null, denoting idleness.
 var current_dir = null
 var previous_dir = null
+
+func _ready():
+	animation_player.connect("finished", self, "on_animation_finished")
+
+func on_animation_finished():
+	if next_state:
+		change_state(next_state)
+		next_state = null
+
+	if previous_animation.ends_with("attack"):
+		on_attack_finished()
+
+func play_animation(animation):
+	previous_animation = animation
+	animation_player.play(animation)
 
 func change_state(new_state):
 	if new_state == current_state:
@@ -44,17 +61,18 @@ func can_accept_input():
 #   dir: One of "up", "down", "left", "right", used for animation.
 #        Can also be null to designate no direction (idle)
 func move_entity(motion, dir):
-	previous_dir = current_dir
-	current_dir = dir
+	if dir != current_dir:
+		previous_dir = current_dir
+		current_dir = dir
 
 	if dir and dir != previous_dir:
 		change_state(STATE_MOVE)
 		# TODO: Change this to *_move.
-		animation_player.play(dir + "_idle")
+		play_animation(dir + "_idle")
 	else:
 		change_state(STATE_IDLE)
 		if previous_dir:
-			animation_player.play(previous_dir + "_idle")
+			play_animation(previous_dir + "_idle")
 
 	var remainder = move(motion)
 	motion = remainder
@@ -67,6 +85,33 @@ func move_entity(motion, dir):
 		slide_attempts -= 1
 
 	return remainder
+
+# Returns the most recent direction that the entity is facing.
+# This is guaranteed to return an actual direction, not null.
+func get_dir():
+	if current_dir != null:
+		return current_dir
+	if previous_dir != null:
+		return previous_dir
+
+	# Both dirs are null; must be a newly created entity.
+	var animation = animation_player.get_current_animation()
+	var separator = animation.find("_")
+	if separator != -1:
+		var dir = animation.left(separator)
+		if dir in ["up", "down", "left", "right"]:
+			return dir
+
+	# Default.
+	return "down"
+
+func attack():
+	change_state(STATE_ATTACK)
+	next_state = STATE_IDLE
+	play_animation(get_dir() + "_attack")
+
+func on_attack_finished():
+	play_animation(get_dir() + "_idle")
 
 func take_damage(damage):
 	# TODO: Add state management so that take_damage/heal are no-ops

@@ -4,7 +4,8 @@ func _ready():
 	set_fixed_process(true)
 	set_process_input(true)
 	add_to_group("char")
-	animation_player.play("down_idle")
+	
+	play_animation("down_idle")
 
 func _fixed_process(delta):
 	flux_fixed_process(delta)
