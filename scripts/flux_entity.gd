@@ -22,7 +22,6 @@ var throwback_count = 0
 const THROWBACK_TWEEN_TIME = 0.15
 onready var tween_node = get_node("Tween")
 const THROWBACK_OPACITY = 0.2
-var is_animating = false
 
 onready var footprint_particles = get_node("FootprintParticles")
 const FOOTPRINT_PARTICLE_OFFSET_Y = 11
@@ -116,7 +115,7 @@ func on_throwback_start():
 	set_layer_mask(0)
 	set_collision_mask(0)
 	sprite.set_opacity(THROWBACK_OPACITY)
-	is_animating = true
+	change_state(STATE_THROWBACK)
 	footprint_particles.set_emitting(false)
 
 func on_throwback_complete(object, key):
@@ -124,11 +123,11 @@ func on_throwback_complete(object, key):
 	set_layer_mask(1)
 	set_collision_mask(1)
 	sprite.set_opacity(1)
-	is_animating = false
+	change_state(STATE_IDLE)
 	footprint_particles.set_emitting(true)
 
 func react_to_motion_controls(delta):
-	if is_animating:
+	if not can_accept_input():
 		return
 
 	var motion = Vector2()
@@ -151,7 +150,7 @@ func react_to_motion_controls(delta):
 	move_entity(motion, dir)
 
 func react_to_action_controls(event):
-	if is_animating:
+	if not can_accept_input():
 		return
 
 	if event.is_action_pressed("trans_accept"):

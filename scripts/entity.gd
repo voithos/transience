@@ -17,6 +17,7 @@ onready var sprite = get_node("Sprite")
 
 const STATE_IDLE = "IDLE"
 const STATE_MOVE = "MOVE"
+const STATE_THROWBACK = "THROWBACK"
 const STATE_ATTACK = "ATTACK"
 const STATE_DYING = "DYING"
 const STATE_DEAD = "DEAD"
@@ -33,6 +34,9 @@ func change_state(new_state):
 		return
 	previous_state = current_state
 	current_state = new_state
+
+func can_accept_input():
+	return current_state == STATE_IDLE or current_state == STATE_MOVE
 
 # Moves the entity in a given direction, and returns how much motion
 # remained before collision (if motion was completely successful, returns (0, 0)).
