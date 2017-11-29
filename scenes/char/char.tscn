@@ -2,8 +2,8 @@
 
 [ext_resource path="res://scenes/char/char.gd" type="Script" id=1]
 [ext_resource path="res://assets/char/footprint.png" type="Texture" id=2]
-[ext_resource path="res://assets/char/char-attack-down.png" type="Texture" id=3]
-[ext_resource path="res://assets/char/char-down.png" type="Texture" id=4]
+[ext_resource path="res://assets/char/char-down.png" type="Texture" id=3]
+[ext_resource path="res://assets/char/char-attack-down.png" type="Texture" id=4]
 [ext_resource path="res://assets/char/char-attack-side.png" type="Texture" id=5]
 [ext_resource path="res://assets/char/char-side.png" type="Texture" id=6]
 [ext_resource path="res://assets/char/char-attack-up.png" type="Texture" id=7]
@@ -30,7 +30,7 @@ tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 3 ) ] }
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 4 ) ] }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:hframes")
 tracks/1/interp = 1
@@ -61,7 +61,7 @@ tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 4 ) ] }
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 3 ) ] }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:hframes")
 tracks/1/interp = 1
@@ -301,8 +301,7 @@ color/color_ramp = SubResource( 2 )
 transform/pos = Vector2( 0, 8 )
 texture = ExtResource( 3 )
 offset = Vector2( 0, -8.07695 )
-hframes = 7
-frame = 3
+hframes = 3
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
