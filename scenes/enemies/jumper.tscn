@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=1]
+[gd_scene load_steps=7 format=1]
 
 [ext_resource path="res://scenes/enemies/jumper.gd" type="Script" id=1]
 [ext_resource path="res://scenes/resources/melt.tres" type="CanvasItemMaterial" id=2]
@@ -6,9 +6,18 @@
 [ext_resource path="res://scenes/animations/enemy_die.tres" type="Animation" id=4]
 [ext_resource path="res://assets/sfx/sample_library.tres" type="SampleLibrary" id=5]
 
+[sub_resource type="CircleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 6.99189
+
 [node name="Jumper" type="KinematicBody2D"]
 
+transform/pos = Vector2( 0, -4 )
 input/pickable = false
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 3.03555 )
+shapes/0/trigger = true
 collision/layers = 1
 collision/mask = 1
 collision/margin = 0.08
@@ -32,6 +41,13 @@ playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
 autoplay = ""
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+
+transform/pos = Vector2( 0, 3.03555 )
+shape = SubResource( 1 )
+trigger = true
+_update_shape_index = 0
 
 [node name="SamplePlayer" type="SamplePlayer" parent="."]
 

@@ -12,8 +12,10 @@ export (int) var MAX_HEALTH = 100
 export (int) var SPEED = 120 # Pixels/second
 onready var health = MAX_HEALTH
 
-onready var animation_player = get_node("AnimationPlayer")
+# Nodes common to all entities.
 onready var sprite = get_node("Sprite")
+onready var hitbox = get_node("Hitbox")
+onready var animation_player = get_node("AnimationPlayer")
 onready var sample_player = get_node("SamplePlayer")
 var previous_animation = null
 

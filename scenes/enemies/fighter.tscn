@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=1]
+[gd_scene load_steps=7 format=1]
 
 [ext_resource path="res://scenes/enemies/fighter.gd" type="Script" id=1]
 [ext_resource path="res://scenes/resources/melt.tres" type="CanvasItemMaterial" id=2]
@@ -6,9 +6,19 @@
 [ext_resource path="res://scenes/animations/enemy_die.tres" type="Animation" id=4]
 [ext_resource path="res://assets/sfx/sample_library.tres" type="SampleLibrary" id=5]
 
+[sub_resource type="CapsuleShape2D" id=23]
+
+custom_solver_bias = 0.0
+radius = 11.0361
+height = 52.2131
+
 [node name="Fighter" type="KinematicBody2D"]
 
+transform/pos = Vector2( 0, -8 )
 input/pickable = false
+shapes/0/shape = SubResource( 23 )
+shapes/0/transform = Matrix32( 0.379173, 0, 0, 0.339025, -0.0707509, -0.776039 )
+shapes/0/trigger = true
 collision/layers = 1
 collision/mask = 1
 collision/margin = 0.08
@@ -20,7 +30,6 @@ TRIGGER_DISTANCE = 100
 [node name="Sprite" type="Sprite" parent="."]
 
 material/material = ExtResource( 2 )
-transform/pos = Vector2( 0, -8 )
 texture = ExtResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -33,6 +42,14 @@ playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
 autoplay = ""
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+
+transform/pos = Vector2( -0.0707509, -0.776039 )
+transform/scale = Vector2( 0.379173, 0.339025 )
+shape = SubResource( 23 )
+trigger = true
+_update_shape_index = 0
 
 [node name="SamplePlayer" type="SamplePlayer" parent="."]
 
