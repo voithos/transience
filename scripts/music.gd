@@ -5,7 +5,7 @@ extends Node
 
 const FADE_TIME = 2.5
 const MIN_DB = -80.0
-const MAX_DB = 0.0
+const MAX_DB = -10.0
 
 # TODO: Clean this up into a class.
 var level1_theme = preload("res://assets/music/level1.ogg")
@@ -58,6 +58,7 @@ func fade_out(player, tween):
 	tween.start()
 
 func play_level1():
+	level1_player.set_volume_db(MAX_DB)
 	level1_player.play()
 	last_player = level1_player
 	last_tween = level1_tween

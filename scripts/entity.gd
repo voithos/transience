@@ -14,6 +14,7 @@ onready var health = MAX_HEALTH
 
 onready var animation_player = get_node("AnimationPlayer")
 onready var sprite = get_node("Sprite")
+onready var sample_player = get_node("SamplePlayer")
 var previous_animation = null
 
 const STATE_IDLE = "IDLE"
@@ -109,6 +110,11 @@ func attack():
 	change_state(STATE_ATTACK)
 	next_state = STATE_IDLE
 	play_animation(get_dir() + "_attack")
+
+# Triggered by AnimationPlayer on the appropriate "attack" frame.
+func on_attack_triggered():
+	# TODO: Add actual collision detection, etc.
+	sample_player.play("slice")
 
 func on_attack_finished():
 	play_animation(get_dir() + "_idle")

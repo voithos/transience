@@ -1,13 +1,14 @@
-[gd_scene load_steps=19 format=1]
+[gd_scene load_steps=20 format=1]
 
 [ext_resource path="res://scenes/char/char.gd" type="Script" id=1]
 [ext_resource path="res://assets/char/footprint.png" type="Texture" id=2]
-[ext_resource path="res://assets/char/char-attack-up.png" type="Texture" id=3]
+[ext_resource path="res://assets/char/char-attack-side.png" type="Texture" id=3]
 [ext_resource path="res://assets/char/char-attack-down.png" type="Texture" id=4]
 [ext_resource path="res://assets/char/char-down.png" type="Texture" id=5]
-[ext_resource path="res://assets/char/char-attack-side.png" type="Texture" id=6]
-[ext_resource path="res://assets/char/char-side.png" type="Texture" id=7]
+[ext_resource path="res://assets/char/char-side.png" type="Texture" id=6]
+[ext_resource path="res://assets/char/char-attack-up.png" type="Texture" id=7]
 [ext_resource path="res://assets/char/char-up.png" type="Texture" id=8]
+[ext_resource path="res://assets/sfx/sample_library.tres" type="SampleLibrary" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -45,6 +46,11 @@ tracks/3/path = NodePath("Sprite:flip_h")
 tracks/3/interp = 1
 tracks/3/imported = false
 tracks/3/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ false ] }
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/imported = false
+tracks/4/keys = { "times":FloatArray( 0.15 ), "transitions":FloatArray( 1 ), "values":[ { "args":[  ], "method":"on_attack_triggered" } ] }
 
 [sub_resource type="Animation" id=4]
 
@@ -82,7 +88,7 @@ tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 6 ) ] }
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 3 ) ] }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:hframes")
 tracks/1/interp = 1
@@ -98,6 +104,11 @@ tracks/3/path = NodePath("Sprite:flip_h")
 tracks/3/interp = 1
 tracks/3/imported = false
 tracks/3/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ true ] }
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/imported = false
+tracks/4/keys = { "times":FloatArray( 0.15 ), "transitions":FloatArray( 1 ), "values":[ { "args":[  ], "method":"on_attack_triggered" } ] }
 
 [sub_resource type="Animation" id=5]
 
@@ -108,7 +119,7 @@ tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 7 ) ] }
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 6 ) ] }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:flip_h")
 tracks/1/interp = 1
@@ -135,7 +146,7 @@ tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 6 ) ] }
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 3 ) ] }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:hframes")
 tracks/1/interp = 1
@@ -151,6 +162,11 @@ tracks/3/path = NodePath("Sprite:flip_h")
 tracks/3/interp = 1
 tracks/3/imported = false
 tracks/3/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ false ] }
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/imported = false
+tracks/4/keys = { "times":FloatArray( 0.15 ), "transitions":FloatArray( 1 ), "values":[ { "args":[  ], "method":"on_attack_triggered" } ] }
 
 [sub_resource type="Animation" id=6]
 
@@ -161,7 +177,7 @@ tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 7 ) ] }
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 6 ) ] }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:flip_h")
 tracks/1/interp = 1
@@ -188,7 +204,7 @@ tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 3 ) ] }
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 7 ) ] }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:hframes")
 tracks/1/interp = 1
@@ -204,6 +220,11 @@ tracks/3/path = NodePath("Sprite:flip_h")
 tracks/3/interp = 1
 tracks/3/imported = false
 tracks/3/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ false ] }
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/imported = false
+tracks/4/keys = { "times":FloatArray( 0.15 ), "transitions":FloatArray( 1 ), "values":[ { "args":[  ], "method":"on_attack_triggered" } ] }
 
 [sub_resource type="Animation" id=7]
 
@@ -281,7 +302,7 @@ transform/pos = Vector2( 0, 8 )
 texture = ExtResource( 3 )
 offset = Vector2( 0, -8.07695 )
 hframes = 7
-frame = 6
+frame = 3
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -338,5 +359,22 @@ playback/process_mode = 1
 playback/active = false
 playback/repeat = false
 playback/speed = 1.0
+
+[node name="SamplePlayer" type="SamplePlayer" parent="."]
+
+config/polyphony = 1
+config/samples = ExtResource( 9 )
+default/volume_db = 0.0
+default/pitch_scale = 1.0
+default/pan = 0.0
+default/depth = 0.0
+default/height = 0.0
+default/filter/type = 0
+default/filter/cutoff = 5000.0
+default/filter/resonance = 1.0
+default/filter/gain = 1.0
+default/reverb_room = 2
+default/reverb_send = 0.0
+default/chorus_send = 0.0
 
 
