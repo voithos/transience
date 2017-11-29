@@ -33,6 +33,7 @@ var current_dir = null
 var previous_dir = null
 
 func _ready():
+	connect("died", self, "on_died")
 	animation_player.connect("finished", self, "on_animation_finished")
 
 func on_animation_finished():
@@ -49,9 +50,10 @@ func play_animation(animation):
 
 func change_state(new_state):
 	if new_state == current_state:
-		return
+		return false
 	previous_state = current_state
 	current_state = new_state
+	return true
 
 func can_accept_input():
 	return current_state == STATE_IDLE or current_state == STATE_MOVE
@@ -128,6 +130,11 @@ func take_damage(damage):
 		emit_signal("died")
 	else:
 		emit_signal("health_changed", health_ratio())
+
+func on_died():
+	var successful = change_state(STATE_DYING)
+	if successful:
+		play_animation("die")
 
 func heal(amount):
 	var previous_health = health
