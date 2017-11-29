@@ -2,11 +2,11 @@
 
 [ext_resource path="res://scenes/char/char.gd" type="Script" id=1]
 [ext_resource path="res://assets/char/footprint.png" type="Texture" id=2]
-[ext_resource path="res://assets/char/char-attack-side.png" type="Texture" id=3]
+[ext_resource path="res://assets/char/char-attack-up.png" type="Texture" id=3]
 [ext_resource path="res://assets/char/char-attack-down.png" type="Texture" id=4]
 [ext_resource path="res://assets/char/char-down.png" type="Texture" id=5]
-[ext_resource path="res://assets/char/char-side.png" type="Texture" id=6]
-[ext_resource path="res://assets/char/char-attack-up.png" type="Texture" id=7]
+[ext_resource path="res://assets/char/char-attack-side.png" type="Texture" id=6]
+[ext_resource path="res://assets/char/char-side.png" type="Texture" id=7]
 [ext_resource path="res://assets/char/char-up.png" type="Texture" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -22,7 +22,7 @@ colors = ColorArray( 0.490196, 0.490196, 0.490196, 1, 1, 1, 1, 0 )
 [sub_resource type="Animation" id=3]
 
 resource/name = "down_attack"
-length = 0.6
+length = 0.35
 loop = false
 step = 0.05
 tracks/0/type = "value"
@@ -39,7 +39,7 @@ tracks/2/type = "value"
 tracks/2/path = NodePath("Sprite:frame")
 tracks/2/interp = 1
 tracks/2/imported = false
-tracks/2/keys = { "times":FloatArray( 0, 0.05, 0.1, 0.2, 0.3, 0.4, 0.5 ), "transitions":FloatArray( 1, 1, 1, 1, 1, 1, 1 ), "update":1, "values":[ 0, 1, 2, 3, 4, 5, 6 ] }
+tracks/2/keys = { "times":FloatArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3 ), "transitions":FloatArray( 1, 1, 1, 1, 1, 1, 1 ), "update":1, "values":[ 0, 1, 2, 3, 4, 5, 6 ] }
 tracks/3/type = "value"
 tracks/3/path = NodePath("Sprite:flip_h")
 tracks/3/interp = 1
@@ -75,14 +75,14 @@ tracks/3/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "updat
 [sub_resource type="Animation" id=10]
 
 resource/name = "left_attack"
-length = 0.6
+length = 0.35
 loop = false
 step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 3 ) ] }
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 6 ) ] }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:hframes")
 tracks/1/interp = 1
@@ -92,7 +92,7 @@ tracks/2/type = "value"
 tracks/2/path = NodePath("Sprite:frame")
 tracks/2/interp = 1
 tracks/2/imported = false
-tracks/2/keys = { "times":FloatArray( 0, 0.05, 0.1, 0.2, 0.3, 0.4, 0.5 ), "transitions":FloatArray( 1, 1, 1, 1, 1, 1, 1 ), "update":1, "values":[ 0, 1, 2, 3, 4, 5, 6 ] }
+tracks/2/keys = { "times":FloatArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3 ), "transitions":FloatArray( 1, 1, 1, 1, 1, 1, 1 ), "update":1, "values":[ 0, 1, 2, 3, 4, 5, 6 ] }
 tracks/3/type = "value"
 tracks/3/path = NodePath("Sprite:flip_h")
 tracks/3/interp = 1
@@ -108,7 +108,7 @@ tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 6 ) ] }
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 7 ) ] }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:flip_h")
 tracks/1/interp = 1
@@ -128,14 +128,14 @@ tracks/3/keys = { "times":FloatArray( 0, 1, 1.05, 1.1, 1.15, 4.5, 4.55, 4.6, 4.6
 [sub_resource type="Animation" id=8]
 
 resource/name = "right_attack"
-length = 0.6
+length = 0.35
 loop = false
 step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 3 ) ] }
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 6 ) ] }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:hframes")
 tracks/1/interp = 1
@@ -145,7 +145,7 @@ tracks/2/type = "value"
 tracks/2/path = NodePath("Sprite:frame")
 tracks/2/interp = 1
 tracks/2/imported = false
-tracks/2/keys = { "times":FloatArray( 0, 0.05, 0.1, 0.2, 0.3, 0.4, 0.5 ), "transitions":FloatArray( 1, 1, 1, 1, 1, 1, 1 ), "update":1, "values":[ 0, 1, 2, 3, 4, 5, 6 ] }
+tracks/2/keys = { "times":FloatArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3 ), "transitions":FloatArray( 1, 1, 1, 1, 1, 1, 1 ), "update":1, "values":[ 0, 1, 2, 3, 4, 5, 6 ] }
 tracks/3/type = "value"
 tracks/3/path = NodePath("Sprite:flip_h")
 tracks/3/interp = 1
@@ -161,7 +161,7 @@ tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 6 ) ] }
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 7 ) ] }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:flip_h")
 tracks/1/interp = 1
@@ -181,14 +181,14 @@ tracks/3/keys = { "times":FloatArray( 0, 1, 1.05, 1.1, 1.15, 4.5, 4.55, 4.6, 4.6
 [sub_resource type="Animation" id=9]
 
 resource/name = "up_attack"
-length = 0.6
+length = 0.35
 loop = false
 step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 7 ) ] }
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 3 ) ] }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:hframes")
 tracks/1/interp = 1
@@ -198,7 +198,7 @@ tracks/2/type = "value"
 tracks/2/path = NodePath("Sprite:frame")
 tracks/2/interp = 1
 tracks/2/imported = false
-tracks/2/keys = { "times":FloatArray( 0, 0.05, 0.1, 0.2, 0.3, 0.4, 0.5 ), "transitions":FloatArray( 1, 1, 1, 1, 1, 1, 1 ), "update":1, "values":[ 0, 1, 2, 3, 4, 5, 6 ] }
+tracks/2/keys = { "times":FloatArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3 ), "transitions":FloatArray( 1, 1, 1, 1, 1, 1, 1 ), "update":1, "values":[ 0, 1, 2, 3, 4, 5, 6 ] }
 tracks/3/type = "value"
 tracks/3/path = NodePath("Sprite:flip_h")
 tracks/3/interp = 1
@@ -280,7 +280,6 @@ color/color_ramp = SubResource( 2 )
 transform/pos = Vector2( 0, 8 )
 texture = ExtResource( 3 )
 offset = Vector2( 0, -8.07695 )
-flip_h = true
 hframes = 7
 frame = 6
 
