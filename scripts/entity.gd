@@ -115,8 +115,7 @@ func attack():
 
 # Triggered by AnimationPlayer on the appropriate "attack" frame.
 func on_attack_triggered():
-	# TODO: Add actual collision detection, etc.
-	sample_player.play("slice")
+	pass
 
 func on_attack_finished():
 	play_animation(get_dir() + "_idle")

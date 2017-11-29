@@ -141,6 +141,11 @@ func attack():
 	footprint_particles.set_emitting(false)
 	.attack()
 
+func on_attack_triggered():
+	# TODO: Add actual collision detection, etc.
+	sample_player.play("slice")
+	.on_attack_triggered()
+
 func on_attack_finished():
 	footprint_particles.set_emitting(true)
 	.on_attack_finished()
