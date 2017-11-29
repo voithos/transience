@@ -10,6 +10,9 @@ const STATE_BATTLE = "BATTLE"
 var current_state = STATE_IDLE
 var previous_state = STATE_IDLE
 
+const BATTLE_END_LAG = 2  # In seconds
+var battle_delta = 0
+
 func _ready():
 	var nodes = get_tree().get_nodes_in_group("char")
 	assert(nodes.size() == 1)
@@ -25,9 +28,9 @@ func change_state(new_state):
 	current_state = new_state
 
 func _fixed_process(delta):
-	check_battle_triggers()
+	check_battle_triggers(delta)
 
-func check_battle_triggers():
+func check_battle_triggers(delta):
 	var is_in_battle = false
 	var enemies = get_tree().get_nodes_in_group("enemies")
 	var charpos = char.get_global_pos()
@@ -40,8 +43,12 @@ func check_battle_triggers():
 			start_battle()
 			enemy.start_battle()
 
-	if not enemy_in_range:
-		stop_battle()
+	if enemy_in_range:
+		battle_delta = 0
+	else:
+		battle_delta += delta
+		if battle_delta > BATTLE_END_LAG:
+			stop_battle()
 
 func start_battle():
 	if current_state == STATE_BATTLE:
