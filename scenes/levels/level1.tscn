@@ -15,10 +15,12 @@ script/script = ExtResource( 1 )
 [node name="Fighter" parent="." instance=ExtResource( 2 )]
 
 transform/pos = Vector2( 298.644, 104.607 )
+ATTACK_DAMAGE = 20
 
 [node name="Char" parent="." instance=ExtResource( 3 )]
 
 transform/pos = Vector2( 32.0298, 68.6773 )
+ATTACK_DAMAGE = 20
 
 [node name="Jumper" parent="." instance=ExtResource( 4 )]
 

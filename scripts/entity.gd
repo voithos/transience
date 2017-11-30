@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 # Common entity (player, enemy) management.
 # Expects the following child nodes (with the given name):
-# - Hitbox (CollissionShape2D)
+# - Hitbox (Area2D)
 # - Sprite
 # - AnimationPlayer
 # - SamplePlayer
@@ -20,6 +20,7 @@ signal died
 
 export (int) var MAX_HEALTH = 100
 export (int) var SPEED = 120 # Pixels/second
+export (int) var ATTACK_DAMAGE = 15
 onready var health = MAX_HEALTH
 
 # Nodes common to all entities.
@@ -128,16 +129,32 @@ func attack():
 	play_animation(get_dir() + "_attack")
 
 # Triggered by AnimationPlayer on the appropriate "attack" frame.
-# Sub-scripts can override this to have specific collision detection for hitboxes.
+# Subscripts can override this to have specific collision detection for hitboxes.
 func on_attack_triggered():
 	pass
+
+# Detects attack collisions and deals damage to entities in range.
+# Can be called from the `on_attack_triggered` of subscripts.
+# Expects the node to contain the following children:
+# - *_attack_area - Area2D nodes that are used for the attack surfaces
+func detect_directional_area_attack_collisions(opposing_group="enemies"):
+	var dir = get_dir()
+	var area = get_node(dir + "_attack_area")
+	var areas = area.get_overlapping_areas()
+	
+	for area in areas:
+		var body = area.get_parent()
+		if body != null and body.is_in_group(opposing_group):
+			# Found an opposer!
+			body.take_damage(ATTACK_DAMAGE)
 
 func on_attack_finished():
 	play_animation(get_dir() + "_idle")
 
 func take_damage(damage):
-	# TODO: Add state management so that take_damage/heal are no-ops
-	# when entity is dead.
+	if not can_take_damage_or_heal():
+		return false
+
 	health -= damage
 	emit_signal("damaged", damage)
 	if health <= 0:
@@ -145,6 +162,7 @@ func take_damage(damage):
 		emit_signal("died")
 	else:
 		emit_signal("health_changed", health_ratio())
+	return true
 
 func on_damaged(damage):
 	play_animation("take_damage")
@@ -155,16 +173,23 @@ func on_died():
 		play_animation("die")
 
 func heal(amount):
+	if not can_take_damage_or_heal():
+		return false
 	var previous_health = health
 	health = min(health + amount, MAX_HEALTH)
 	
-	if health != previous_health:
+	var successful = health != previous_health
+	if successful:
 		emit_signal("health_changed", health_ratio())
 		emit_signal("healed", amount)
+	return successful
 
 func on_healed(amount):
 	# TODO: Play some animation?
 	pass
+
+func can_take_damage_or_heal():
+	return current_state in [STATE_IDLE, STATE_MOVE, STATE_ATTACK]
 
 func health_ratio():
 	return health / MAX_HEALTH

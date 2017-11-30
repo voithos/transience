@@ -1,21 +1,17 @@
-[gd_scene load_steps=34 format=1]
+[gd_scene load_steps=37 format=1]
 
 [ext_resource path="res://scenes/char/char.gd" type="Script" id=1]
 [ext_resource path="res://assets/char/footprint.png" type="Texture" id=2]
-[ext_resource path="res://assets/char/char-down.png" type="Texture" id=3]
-[ext_resource path="res://assets/char/char-attack-down.png" type="Texture" id=4]
-[ext_resource path="res://assets/char/char-attack-side.png" type="Texture" id=5]
-[ext_resource path="res://assets/char/char-side.png" type="Texture" id=6]
-[ext_resource path="res://scenes/animations/take_damage.tres" type="Animation" id=7]
-[ext_resource path="res://assets/char/char-attack-up.png" type="Texture" id=8]
-[ext_resource path="res://assets/char/char-up.png" type="Texture" id=9]
-[ext_resource path="res://assets/sfx/sample_library.tres" type="SampleLibrary" id=10]
-
-[sub_resource type="CapsuleShape2D" id=1]
-
-custom_solver_bias = 0.0
-radius = 11.0361
-height = 52.2131
+[ext_resource path="res://scenes/resources/effects_shader.tres" type="Shader" id=3]
+[ext_resource path="res://assets/misc/melt.png" type="Texture" id=4]
+[ext_resource path="res://assets/char/char-down.png" type="Texture" id=5]
+[ext_resource path="res://assets/char/char-attack-down.png" type="Texture" id=6]
+[ext_resource path="res://assets/char/char-attack-side.png" type="Texture" id=7]
+[ext_resource path="res://assets/char/char-side.png" type="Texture" id=8]
+[ext_resource path="res://scenes/animations/take_damage.tres" type="Animation" id=9]
+[ext_resource path="res://assets/char/char-attack-up.png" type="Texture" id=10]
+[ext_resource path="res://assets/char/char-up.png" type="Texture" id=11]
+[ext_resource path="res://assets/sfx/sample_library.tres" type="SampleLibrary" id=12]
 
 [sub_resource type="RectangleShape2D" id=2]
 
@@ -27,6 +23,14 @@ extents = Vector2( 10, 10 )
 offsets = FloatArray( 0, 1 )
 colors = ColorArray( 0.490196, 0.490196, 0.490196, 1, 1, 1, 1, 0 )
 
+[sub_resource type="CanvasItemMaterial" id=24]
+
+shader/shader = ExtResource( 3 )
+shader/shading_mode = 0
+shader_param/whitening = 0.0
+shader_param/mask = ExtResource( 4 )
+shader_param/strength = 0.0
+
 [sub_resource type="Animation" id=4]
 
 length = 0.35
@@ -36,7 +40,7 @@ tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 4 ) ] }
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 6 ) ] }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:hframes")
 tracks/1/interp = 1
@@ -67,7 +71,7 @@ tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 3 ) ] }
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 5 ) ] }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:hframes")
 tracks/1/interp = 1
@@ -93,7 +97,7 @@ tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 5 ) ] }
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 7 ) ] }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:hframes")
 tracks/1/interp = 1
@@ -124,7 +128,7 @@ tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 6 ) ] }
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 8 ) ] }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:flip_h")
 tracks/1/interp = 1
@@ -150,7 +154,7 @@ tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 5 ) ] }
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 7 ) ] }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:hframes")
 tracks/1/interp = 1
@@ -181,7 +185,7 @@ tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 6 ) ] }
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 8 ) ] }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:flip_h")
 tracks/1/interp = 1
@@ -207,7 +211,7 @@ tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 8 ) ] }
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 10 ) ] }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:hframes")
 tracks/1/interp = 1
@@ -238,7 +242,7 @@ tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 9 ) ] }
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 11 ) ] }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:hframes")
 tracks/1/interp = 1
@@ -254,6 +258,12 @@ tracks/3/path = NodePath("Sprite:flip_h")
 tracks/3/interp = 1
 tracks/3/imported = false
 tracks/3/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ false ] }
+
+[sub_resource type="CapsuleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 11.0361
+height = 52.2131
 
 [sub_resource type="ConvexPolygonShape2D" id=12]
 
@@ -319,12 +329,9 @@ points = Vector2Array( 21.496, 6.72675, 12.0492, 1.71995, 23.4798, 0.491861 )
 
 transform/pos = Vector2( 0, -8 )
 input/pickable = false
-shapes/0/shape = SubResource( 1 )
-shapes/0/transform = Matrix32( 0.379173, 0, 0, 0.339025, -0.0707509, -0.776039 )
-shapes/0/trigger = true
-shapes/1/shape = SubResource( 2 )
-shapes/1/transform = Matrix32( 0.379173, 0, 0, 0.339025, -0.00850701, 8.55884 )
-shapes/1/trigger = false
+shapes/0/shape = SubResource( 2 )
+shapes/0/transform = Matrix32( 0.379173, 0, 0, 0.339025, -0.00850701, 8.55884 )
+shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
 collision/margin = 0.08
@@ -332,6 +339,7 @@ script/script = ExtResource( 1 )
 __meta__ = { "_edit_group_":true }
 MAX_HEALTH = 100
 SPEED = 120
+ATTACK_DAMAGE = 35
 MAX_FLUX = 100
 
 [node name="FootprintParticles" type="Particles2D" parent="."]
@@ -364,8 +372,9 @@ color/color_ramp = SubResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="."]
 
+material/material = SubResource( 24 )
 transform/pos = Vector2( 0, 8 )
-texture = ExtResource( 3 )
+texture = ExtResource( 5 )
 offset = Vector2( 0, -8.07695 )
 hframes = 3
 
@@ -399,7 +408,7 @@ anims/left_attack = SubResource( 6 )
 anims/left_idle = SubResource( 7 )
 anims/right_attack = SubResource( 8 )
 anims/right_idle = SubResource( 9 )
-anims/take_damage = ExtResource( 7 )
+anims/take_damage = ExtResource( 9 )
 anims/up_attack = SubResource( 10 )
 anims/up_idle = SubResource( 11 )
 next/down_attack = ""
@@ -411,7 +420,20 @@ playback/speed = 1.0
 blend_times = [  ]
 autoplay = ""
 
-[node name="Hitbox" type="CollisionShape2D" parent="."]
+[node name="Hitbox" type="Area2D" parent="."]
+
+input/pickable = true
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 0.379173, 0, 0, 0.339025, -0.0707509, -0.776039 )
+shapes/0/trigger = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision/layers = 2
+collision/mask = 2
+
+[node name="HitboxShape" type="CollisionShape2D" parent="Hitbox"]
 
 transform/pos = Vector2( -0.0707509, -0.776039 )
 transform/scale = Vector2( 0.379173, 0.339025 )
@@ -425,7 +447,7 @@ transform/pos = Vector2( -0.00850701, 8.55884 )
 transform/scale = Vector2( 0.379173, 0.339025 )
 shape = SubResource( 2 )
 trigger = false
-_update_shape_index = 1
+_update_shape_index = 0
 
 [node name="Tween" type="Tween" parent="."]
 
@@ -437,7 +459,7 @@ playback/speed = 1.0
 [node name="SamplePlayer" type="SamplePlayer" parent="."]
 
 config/polyphony = 1
-config/samples = ExtResource( 10 )
+config/samples = ExtResource( 12 )
 default/volume_db = 0.0
 default/pitch_scale = 1.0
 default/pan = 0.0
@@ -451,7 +473,7 @@ default/reverb_room = 2
 default/reverb_send = 0.0
 default/chorus_send = 0.0
 
-[node name="attack_area_down" type="Area2D" parent="."]
+[node name="down_attack_area" type="Area2D" parent="."]
 
 editor/display_folded = true
 visibility/visible = false
@@ -469,17 +491,18 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
+monitorable = false
 collision/layers = 2
 collision/mask = 2
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="attack_area_down"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="down_attack_area"]
 
 build_mode = 0
 polygon = Vector2Array( -6.93889, 0.491861, -16.5746, 6.15994, -6.18315, 15.9846, -0.70401, 17.4016, 4.77514, 16.1735, 10.4432, 9.65525, 8.08151, 1.34207, 3.35811, 5.87653, -2.68784, 5.59313 )
 shape_range = Vector2( 0, 2 )
 trigger = true
 
-[node name="attack_area_left" type="Area2D" parent="."]
+[node name="left_attack_area" type="Area2D" parent="."]
 
 editor/display_folded = true
 visibility/visible = false
@@ -497,10 +520,11 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
+monitorable = false
 collision/layers = 2
 collision/mask = 2
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="attack_area_left"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="left_attack_area"]
 
 transform/pos = Vector2( -8.31318, -4.25106 )
 build_mode = 0
@@ -508,7 +532,7 @@ polygon = Vector2Array( 0.33514, 2.38122, -5.89975, 2.28675, -11.7568, 8.23823, 
 shape_range = Vector2( 0, 2 )
 trigger = true
 
-[node name="attack_area_right" type="Area2D" parent="."]
+[node name="right_attack_area" type="Area2D" parent="."]
 
 editor/display_folded = true
 visibility/visible = false
@@ -526,10 +550,11 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
+monitorable = false
 collision/layers = 2
 collision/mask = 2
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="attack_area_right"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="right_attack_area"]
 
 transform/pos = Vector2( -8.31318, -4.25106 )
 build_mode = 0
@@ -537,7 +562,7 @@ polygon = Vector2Array( 15.9223, 3.0425, 22.4406, 2.19229, 27.7308, 6.82121, 27.
 shape_range = Vector2( 0, 2 )
 trigger = true
 
-[node name="attack_area_up" type="Area2D" parent="."]
+[node name="up_attack_area" type="Area2D" parent="."]
 
 editor/display_folded = true
 visibility/visible = false
@@ -555,10 +580,11 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
+monitorable = false
 collision/layers = 2
 collision/mask = 2
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="attack_area_up"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="up_attack_area"]
 
 transform/pos = Vector2( -8.31318, -4.25106 )
 build_mode = 0

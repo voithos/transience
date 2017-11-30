@@ -13,3 +13,7 @@ func _fixed_process(delta):
 
 func _input(event):
 	react_to_action_controls(event)
+
+func on_attack_triggered():
+	detect_directional_area_attack_collisions("enemies")
+	.on_attack_triggered()

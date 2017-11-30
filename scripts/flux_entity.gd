@@ -142,7 +142,7 @@ func attack():
 	.attack()
 
 func on_attack_triggered():
-	# TODO: Add actual collision detection, etc.
+	# TODO: Make this play earlier so that the sound syncs up.
 	sample_player.play("slice")
 	.on_attack_triggered()
 
@@ -177,6 +177,7 @@ func react_to_action_controls(event):
 	if not can_accept_input():
 		return
 
+	# TODO: Do some manipulation of this so that controls feel more responsive?
 	if event.is_action_pressed("trans_accept"):
 		if can_throwback(THROWBACK_STEPS):
 			throwback(THROWBACK_STEPS)
