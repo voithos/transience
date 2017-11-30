@@ -1,4 +1,4 @@
 extends "res://scripts/enemy.gd"
 
 func _ready():
-	pass
+	play_animation("jump_down")
