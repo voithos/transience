@@ -41,6 +41,8 @@ var current_state = STATE_IDLE
 var previous_state = STATE_IDLE
 var next_state = null
 
+var next_action = null
+
 # Valid dirs are "up", "down", "left", "right", and null, denoting idleness.
 var current_dir = null
 var previous_dir = null
@@ -60,6 +62,14 @@ func on_animation_finished():
 		on_attack_finished()
 	elif previous_animation == "die":
 		on_die_finished()
+
+	if next_action:
+		handle_next_action(next_action)
+		next_action = null
+
+# Override in subscripts.
+func handle_next_action(action):
+	pass
 
 func play_animation(animation):
 	previous_animation = animation

@@ -33,6 +33,8 @@ var footprint_swapped = false
 var footprint_switch_threshold
 var footprint_switch_delta = 0
 
+const TIME_BEFORE_QUEUEING_NEW_ACTION = 0.2
+
 func _ready():
 	throwback_positions.resize(MAX_THROWBACKS)
 	tween_node.connect("tween_complete", self, "on_throwback_complete")
@@ -174,13 +176,33 @@ func react_to_motion_controls(delta):
 	move_entity(motion, dir)
 
 func react_to_action_controls(event):
-	if not can_accept_input():
-		return
-
-	# TODO: Do some manipulation of this so that controls feel more responsive?
+	var action = null
 	if event.is_action_pressed("trans_accept"):
+		action = "trans_accept"
+	if event.is_action_pressed("trans_cancel"):
+		action = "trans_cancel"
+
+	if action:
+		if can_accept_input():
+			immediately_run_action(action)
+			return
+		
+		# If we reach here, it means we're currently in an animation.
+		# Check for the amount of time left before we can trigger a new action.
+		var time_left = animation_player.get_current_animation_length() - animation_player.get_current_animation_pos()
+		if time_left < TIME_BEFORE_QUEUEING_NEW_ACTION:
+			next_action = action
+
+		# Otherwise, just drop the input.
+
+func immediately_run_action(action):
+	if action == "trans_accept":
 		if can_throwback(THROWBACK_STEPS):
 			throwback(THROWBACK_STEPS)
-	if event.is_action_pressed("trans_cancel"):
+	if action == "trans_cancel":
 		if can_attack():
 			attack()
+
+func handle_next_action(action):
+	immediately_run_action(action)
+	.handle_next_action(action)
