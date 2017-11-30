@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=1]
 
 [ext_resource path="res://scenes/enemies/fighter.gd" type="Script" id=1]
-[ext_resource path="res://scenes/resources/melt.tres" type="CanvasItemMaterial" id=2]
+[ext_resource path="res://scenes/resources/effects_material.tres" type="CanvasItemMaterial" id=2]
 [ext_resource path="res://assets/fighter/fighter-down.png" type="Texture" id=3]
 [ext_resource path="res://scenes/animations/enemy_die.tres" type="Animation" id=4]
 [ext_resource path="res://scenes/animations/take_damage.tres" type="Animation" id=5]
