@@ -58,6 +58,8 @@ func on_animation_finished():
 
 	if previous_animation.ends_with("attack"):
 		on_attack_finished()
+	elif previous_animation == "die":
+		on_die_finished()
 
 func play_animation(animation):
 	previous_animation = animation
@@ -171,6 +173,9 @@ func on_died():
 	var successful = change_state(STATE_DYING)
 	if successful:
 		play_animation("die")
+
+func on_die_finished():
+	queue_free()
 
 func heal(amount):
 	if not can_take_damage_or_heal():
