@@ -52,6 +52,7 @@ collision/margin = 0.08
 script/script = ExtResource( 1 )
 MAX_HEALTH = 100
 SPEED = 120
+ATTACK_SLIDE_SPEED = 0
 ATTACK_DAMAGE = 15
 TRIGGER_DISTANCE = 100
 
@@ -93,6 +94,7 @@ default/chorus_send = 0.0
 
 [node name="Hitbox" type="Area2D" parent="."]
 
+editor/display_folded = true
 input/pickable = true
 shapes/0/shape = SubResource( 2 )
 shapes/0/transform = Matrix32( 0.379173, 0, 0, 0.339025, -0.0707495, -1.29941 )
@@ -111,5 +113,12 @@ transform/scale = Vector2( 0.379173, 0.339025 )
 shape = SubResource( 2 )
 trigger = true
 _update_shape_index = 0
+
+[node name="Tween" type="Tween" parent="."]
+
+playback/process_mode = 1
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
 
 

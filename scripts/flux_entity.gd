@@ -14,13 +14,13 @@ const FLUX_PER_THROWBACK_STEP = .4 # Multiplied with THROWBACK_STEPS
 const FLUX_GAIN_RATE = .1 # Arbitrary, for now
 const THROWBACK_STEPS = 32
 
+onready var throwback_tween_node = get_node("ThrowbackTween")
 const MAX_THROWBACKS = 512
 var throwback_positions = []
 var throwback_i = 0
 var throwback_count = 0
 
 const THROWBACK_TWEEN_TIME = 0.15
-onready var tween_node = get_node("Tween")
 const THROWBACK_OPACITY = 0.2
 
 const FLUX_PER_ATTACK = 5
@@ -37,14 +37,19 @@ const TIME_BEFORE_QUEUEING_NEW_ACTION = 0.2
 
 func _ready():
 	throwback_positions.resize(MAX_THROWBACKS)
-	tween_node.connect("tween_complete", self, "on_throwback_complete")
+	throwback_tween_node.connect("tween_complete", self, "on_throwback_complete")
 	footprint_switch_threshold = footprint_particles.get_lifetime() / footprint_particles.get_amount()
 
 func flux_fixed_process(delta):
+	# Footprint mechanics.
 	footprint_switch_delta += delta
 	if footprint_switch_delta > footprint_switch_threshold:
 		footprint_swapped = not footprint_swapped
 		footprint_switch_delta = fmod(footprint_switch_delta, footprint_switch_threshold)
+
+	# Attack slide motion.
+	if current_state == STATE_ATTACK:
+		slide_in_dir(get_dir(), delta)
 
 func move_entity(motion, dir):
 	var remainder = .move_entity(motion, dir)
@@ -113,9 +118,9 @@ func throwback(steps):
 		throwback_i += MAX_THROWBACKS
 	throwback_count -= steps
 
-	tween_node.interpolate_property(self, "transform/pos", get_pos(), throwback_positions[throwback_i], \
+	throwback_tween_node.interpolate_property(self, "transform/pos", get_pos(), throwback_positions[throwback_i], \
 			THROWBACK_TWEEN_TIME, Tween.TRANS_QUAD, Tween.EASE_OUT)
-	tween_node.start()
+	throwback_tween_node.start()
 	on_throwback_start()
 
 func on_throwback_start():

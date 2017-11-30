@@ -92,6 +92,7 @@ collision/margin = 0.08
 script/script = ExtResource( 1 )
 MAX_HEALTH = 100
 SPEED = 120
+ATTACK_SLIDE_SPEED = 0
 ATTACK_DAMAGE = 15
 TRIGGER_DISTANCE = 100
 
@@ -269,5 +270,12 @@ build_mode = 0
 polygon = Vector2Array( 21.496, 6.72675, 23.4798, 0.491861, 12.7104, -8.95493, 3.54705, -9.0494, -2.7823, -2.72005, -1.55422, 5.971, 6.00322, 1.71995, 12.0492, 1.71995 )
 shape_range = Vector2( 0, 2 )
 trigger = true
+
+[node name="Tween" type="Tween" parent="."]
+
+playback/process_mode = 1
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
 
 

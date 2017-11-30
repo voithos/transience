@@ -6,6 +6,7 @@ extends KinematicBody2D
 # - Sprite
 # - AnimationPlayer
 # - SamplePlayer
+# - Tween
 #
 # For the animation player, expects the following animations to be defined:
 # - *_idle
@@ -20,14 +21,23 @@ signal died
 
 export (int) var MAX_HEALTH = 100
 export (int) var SPEED = 120 # Pixels/second
+export (int) var ATTACK_SLIDE_SPEED = 10 # Pixels/second
 export (int) var ATTACK_DAMAGE = 15
 onready var health = MAX_HEALTH
+
+const DIR_TO_MOTION = {
+	"left": Vector2(-1, 0),
+	"up": Vector2(0, -1),
+	"right": Vector2(1, 0),
+	"down": Vector2(0, 1)
+}
 
 # Nodes common to all entities.
 onready var sprite = get_node("Sprite")
 onready var hitbox = get_node("Hitbox")
 onready var animation_player = get_node("AnimationPlayer")
 onready var sample_player = get_node("SamplePlayer")
+onready var tween_node = get_node("Tween")
 var previous_animation = null
 
 const STATE_IDLE = "IDLE"
@@ -104,6 +114,9 @@ func move_entity(motion, dir):
 		if previous_dir:
 			play_animation(previous_dir + "_idle")
 
+	return move_and_slide(motion)
+
+func move_and_slide(motion):
 	var remainder = move(motion)
 	motion = remainder
 
@@ -139,6 +152,11 @@ func attack():
 	change_state(STATE_ATTACK)
 	next_state = STATE_IDLE
 	play_animation(get_dir() + "_attack")
+
+func slide_in_dir(dir, delta):
+	var motion = DIR_TO_MOTION[dir]
+	motion = motion.normalized() * ATTACK_SLIDE_SPEED * delta
+	move_and_slide(motion)
 
 # Triggered by AnimationPlayer on the appropriate "attack" frame.
 # Subscripts can override this to have specific collision detection for hitboxes.
