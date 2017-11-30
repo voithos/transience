@@ -1,12 +1,13 @@
-[gd_scene load_steps=7 format=1]
+[gd_scene load_steps=8 format=1]
 
 [ext_resource path="res://scenes/enemies/fighter.gd" type="Script" id=1]
 [ext_resource path="res://scenes/resources/melt.tres" type="CanvasItemMaterial" id=2]
 [ext_resource path="res://assets/fighter/fighter-down.png" type="Texture" id=3]
 [ext_resource path="res://scenes/animations/enemy_die.tres" type="Animation" id=4]
-[ext_resource path="res://assets/sfx/sample_library.tres" type="SampleLibrary" id=5]
+[ext_resource path="res://scenes/animations/take_damage.tres" type="Animation" id=5]
+[ext_resource path="res://assets/sfx/sample_library.tres" type="SampleLibrary" id=6]
 
-[sub_resource type="CapsuleShape2D" id=23]
+[sub_resource type="CapsuleShape2D" id=1]
 
 custom_solver_bias = 0.0
 radius = 11.0361
@@ -16,7 +17,7 @@ height = 52.2131
 
 transform/pos = Vector2( 0, -8 )
 input/pickable = false
-shapes/0/shape = SubResource( 23 )
+shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Matrix32( 0.379173, 0, 0, 0.339025, -0.0707509, -0.776039 )
 shapes/0/trigger = true
 collision/layers = 1
@@ -37,7 +38,8 @@ texture = ExtResource( 3 )
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/enemy_die = ExtResource( 4 )
+anims/die = ExtResource( 4 )
+anims/take_damage = ExtResource( 5 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
@@ -47,14 +49,14 @@ autoplay = ""
 
 transform/pos = Vector2( -0.0707509, -0.776039 )
 transform/scale = Vector2( 0.379173, 0.339025 )
-shape = SubResource( 23 )
+shape = SubResource( 1 )
 trigger = true
 _update_shape_index = 0
 
 [node name="SamplePlayer" type="SamplePlayer" parent="."]
 
 config/polyphony = 1
-config/samples = ExtResource( 5 )
+config/samples = ExtResource( 6 )
 default/volume_db = 0.0
 default/pitch_scale = 1.0
 default/pan = 0.0

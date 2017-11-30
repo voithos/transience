@@ -1,0 +1,6 @@
+[gd_resource type="CanvasItemShader" format=1]
+
+[resource]
+
+_code = { "fragment":"uniform float whitening = 0;\n\nvec4 texture_color = tex(TEXTURE, UV);\nCOLOR = vec4(mix(texture_color.rgb, vec3(1, 1, 1), whitening), texture_color.a);", "fragment_ofs":0, "light":"", "light_ofs":0, "vertex":"", "vertex_ofs":0 }
+

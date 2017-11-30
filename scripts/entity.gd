@@ -2,10 +2,20 @@ extends KinematicBody2D
 
 # Common entity (player, enemy) management.
 # Expects the following child nodes (with the given name):
-# - AnimationPlayer
+# - Hitbox (CollissionShape2D)
 # - Sprite
+# - AnimationPlayer
+# - SamplePlayer
+#
+# For the animation player, expects the following animations to be defined:
+# - *_idle
+# - *_move
+# - take_damage
+# - die
 
 signal health_changed
+signal damaged
+signal healed
 signal died
 
 export (int) var MAX_HEALTH = 100
@@ -35,6 +45,8 @@ var current_dir = null
 var previous_dir = null
 
 func _ready():
+	connect("damaged", self, "on_damaged")
+	connect("healed", self, "on_healed")
 	connect("died", self, "on_died")
 	animation_player.connect("finished", self, "on_animation_finished")
 
@@ -116,6 +128,7 @@ func attack():
 	play_animation(get_dir() + "_attack")
 
 # Triggered by AnimationPlayer on the appropriate "attack" frame.
+# Sub-scripts can override this to have specific collision detection for hitboxes.
 func on_attack_triggered():
 	pass
 
@@ -126,11 +139,15 @@ func take_damage(damage):
 	# TODO: Add state management so that take_damage/heal are no-ops
 	# when entity is dead.
 	health -= damage
+	emit_signal("damaged", damage)
 	if health <= 0:
 		health = 0
 		emit_signal("died")
 	else:
 		emit_signal("health_changed", health_ratio())
+
+func on_damaged(damage):
+	play_animation("take_damage")
 
 func on_died():
 	var successful = change_state(STATE_DYING)
@@ -143,6 +160,11 @@ func heal(amount):
 	
 	if health != previous_health:
 		emit_signal("health_changed", health_ratio())
+		emit_signal("healed", amount)
+
+func on_healed(amount):
+	# TODO: Play some animation?
+	pass
 
 func health_ratio():
 	return health / MAX_HEALTH

@@ -1,21 +1,21 @@
 [gd_resource type="Animation" load_steps=2 format=1]
 
-[ext_resource path="res://scenes/resources/melt.tres" type="CanvasItemMaterial" id=1]
+[ext_resource path="res://scenes/resources/damage.tres" type="CanvasItemMaterial" id=1]
 
 [resource]
 
-resource/name = "die"
-length = 2.5
+resource/name = "take_damage"
+length = 0.15
 loop = false
-step = 0.1
+step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:material/material")
 tracks/0/interp = 1
 tracks/0/imported = false
 tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 1 ) ] }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:material/material:shader_param/strength")
+tracks/1/path = NodePath("Sprite:material/material:shader_param/whitening")
 tracks/1/interp = 1
 tracks/1/imported = false
-tracks/1/keys = { "times":FloatArray( 0, 2.5 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ 0.0, 2.0 ] }
+tracks/1/keys = { "times":FloatArray( 0, 0.05, 0.1 ), "transitions":FloatArray( 1, 1, 1 ), "update":0, "values":[ 0.0, 1.0, 0.0 ] }
 
