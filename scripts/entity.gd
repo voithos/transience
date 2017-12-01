@@ -116,13 +116,14 @@ func can_accept_input():
 func move_entity(motion, dir):
 	change_dir(dir)
 
-	if dir and dir != previous_dir:
-		change_state(STATE_MOVE)
-		# TODO: Change this to *_move.
-		play_dir_animation(dir, "idle")
+	if dir:
+		var successful = change_state(STATE_MOVE)
+		if successful or dir != previous_dir:
+			# TODO: Change this to *_move.
+			play_dir_animation(dir, "idle")
 	else:
-		change_state(STATE_IDLE)
-		if previous_dir:
+		var successful = change_state(STATE_IDLE)
+		if successful:
 			play_dir_animation(previous_dir, "idle")
 
 	return move_and_slide(motion)
