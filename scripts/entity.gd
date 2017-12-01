@@ -197,11 +197,14 @@ func detect_directional_area_attack_collisions(opposing_group="enemies"):
 	var area = get_node(dir + "_attack_area")
 	var areas = area.get_overlapping_areas()
 	
+	var total_damage = 0
 	for area in areas:
 		var body = area.get_parent()
 		if body != null and body.is_in_group(opposing_group):
 			# Found an opposer!
 			body.take_damage(ATTACK_DAMAGE)
+			total_damage += ATTACK_DAMAGE
+	return total_damage
 
 func on_attack_finished():
 	play_dir_animation(get_dir(), "idle")
