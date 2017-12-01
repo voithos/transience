@@ -28,7 +28,9 @@ ATTACK_DAMAGE = 20
 transform/pos = Vector2( 418.675, 55.1062 )
 ATTACK_SLIDE_SPEED = 15
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="Navigation2D" type="Navigation2D" parent="."]
+
+[node name="TileMap" type="TileMap" parent="Navigation2D"]
 
 mode = 0
 tile_set = ExtResource( 5 )
