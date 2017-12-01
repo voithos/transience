@@ -42,6 +42,7 @@ func _ready():
 
 func flux_fixed_process(delta):
 	# Footprint mechanics.
+	footprint_particles.set_emitting(can_accept_input())
 	footprint_switch_delta += delta
 	if footprint_switch_delta > footprint_switch_threshold:
 		footprint_swapped = not footprint_swapped
@@ -129,7 +130,6 @@ func on_throwback_start():
 	set_collision_mask(0)
 	sprite.set_opacity(THROWBACK_OPACITY)
 	change_state(STATE_THROWBACK)
-	footprint_particles.set_emitting(false)
 
 func on_throwback_complete(object, key):
 	# Re-enable collisions.
@@ -137,7 +137,6 @@ func on_throwback_complete(object, key):
 	set_collision_mask(1)
 	sprite.set_opacity(1)
 	change_state(STATE_IDLE)
-	footprint_particles.set_emitting(true)
 
 func can_attack():
 	return FLUX_PER_ATTACK <= flux
@@ -145,17 +144,12 @@ func can_attack():
 func attack():
 	assert(can_attack())
 	use_flux(FLUX_PER_ATTACK)
-	footprint_particles.set_emitting(false)
 	.attack()
 
 func on_attack_triggered():
 	# TODO: Make this play earlier so that the sound syncs up.
 	sample_player.play("slice")
 	.on_attack_triggered()
-
-func on_attack_finished():
-	footprint_particles.set_emitting(true)
-	.on_attack_finished()
 
 func react_to_motion_controls(delta):
 	if not can_accept_input():

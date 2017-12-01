@@ -14,6 +14,7 @@ func _fixed_process(delta):
 
 func on_attack_triggered():
 	detect_directional_area_attack_collisions("char")
+	sample_player.play("slice")
 	.on_attack_triggered()
 
 func get_attack_range():
