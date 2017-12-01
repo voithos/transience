@@ -56,8 +56,14 @@ func run_battle_ai(delta):
 	if not can_accept_input():
 		return
 
-	# TODO: Check for distance-to-char and attack.
-
+	# Check for distance-to-char and attack.
+	var attack_range = pow(get_attack_range(), 2)
+	var distance_to_char = get_global_pos().distance_squared_to(char.get_global_pos())
+	if distance_to_char < attack_range + get_attack_range_buffer():
+		if randf() < get_attack_probability():
+			attack()
+			return
+	
 	# Check path to char.
 	var path = navigation_node.get_simple_path(get_global_pos(), char.get_global_pos(), false)
 	# The first point is always the start node.
@@ -69,6 +75,18 @@ func run_battle_ai(delta):
 			var motion = direction * SPEED * delta
 			var dir = get_dir_from_motion(motion)
 			move_entity(motion, dir)
+
+# To be overridden in subscripts.
+func get_attack_range():
+	assert(false)
+
+# To be overridden in subscripts.
+func get_attack_range_buffer():
+	assert(false)
+
+# To be overridden in subscripts.
+func get_attack_probability():
+	assert(false)
 
 # Initiates a battle with an enemy.
 func start_battle():
