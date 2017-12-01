@@ -10,31 +10,276 @@
 
 [sub_resource type="GDScript" id=1]
 
-script/source = "extends \"res://scripts/enemy.gd\"\n\nfunc _ready():\n\tset_process(true)\n\tset_fixed_process(true)\n\nfunc _process(delta):\n\tenemy_process(delta)\n\nfunc _fixed_process(delta):\n\t# Attack slide motion.\n\tif current_state == STATE_ATTACK:\n\t\tslide_in_dir(get_dir(), delta)\n\nfunc on_attack_triggered():\n\tdetect_directional_area_attack_collisions(\"char\")\n\tsample_player.play(\"slice\")\n\t.on_attack_triggered()\n\nfunc on_damaged(damage):\n\t# Fighters are tough. :)\n\t# If they get hit while in stagger, they won\'t re-stagger.\n\tif current_state != STATE_STAGGER:\n\t\t.on_damaged(damage)\n\nfunc get_attack_range():\n\treturn 25\n\nfunc get_attack_range_buffer():\n\treturn 5\n\nfunc get_attack_probability():\n\treturn 0.6\n\nfunc get_attack_cooldown():\n\treturn 0.25 + (randf() / 2)"
+script/source = "extends \"res://scripts/enemy.gd\"
+
+func _ready():
+	set_process(true)
+	set_fixed_process(true)
+
+func _process(delta):
+	enemy_process(delta)
+
+func _fixed_process(delta):
+	# Attack slide motion.
+	if current_state == STATE_ATTACK:
+		slide_in_dir(get_dir(), delta)
+
+func on_attack_triggered():
+	detect_directional_area_attack_collisions(\"char\")
+	sample_player.play(\"slice\")
+	.on_attack_triggered()
+
+func on_damaged(damage):
+	# Fighters are tough. :)
+	# If they get hit while in stagger, they won't re-stagger.
+	if current_state != STATE_STAGGER:
+		.on_damaged(damage)
+
+func get_attack_range():
+	return 25
+
+func get_attack_range_buffer():
+	return 5
+
+func get_attack_probability():
+	return 0.6
+
+func get_attack_cooldown():
+	return 0.25 + (randf() / 2)"
 
 [sub_resource type="GDScript" id=2]
 
-script/source = "extends \"res://scripts/enemy.gd\"\n\nfunc _ready():\n\tset_process(true)\n\tset_fixed_process(true)\n\nfunc _process(delta):\n\tenemy_process(delta)\n\nfunc _fixed_process(delta):\n\t# Attack slide motion.\n\tif current_state == STATE_ATTACK:\n\t\tslide_in_dir(get_dir(), delta)\n\nfunc on_attack_triggered():\n\tdetect_directional_area_attack_collisions(\"char\")\n\tsample_player.play(\"slice\")\n\t.on_attack_triggered()\n\nfunc on_damaged(damage):\n\t# Fighters are tough. :)\n\t# If they get hit while in stagger, they won\'t re-stagger.\n\tif current_state != STATE_STAGGER:\n\t\t.on_damaged(damage)\n\nfunc get_attack_range():\n\treturn 25\n\nfunc get_attack_range_buffer():\n\treturn 5\n\nfunc get_attack_probability():\n\treturn 0.6\n\nfunc get_attack_cooldown():\n\treturn 0.25 + (randf() / 2)"
+script/source = "extends \"res://scripts/enemy.gd\"
+
+func _ready():
+	set_process(true)
+	set_fixed_process(true)
+
+func _process(delta):
+	enemy_process(delta)
+
+func _fixed_process(delta):
+	# Attack slide motion.
+	if current_state == STATE_ATTACK:
+		slide_in_dir(get_dir(), delta)
+
+func on_attack_triggered():
+	detect_directional_area_attack_collisions(\"char\")
+	sample_player.play(\"slice\")
+	.on_attack_triggered()
+
+func on_damaged(damage):
+	# Fighters are tough. :)
+	# If they get hit while in stagger, they won't re-stagger.
+	if current_state != STATE_STAGGER:
+		.on_damaged(damage)
+
+func get_attack_range():
+	return 25
+
+func get_attack_range_buffer():
+	return 5
+
+func get_attack_probability():
+	return 0.6
+
+func get_attack_cooldown():
+	return 0.25 + (randf() / 2)"
 
 [sub_resource type="GDScript" id=3]
 
-script/source = "extends \"res://scripts/enemy.gd\"\n\nfunc _ready():\n\tset_process(true)\n\tset_fixed_process(true)\n\nfunc _process(delta):\n\tenemy_process(delta)\n\nfunc _fixed_process(delta):\n\t# Attack slide motion.\n\tif current_state == STATE_ATTACK:\n\t\tslide_in_dir(get_dir(), delta)\n\nfunc on_attack_triggered():\n\tdetect_directional_area_attack_collisions(\"char\")\n\tsample_player.play(\"slice\")\n\t.on_attack_triggered()\n\nfunc on_damaged(damage):\n\t# Fighters are tough. :)\n\t# If they get hit while in stagger, they won\'t re-stagger.\n\tif current_state != STATE_STAGGER:\n\t\t.on_damaged(damage)\n\nfunc get_attack_range():\n\treturn 25\n\nfunc get_attack_range_buffer():\n\treturn 5\n\nfunc get_attack_probability():\n\treturn 0.6\n\nfunc get_attack_cooldown():\n\treturn 0.25 + (randf() / 2)"
+script/source = "extends \"res://scripts/enemy.gd\"
+
+func _ready():
+	set_process(true)
+	set_fixed_process(true)
+
+func _process(delta):
+	enemy_process(delta)
+
+func _fixed_process(delta):
+	# Attack slide motion.
+	if current_state == STATE_ATTACK:
+		slide_in_dir(get_dir(), delta)
+
+func on_attack_triggered():
+	detect_directional_area_attack_collisions(\"char\")
+	sample_player.play(\"slice\")
+	.on_attack_triggered()
+
+func on_damaged(damage):
+	# Fighters are tough. :)
+	# If they get hit while in stagger, they won't re-stagger.
+	if current_state != STATE_STAGGER:
+		.on_damaged(damage)
+
+func get_attack_range():
+	return 25
+
+func get_attack_range_buffer():
+	return 5
+
+func get_attack_probability():
+	return 0.6
+
+func get_attack_cooldown():
+	return 0.25 + (randf() / 2)"
 
 [sub_resource type="GDScript" id=4]
 
-script/source = "extends \"res://scripts/enemy.gd\"\n\nfunc _ready():\n\tset_process(true)\n\tset_fixed_process(true)\n\nfunc _process(delta):\n\tenemy_process(delta)\n\nfunc _fixed_process(delta):\n\t# Attack slide motion.\n\tif current_state == STATE_ATTACK:\n\t\tslide_in_dir(get_dir(), delta)\n\nfunc on_attack_triggered():\n\tdetect_directional_area_attack_collisions(\"char\")\n\tsample_player.play(\"slice\")\n\t.on_attack_triggered()\n\nfunc on_damaged(damage):\n\t# Fighters are tough. :)\n\t# If they get hit while in stagger, they won\'t re-stagger.\n\tif current_state != STATE_STAGGER:\n\t\t.on_damaged(damage)\n\nfunc get_attack_range():\n\treturn 25\n\nfunc get_attack_range_buffer():\n\treturn 5\n\nfunc get_attack_probability():\n\treturn 0.6\n\nfunc get_attack_cooldown():\n\treturn 0.25 + (randf() / 2)"
+script/source = "extends \"res://scripts/enemy.gd\"
+
+func _ready():
+	set_process(true)
+	set_fixed_process(true)
+
+func _process(delta):
+	enemy_process(delta)
+
+func _fixed_process(delta):
+	# Attack slide motion.
+	if current_state == STATE_ATTACK:
+		slide_in_dir(get_dir(), delta)
+
+func on_attack_triggered():
+	detect_directional_area_attack_collisions(\"char\")
+	sample_player.play(\"slice\")
+	.on_attack_triggered()
+
+func on_damaged(damage):
+	# Fighters are tough. :)
+	# If they get hit while in stagger, they won't re-stagger.
+	if current_state != STATE_STAGGER:
+		.on_damaged(damage)
+
+func get_attack_range():
+	return 25
+
+func get_attack_range_buffer():
+	return 5
+
+func get_attack_probability():
+	return 0.6
+
+func get_attack_cooldown():
+	return 0.25 + (randf() / 2)"
 
 [sub_resource type="GDScript" id=5]
 
-script/source = "extends \"res://scripts/enemy.gd\"\n\nfunc _ready():\n\tset_process(true)\n\tset_fixed_process(true)\n\nfunc _process(delta):\n\tenemy_process(delta)\n\nfunc _fixed_process(delta):\n\t# Attack slide motion.\n\tif current_state == STATE_ATTACK:\n\t\tslide_in_dir(get_dir(), delta)\n\nfunc on_attack_triggered():\n\tdetect_directional_area_attack_collisions(\"char\")\n\tsample_player.play(\"slice\")\n\t.on_attack_triggered()\n\nfunc on_damaged(damage):\n\t# Fighters are tough. :)\n\t# If they get hit while in stagger, they won\'t re-stagger.\n\tif current_state != STATE_STAGGER:\n\t\t.on_damaged(damage)\n\nfunc get_attack_range():\n\treturn 25\n\nfunc get_attack_range_buffer():\n\treturn 5\n\nfunc get_attack_probability():\n\treturn 0.6\n\nfunc get_attack_cooldown():\n\treturn 0.25 + (randf() / 2)"
+script/source = "extends \"res://scripts/enemy.gd\"
+
+func _ready():
+	set_process(true)
+	set_fixed_process(true)
+
+func _process(delta):
+	enemy_process(delta)
+
+func _fixed_process(delta):
+	# Attack slide motion.
+	if current_state == STATE_ATTACK:
+		slide_in_dir(get_dir(), delta)
+
+func on_attack_triggered():
+	detect_directional_area_attack_collisions(\"char\")
+	sample_player.play(\"slice\")
+	.on_attack_triggered()
+
+func on_damaged(damage):
+	# Fighters are tough. :)
+	# If they get hit while in stagger, they won't re-stagger.
+	if current_state != STATE_STAGGER:
+		.on_damaged(damage)
+
+func get_attack_range():
+	return 25
+
+func get_attack_range_buffer():
+	return 5
+
+func get_attack_probability():
+	return 0.6
+
+func get_attack_cooldown():
+	return 0.25 + (randf() / 2)"
 
 [sub_resource type="GDScript" id=6]
 
-script/source = "extends \"res://scripts/enemy.gd\"\n\nfunc _ready():\n\tset_process(true)\n\tset_fixed_process(true)\n\nfunc _process(delta):\n\tenemy_process(delta)\n\nfunc _fixed_process(delta):\n\t# Attack slide motion.\n\tif current_state == STATE_ATTACK:\n\t\tslide_in_dir(get_dir(), delta)\n\nfunc on_attack_triggered():\n\tdetect_directional_area_attack_collisions(\"char\")\n\tsample_player.play(\"slice\")\n\t.on_attack_triggered()\n\nfunc on_damaged(damage):\n\t# Fighters are tough. :)\n\t# If they get hit while in stagger, they won\'t re-stagger.\n\tif current_state != STATE_STAGGER:\n\t\t.on_damaged(damage)\n\nfunc get_attack_range():\n\treturn 25\n\nfunc get_attack_range_buffer():\n\treturn 5\n\nfunc get_attack_probability():\n\treturn 0.6\n\nfunc get_attack_cooldown():\n\treturn 0.25 + (randf() / 2)"
+script/source = "extends \"res://scripts/enemy.gd\"
+
+func _ready():
+	set_process(true)
+	set_fixed_process(true)
+
+func _process(delta):
+	enemy_process(delta)
+
+func _fixed_process(delta):
+	# Attack slide motion.
+	if current_state == STATE_ATTACK:
+		slide_in_dir(get_dir(), delta)
+
+func on_attack_triggered():
+	detect_directional_area_attack_collisions(\"char\")
+	sample_player.play(\"slice\")
+	.on_attack_triggered()
+
+func on_damaged(damage):
+	# Fighters are tough. :)
+	# If they get hit while in stagger, they won't re-stagger.
+	if current_state != STATE_STAGGER:
+		.on_damaged(damage)
+
+func get_attack_range():
+	return 25
+
+func get_attack_range_buffer():
+	return 5
+
+func get_attack_probability():
+	return 0.6
+
+func get_attack_cooldown():
+	return 0.25 + (randf() / 2)"
 
 [sub_resource type="GDScript" id=7]
 
-script/source = "extends \"res://scripts/enemy.gd\"\n\nfunc _ready():\n\tset_process(true)\n\tset_fixed_process(true)\n\nfunc _process(delta):\n\tenemy_process(delta)\n\nfunc _fixed_process(delta):\n\t# Attack slide motion.\n\tif current_state == STATE_ATTACK:\n\t\tslide_in_dir(get_dir(), delta)\n\nfunc on_attack_triggered():\n\tdetect_directional_area_attack_collisions(\"char\")\n\tsample_player.play(\"slice\")\n\t.on_attack_triggered()\n\nfunc on_damaged(damage):\n\t# Fighters are tough. :)\n\t# If they get hit while in stagger, they won\'t re-stagger.\n\tif current_state != STATE_STAGGER:\n\t\t.on_damaged(damage)\n\nfunc get_attack_range():\n\treturn 25\n\nfunc get_attack_range_buffer():\n\treturn 5\n\nfunc get_attack_probability():\n\treturn 0.6\n\nfunc get_attack_cooldown():\n\treturn 0.25 + (randf() / 2)"
+script/source = "extends \"res://scripts/enemy.gd\"
+
+func _ready():
+	set_process(true)
+	set_fixed_process(true)
+
+func _process(delta):
+	enemy_process(delta)
+
+func _fixed_process(delta):
+	# Attack slide motion.
+	if current_state == STATE_ATTACK:
+		slide_in_dir(get_dir(), delta)
+
+func on_attack_triggered():
+	detect_directional_area_attack_collisions(\"char\")
+	sample_player.play(\"slice\")
+	.on_attack_triggered()
+
+func on_damaged(damage):
+	# Fighters are tough. :)
+	# If they get hit while in stagger, they won't re-stagger.
+	if current_state != STATE_STAGGER:
+		.on_damaged(damage)
+
+func get_attack_range():
+	return 25
+
+func get_attack_range_buffer():
+	return 5
+
+func get_attack_probability():
+	return 0.6
+
+func get_attack_cooldown():
+	return 0.25 + (randf() / 2)"
 
 [node name="YSort" type="YSort"]
 
