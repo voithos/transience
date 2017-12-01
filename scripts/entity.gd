@@ -219,8 +219,8 @@ func take_damage(damage):
 	return true
 
 func on_damaged(damage):
-	next_state = current_state
 	change_state(STATE_STAGGER)
+	next_state = STATE_IDLE
 	play_animation("take_damage")
 
 func on_died():
