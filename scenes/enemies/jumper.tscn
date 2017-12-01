@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=1]
+[gd_scene load_steps=13 format=1]
 
 [ext_resource path="res://scenes/enemies/jumper.gd" type="Script" id=1]
 [ext_resource path="res://scenes/resources/effects_shader.tres" type="Shader" id=2]
@@ -9,10 +9,10 @@
 [ext_resource path="res://scenes/animations/take_damage.tres" type="Animation" id=7]
 [ext_resource path="res://assets/sfx/sample_library.tres" type="SampleLibrary" id=8]
 
-[sub_resource type="CircleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=4]
 
 custom_solver_bias = 0.0
-radius = 16.5003
+extents = Vector2( 10, 10 )
 
 [sub_resource type="CanvasItemMaterial" id=1]
 
@@ -43,11 +43,16 @@ tracks/2/interp = 1
 tracks/2/imported = false
 tracks/2/keys = { "times":FloatArray( 0, 0.1, 0.2, 1, 1.1, 1.2, 1.3 ), "transitions":FloatArray( 1, 1, 1, 1, 1, 1, 1 ), "update":0, "values":[ 0, 1, 2, 3, 2, 1, 0 ] }
 
+[sub_resource type="CircleShape2D" id=3]
+
+custom_solver_bias = 0.0
+radius = 16.5003
+
 [node name="Jumper" type="KinematicBody2D"]
 
 transform/pos = Vector2( 0, -5.96642 )
 input/pickable = false
-shapes/0/shape = SubResource( 3 )
+shapes/0/shape = SubResource( 4 )
 shapes/0/transform = Matrix32( 0.379173, 0, 0, 0.339025, -0.0707495, 3.30625 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -97,6 +102,7 @@ default/chorus_send = 0.0
 
 [node name="Hitbox" type="Area2D" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( 0, 4.60566 )
 input/pickable = true
 shapes/0/shape = SubResource( 3 )
@@ -121,7 +127,7 @@ _update_shape_index = 0
 
 transform/pos = Vector2( -0.0707495, 3.30625 )
 transform/scale = Vector2( 0.379173, 0.339025 )
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 trigger = false
 _update_shape_index = 0
 

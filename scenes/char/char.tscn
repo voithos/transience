@@ -4,16 +4,16 @@
 [ext_resource path="res://assets/char/footprint.png" type="Texture" id=2]
 [ext_resource path="res://scenes/resources/effects_shader.tres" type="Shader" id=3]
 [ext_resource path="res://assets/misc/melt.png" type="Texture" id=4]
-[ext_resource path="res://assets/char/char-attack-down.png" type="Texture" id=5]
-[ext_resource path="res://assets/char/char-down.png" type="Texture" id=6]
-[ext_resource path="res://assets/char/char-attack-side.png" type="Texture" id=7]
-[ext_resource path="res://assets/char/char-side.png" type="Texture" id=8]
+[ext_resource path="res://assets/char/char-side.png" type="Texture" id=5]
+[ext_resource path="res://assets/char/char-attack-down.png" type="Texture" id=6]
+[ext_resource path="res://assets/char/char-down.png" type="Texture" id=7]
+[ext_resource path="res://assets/char/char-attack-side.png" type="Texture" id=8]
 [ext_resource path="res://scenes/animations/take_damage.tres" type="Animation" id=9]
 [ext_resource path="res://assets/char/char-attack-up.png" type="Texture" id=10]
 [ext_resource path="res://assets/char/char-up.png" type="Texture" id=11]
 [ext_resource path="res://assets/sfx/sample_library.tres" type="SampleLibrary" id=12]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=25]
 
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
@@ -40,7 +40,7 @@ tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 5 ) ] }
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 6 ) ] }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:hframes")
 tracks/1/interp = 1
@@ -71,7 +71,7 @@ tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 6 ) ] }
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 7 ) ] }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:hframes")
 tracks/1/interp = 1
@@ -97,7 +97,7 @@ tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 7 ) ] }
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 8 ) ] }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:hframes")
 tracks/1/interp = 1
@@ -128,7 +128,7 @@ tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 8 ) ] }
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 5 ) ] }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:flip_h")
 tracks/1/interp = 1
@@ -154,7 +154,7 @@ tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 7 ) ] }
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 8 ) ] }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:hframes")
 tracks/1/interp = 1
@@ -185,7 +185,7 @@ tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 8 ) ] }
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 5 ) ] }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:flip_h")
 tracks/1/interp = 1
@@ -329,7 +329,7 @@ points = Vector2Array( 21.496, 6.72675, 12.0492, 1.71995, 23.4798, 0.491861 )
 
 transform/pos = Vector2( 0, -8 )
 input/pickable = false
-shapes/0/shape = SubResource( 1 )
+shapes/0/shape = SubResource( 25 )
 shapes/0/transform = Matrix32( 0.379173, 0, 0, 0.339025, -0.00850701, 8.55884 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -377,8 +377,8 @@ material/material = SubResource( 3 )
 transform/pos = Vector2( 0, 8 )
 texture = ExtResource( 5 )
 offset = Vector2( 0, -8.07695 )
-hframes = 7
-frame = 6
+flip_h = true
+hframes = 3
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -424,6 +424,7 @@ autoplay = ""
 
 [node name="Hitbox" type="Area2D" parent="."]
 
+editor/display_folded = true
 input/pickable = true
 shapes/0/shape = SubResource( 12 )
 shapes/0/transform = Matrix32( 0.379173, 0, 0, 0.339025, -0.0707509, -0.776039 )
@@ -447,7 +448,7 @@ _update_shape_index = 0
 
 transform/pos = Vector2( -0.00850701, 8.55884 )
 transform/scale = Vector2( 0.379173, 0.339025 )
-shape = SubResource( 1 )
+shape = SubResource( 25 )
 trigger = false
 _update_shape_index = 0
 

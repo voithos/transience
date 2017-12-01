@@ -30,6 +30,8 @@ ATTACK_SLIDE_SPEED = 15
 
 [node name="Navigation2D" type="Navigation2D" parent="."]
 
+editor/display_folded = true
+
 [node name="TileMap" type="TileMap" parent="Navigation2D"]
 
 mode = 0
