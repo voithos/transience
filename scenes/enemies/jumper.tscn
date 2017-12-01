@@ -14,7 +14,7 @@
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
 
-[sub_resource type="CanvasItemMaterial" id=1]
+[sub_resource type="CanvasItemMaterial" id=5]
 
 shader/shader = ExtResource( 2 )
 shader/shading_mode = 0
@@ -67,7 +67,7 @@ TRIGGER_DISTANCE = 100
 
 [node name="Sprite" type="Sprite" parent="."]
 
-material/material = SubResource( 1 )
+material/material = SubResource( 5 )
 texture = ExtResource( 4 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

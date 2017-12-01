@@ -24,7 +24,7 @@ extents = Vector2( 10, 10 )
 offsets = FloatArray( 0, 1 )
 colors = ColorArray( 0.490196, 0.490196, 0.490196, 1, 1, 1, 1, 0 )
 
-[sub_resource type="CanvasItemMaterial" id=3]
+[sub_resource type="CanvasItemMaterial" id=26]
 
 shader/shader = ExtResource( 3 )
 shader/shading_mode = 0
@@ -374,7 +374,7 @@ color/color_ramp = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 
-material/material = SubResource( 3 )
+material/material = SubResource( 26 )
 transform/pos = Vector2( 0, 8 )
 texture = ExtResource( 5 )
 offset = Vector2( 0, -8.07695 )

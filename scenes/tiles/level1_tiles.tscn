@@ -2,13 +2,13 @@
 
 [ext_resource path="res://assets/tiles/level1_tiles.png" type="Texture" id=1]
 
-[sub_resource type="NavigationPolygon" id=2]
+[sub_resource type="NavigationPolygon" id=1]
 
 vertices = Vector2Array( 8, -8, 8, 8, -8, 8, -8, -8 )
 polygons = [ IntArray( 0, 1, 2, 3 ) ]
 outlines = [ Vector2Array( -8, -8, -8, 8, 8, 8, 8, -8 ) ]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=2]
 
 custom_solver_bias = 0.0
 extents = Vector2( 13, 13 )
@@ -24,7 +24,7 @@ hframes = 8
 
 [node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="floor_diamond_nw"]
 
-navpoly = SubResource( 2 )
+navpoly = SubResource( 1 )
 enabled = true
 
 [node name="floor_diamond_ne" type="Sprite" parent="."]
@@ -37,7 +37,7 @@ frame = 1
 
 [node name="NavigationPolygonInstance1" type="NavigationPolygonInstance" parent="floor_diamond_ne"]
 
-navpoly = SubResource( 2 )
+navpoly = SubResource( 1 )
 enabled = true
 
 [node name="floor_diamond_sw" type="Sprite" parent="."]
@@ -50,7 +50,7 @@ frame = 2
 
 [node name="NavigationPolygonInstance2" type="NavigationPolygonInstance" parent="floor_diamond_sw"]
 
-navpoly = SubResource( 2 )
+navpoly = SubResource( 1 )
 enabled = true
 
 [node name="floor_diamond_se" type="Sprite" parent="."]
@@ -63,7 +63,7 @@ frame = 3
 
 [node name="NavigationPolygonInstance3" type="NavigationPolygonInstance" parent="floor_diamond_se"]
 
-navpoly = SubResource( 2 )
+navpoly = SubResource( 1 )
 enabled = true
 
 [node name="floor_square_nw" type="Sprite" parent="."]
@@ -76,7 +76,7 @@ frame = 4
 
 [node name="NavigationPolygonInstance4" type="NavigationPolygonInstance" parent="floor_square_nw"]
 
-navpoly = SubResource( 2 )
+navpoly = SubResource( 1 )
 enabled = true
 
 [node name="floor_square_sw" type="Sprite" parent="."]
@@ -89,7 +89,7 @@ frame = 5
 
 [node name="NavigationPolygonInstance5" type="NavigationPolygonInstance" parent="floor_square_sw"]
 
-navpoly = SubResource( 2 )
+navpoly = SubResource( 1 )
 enabled = true
 
 [node name="floor_square_se" type="Sprite" parent="."]
@@ -102,7 +102,7 @@ frame = 6
 
 [node name="NavigationPolygonInstance6" type="NavigationPolygonInstance" parent="floor_square_se"]
 
-navpoly = SubResource( 2 )
+navpoly = SubResource( 1 )
 enabled = true
 
 [node name="floor_square_ne" type="Sprite" parent="."]
@@ -115,7 +115,7 @@ frame = 7
 
 [node name="NavigationPolygonInstance7" type="NavigationPolygonInstance" parent="floor_square_ne"]
 
-navpoly = SubResource( 2 )
+navpoly = SubResource( 1 )
 enabled = true
 
 [node name="floor_square_w" type="Sprite" parent="."]
@@ -128,7 +128,7 @@ frame = 8
 
 [node name="NavigationPolygonInstance8" type="NavigationPolygonInstance" parent="floor_square_w"]
 
-navpoly = SubResource( 2 )
+navpoly = SubResource( 1 )
 enabled = true
 
 [node name="floor_square_e" type="Sprite" parent="."]
@@ -141,7 +141,7 @@ frame = 9
 
 [node name="NavigationPolygonInstance9" type="NavigationPolygonInstance" parent="floor_square_e"]
 
-navpoly = SubResource( 2 )
+navpoly = SubResource( 1 )
 enabled = true
 
 [node name="floor_square_n" type="Sprite" parent="."]
@@ -154,7 +154,7 @@ frame = 10
 
 [node name="NavigationPolygonInstance10" type="NavigationPolygonInstance" parent="floor_square_n"]
 
-navpoly = SubResource( 2 )
+navpoly = SubResource( 1 )
 enabled = true
 
 [node name="floor_square_s" type="Sprite" parent="."]
@@ -167,7 +167,7 @@ frame = 11
 
 [node name="NavigationPolygonInstance11" type="NavigationPolygonInstance" parent="floor_square_s"]
 
-navpoly = SubResource( 2 )
+navpoly = SubResource( 1 )
 enabled = true
 
 [node name="floor_square_core" type="Sprite" parent="."]
@@ -180,7 +180,7 @@ frame = 12
 
 [node name="NavigationPolygonInstance12" type="NavigationPolygonInstance" parent="floor_square_core"]
 
-navpoly = SubResource( 2 )
+navpoly = SubResource( 1 )
 enabled = true
 
 [node name="floor_plain_1" type="Sprite" parent="."]
@@ -193,7 +193,7 @@ frame = 13
 
 [node name="NavigationPolygonInstance13" type="NavigationPolygonInstance" parent="floor_plain_1"]
 
-navpoly = SubResource( 2 )
+navpoly = SubResource( 1 )
 enabled = true
 
 [node name="floor_plain_2" type="Sprite" parent="."]
@@ -206,7 +206,7 @@ frame = 14
 
 [node name="NavigationPolygonInstance14" type="NavigationPolygonInstance" parent="floor_plain_2"]
 
-navpoly = SubResource( 2 )
+navpoly = SubResource( 1 )
 enabled = true
 
 [node name="floor_plain_3" type="Sprite" parent="."]
@@ -219,7 +219,7 @@ frame = 15
 
 [node name="NavigationPolygonInstance15" type="NavigationPolygonInstance" parent="floor_plain_3"]
 
-navpoly = SubResource( 2 )
+navpoly = SubResource( 1 )
 enabled = true
 
 [node name="floor_plain_4" type="Sprite" parent="."]
@@ -232,7 +232,7 @@ frame = 16
 
 [node name="NavigationPolygonInstance16" type="NavigationPolygonInstance" parent="floor_plain_4"]
 
-navpoly = SubResource( 2 )
+navpoly = SubResource( 1 )
 enabled = true
 
 [node name="edge_1" type="Sprite" parent="."]
@@ -247,7 +247,7 @@ frame = 17
 [node name="StaticBody2D" type="StaticBody2D" parent="edge_1"]
 
 input/pickable = false
-shapes/0/shape = SubResource( 1 )
+shapes/0/shape = SubResource( 2 )
 shapes/0/transform = Matrix32( 0.615385, 0, 0, 0.615385, 2.38419e-07, -2.38419e-07 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -261,7 +261,7 @@ bounce = 0.0
 
 transform/pos = Vector2( 2.38419e-07, -2.38419e-07 )
 transform/scale = Vector2( 0.615385, 0.615385 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 trigger = false
 _update_shape_index = 0
 
@@ -277,7 +277,7 @@ frame = 18
 [node name="StaticBody2D" type="StaticBody2D" parent="edge_2"]
 
 input/pickable = false
-shapes/0/shape = SubResource( 1 )
+shapes/0/shape = SubResource( 2 )
 shapes/0/transform = Matrix32( 0.615385, 0, 0, 0.615385, 2.38419e-07, -2.38419e-07 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -291,7 +291,7 @@ bounce = 0.0
 
 transform/pos = Vector2( 2.38419e-07, -2.38419e-07 )
 transform/scale = Vector2( 0.615385, 0.615385 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 trigger = false
 _update_shape_index = 0
 
@@ -307,7 +307,7 @@ frame = 19
 [node name="StaticBody2D1" type="StaticBody2D" parent="edge_3"]
 
 input/pickable = false
-shapes/0/shape = SubResource( 1 )
+shapes/0/shape = SubResource( 2 )
 shapes/0/transform = Matrix32( 0.615385, 0, 0, 0.615385, 2.38419e-07, -2.38419e-07 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -321,7 +321,7 @@ bounce = 0.0
 
 transform/pos = Vector2( 2.38419e-07, -2.38419e-07 )
 transform/scale = Vector2( 0.615385, 0.615385 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 trigger = false
 _update_shape_index = 0
 
@@ -337,7 +337,7 @@ frame = 20
 [node name="StaticBody2D" type="StaticBody2D" parent="edge_sym_1"]
 
 input/pickable = false
-shapes/0/shape = SubResource( 1 )
+shapes/0/shape = SubResource( 2 )
 shapes/0/transform = Matrix32( 0.615385, 0, 0, 0.615385, 2.38419e-07, -2.38419e-07 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -351,7 +351,7 @@ bounce = 0.0
 
 transform/pos = Vector2( 2.38419e-07, -2.38419e-07 )
 transform/scale = Vector2( 0.615385, 0.615385 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 trigger = false
 _update_shape_index = 0
 
@@ -367,7 +367,7 @@ frame = 21
 [node name="StaticBody2D" type="StaticBody2D" parent="edge_sym_2"]
 
 input/pickable = false
-shapes/0/shape = SubResource( 1 )
+shapes/0/shape = SubResource( 2 )
 shapes/0/transform = Matrix32( 0.615385, 0, 0, 0.615385, 2.38419e-07, -2.38419e-07 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -381,7 +381,7 @@ bounce = 0.0
 
 transform/pos = Vector2( 2.38419e-07, -2.38419e-07 )
 transform/scale = Vector2( 0.615385, 0.615385 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 trigger = false
 _update_shape_index = 0
 
@@ -397,7 +397,7 @@ frame = 22
 [node name="StaticBody2D" type="StaticBody2D" parent="edge_sym_3"]
 
 input/pickable = false
-shapes/0/shape = SubResource( 1 )
+shapes/0/shape = SubResource( 2 )
 shapes/0/transform = Matrix32( 0.615385, 0, 0, 0.615385, 2.38419e-07, -2.38419e-07 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -411,7 +411,7 @@ bounce = 0.0
 
 transform/pos = Vector2( 2.38419e-07, -2.38419e-07 )
 transform/scale = Vector2( 0.615385, 0.615385 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 trigger = false
 _update_shape_index = 0
 
@@ -427,7 +427,7 @@ frame = 23
 [node name="StaticBody2D" type="StaticBody2D" parent="block_1"]
 
 input/pickable = false
-shapes/0/shape = SubResource( 1 )
+shapes/0/shape = SubResource( 2 )
 shapes/0/transform = Matrix32( 0.615385, 0, 0, 0.615385, 2.38419e-07, -2.38419e-07 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -441,7 +441,7 @@ bounce = 0.0
 
 transform/pos = Vector2( 2.38419e-07, -2.38419e-07 )
 transform/scale = Vector2( 0.615385, 0.615385 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 trigger = false
 _update_shape_index = 0
 
@@ -457,7 +457,7 @@ frame = 24
 [node name="StaticBody2D" type="StaticBody2D" parent="block_2"]
 
 input/pickable = false
-shapes/0/shape = SubResource( 1 )
+shapes/0/shape = SubResource( 2 )
 shapes/0/transform = Matrix32( 0.615385, 0, 0, 0.615385, 2.38419e-07, -2.38419e-07 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -471,7 +471,7 @@ bounce = 0.0
 
 transform/pos = Vector2( 2.38419e-07, -2.38419e-07 )
 transform/scale = Vector2( 0.615385, 0.615385 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 trigger = false
 _update_shape_index = 0
 
@@ -487,7 +487,7 @@ frame = 25
 [node name="StaticBody2D" type="StaticBody2D" parent="invisible_edge"]
 
 input/pickable = false
-shapes/0/shape = SubResource( 1 )
+shapes/0/shape = SubResource( 2 )
 shapes/0/transform = Matrix32( 0.615385, 0, 0, 0.615385, 2.38419e-07, -2.38419e-07 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -501,7 +501,7 @@ bounce = 0.0
 
 transform/pos = Vector2( 2.38419e-07, -2.38419e-07 )
 transform/scale = Vector2( 0.615385, 0.615385 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 trigger = false
 _update_shape_index = 0
 

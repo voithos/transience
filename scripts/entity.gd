@@ -66,6 +66,11 @@ func _ready():
 	connect("healed", self, "on_healed")
 	connect("died", self, "on_died")
 	animation_player.connect("finished", self, "on_animation_finished")
+	
+	# Copy the material, blegh.
+	var material = sprite.get_material()
+	if material:
+		sprite.set_material(material.duplicate())
 
 func on_animation_finished():
 	if next_state:
