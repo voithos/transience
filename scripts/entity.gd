@@ -45,6 +45,7 @@ const STATE_IDLE = "IDLE"
 const STATE_MOVE = "MOVE"
 const STATE_THROWBACK = "THROWBACK"
 const STATE_ATTACK = "ATTACK"
+const STATE_STAGGER = "STAGGER"
 const STATE_DYING = "DYING"
 const STATE_DEAD = "DEAD"
 
@@ -57,6 +58,8 @@ var next_action = null
 # Valid dirs are "up", "down", "left", "right", and null, denoting idleness.
 var current_dir = null
 var previous_dir = null
+
+const MOTION_EPSILON = 0.001
 
 func _ready():
 	connect("damaged", self, "on_damaged")
@@ -155,6 +158,19 @@ func get_dir():
 	# Default.
 	return "down"
 
+func get_dir_from_motion(motion):
+	if abs(motion.x) > MOTION_EPSILON:
+		if motion.x < 0:
+			return "left"
+		else:
+			return "right"
+	if abs(motion.y) > MOTION_EPSILON:
+		if motion.y < 0:
+			return "up"
+		else:
+			return "down"
+	return null
+
 func attack():
 	change_state(STATE_ATTACK)
 	next_state = STATE_IDLE
@@ -202,6 +218,8 @@ func take_damage(damage):
 	return true
 
 func on_damaged(damage):
+	next_state = current_state
+	change_state(STATE_STAGGER)
 	play_animation("take_damage")
 
 func on_died():
@@ -231,7 +249,7 @@ func on_healed(amount):
 	pass
 
 func can_take_damage_or_heal():
-	return current_state in [STATE_IDLE, STATE_MOVE, STATE_ATTACK]
+	return current_state in [STATE_IDLE, STATE_MOVE, STATE_ATTACK, STATE_STAGGER]
 
 func health_ratio():
 	return health / MAX_HEALTH

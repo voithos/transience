@@ -18,6 +18,7 @@ func _ready():
 	assert(nodes.size() == 1)
 	char = nodes[0]
 	music = get_node("/root/music")
+	add_to_group("level")
 
 	set_fixed_process(true)
 
@@ -31,6 +32,7 @@ func _fixed_process(delta):
 	check_battle_triggers(delta)
 
 func check_battle_triggers(delta):
+	# TODO: Should this logic be in enemy.gd instead?
 	var is_in_battle = false
 	var enemies = get_tree().get_nodes_in_group("enemies")
 	var charpos = char.get_global_pos()
