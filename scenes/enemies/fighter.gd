@@ -2,9 +2,15 @@ extends "res://scripts/enemy.gd"
 
 func _ready():
 	set_process(true)
+	set_fixed_process(true)
 
 func _process(delta):
 	enemy_process(delta)
+
+func _fixed_process(delta):
+	# Attack slide motion.
+	if current_state == STATE_ATTACK:
+		slide_in_dir(get_dir(), delta)
 
 func on_attack_triggered():
 	detect_directional_area_attack_collisions("char")
