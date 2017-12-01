@@ -1,17 +1,18 @@
-[gd_scene load_steps=37 format=1]
+[gd_scene load_steps=38 format=1]
 
 [ext_resource path="res://scenes/char/char.gd" type="Script" id=1]
 [ext_resource path="res://assets/char/footprint.png" type="Texture" id=2]
 [ext_resource path="res://scenes/resources/effects_shader.tres" type="Shader" id=3]
 [ext_resource path="res://assets/misc/melt.png" type="Texture" id=4]
 [ext_resource path="res://assets/char/char-side.png" type="Texture" id=5]
-[ext_resource path="res://assets/char/char-attack-down.png" type="Texture" id=6]
-[ext_resource path="res://assets/char/char-down.png" type="Texture" id=7]
-[ext_resource path="res://assets/char/char-attack-side.png" type="Texture" id=8]
-[ext_resource path="res://scenes/animations/take_damage.tres" type="Animation" id=9]
-[ext_resource path="res://assets/char/char-attack-up.png" type="Texture" id=10]
-[ext_resource path="res://assets/char/char-up.png" type="Texture" id=11]
-[ext_resource path="res://assets/sfx/sample_library.tres" type="SampleLibrary" id=12]
+[ext_resource path="res://scenes/animations/char_die.tres" type="Animation" id=6]
+[ext_resource path="res://assets/char/char-attack-down.png" type="Texture" id=7]
+[ext_resource path="res://assets/char/char-down.png" type="Texture" id=8]
+[ext_resource path="res://assets/char/char-attack-side.png" type="Texture" id=9]
+[ext_resource path="res://scenes/animations/char_take_damage.tres" type="Animation" id=10]
+[ext_resource path="res://assets/char/char-attack-up.png" type="Texture" id=11]
+[ext_resource path="res://assets/char/char-up.png" type="Texture" id=12]
+[ext_resource path="res://assets/sfx/sample_library.tres" type="SampleLibrary" id=13]
 
 [sub_resource type="RectangleShape2D" id=25]
 
@@ -40,7 +41,7 @@ tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 6 ) ] }
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 7 ) ] }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:hframes")
 tracks/1/interp = 1
@@ -71,7 +72,7 @@ tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 7 ) ] }
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 8 ) ] }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:hframes")
 tracks/1/interp = 1
@@ -97,7 +98,7 @@ tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 8 ) ] }
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 9 ) ] }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:hframes")
 tracks/1/interp = 1
@@ -154,7 +155,7 @@ tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 8 ) ] }
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 9 ) ] }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:hframes")
 tracks/1/interp = 1
@@ -211,7 +212,7 @@ tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 10 ) ] }
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 11 ) ] }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:hframes")
 tracks/1/interp = 1
@@ -242,7 +243,7 @@ tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 11 ) ] }
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 12 ) ] }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:hframes")
 tracks/1/interp = 1
@@ -404,13 +405,14 @@ drag_margin/bottom = 0.0
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
+anims/die = ExtResource( 6 )
 anims/down_attack = SubResource( 4 )
 anims/down_idle = SubResource( 5 )
 anims/left_attack = SubResource( 6 )
 anims/left_idle = SubResource( 7 )
 anims/right_attack = SubResource( 8 )
 anims/right_idle = SubResource( 9 )
-anims/take_damage = ExtResource( 9 )
+anims/take_damage = ExtResource( 10 )
 anims/up_attack = SubResource( 10 )
 anims/up_idle = SubResource( 11 )
 next/down_attack = ""
@@ -455,7 +457,7 @@ _update_shape_index = 0
 [node name="SamplePlayer" type="SamplePlayer" parent="."]
 
 config/polyphony = 1
-config/samples = ExtResource( 12 )
+config/samples = ExtResource( 13 )
 default/volume_db = 0.0
 default/pitch_scale = 1.0
 default/pan = 0.0

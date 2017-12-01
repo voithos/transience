@@ -23,7 +23,7 @@ func get_attack_range_buffer():
 	return 5
 
 func get_attack_probability():
-	return 0.7
+	return 0.6
 
 func get_attack_cooldown():
-	return 0.25 + randf()
+	return 0.25 + (randf() / 2)

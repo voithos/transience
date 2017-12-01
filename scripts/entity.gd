@@ -229,8 +229,10 @@ func on_died():
 		collision_shape.set_trigger(true)
 		play_animation("die")
 
-func on_die_finished():
-	queue_free()
+func on_die_finished(free=true):
+	change_state(STATE_DEAD)
+	if free:
+		queue_free()
 
 func heal(amount):
 	if not can_take_damage_or_heal():

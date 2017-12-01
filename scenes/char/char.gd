@@ -20,4 +20,4 @@ func on_attack_triggered():
 
 func on_die_finished():
 	# *Don't* queue_free the main char, unlike how we handle other entities.
-	pass
+	.on_die_finished(false)

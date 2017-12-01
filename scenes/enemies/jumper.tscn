@@ -4,9 +4,9 @@
 [ext_resource path="res://scenes/resources/effects_shader.tres" type="Shader" id=2]
 [ext_resource path="res://assets/misc/melt.png" type="Texture" id=3]
 [ext_resource path="res://assets/jumper/jumper-down.png" type="Texture" id=4]
-[ext_resource path="res://scenes/animations/enemy_die.tres" type="Animation" id=5]
+[ext_resource path="res://scenes/animations/char_die.tres" type="Animation" id=5]
 [ext_resource path="res://assets/jumper/jumper-move-down.png" type="Texture" id=6]
-[ext_resource path="res://scenes/animations/take_damage.tres" type="Animation" id=7]
+[ext_resource path="res://scenes/animations/char_take_damage.tres" type="Animation" id=7]
 [ext_resource path="res://assets/sfx/sample_library.tres" type="SampleLibrary" id=8]
 
 [sub_resource type="RectangleShape2D" id=4]
