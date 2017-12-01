@@ -3,10 +3,10 @@
 [ext_resource path="res://scenes/enemies/fighter.gd" type="Script" id=1]
 [ext_resource path="res://scenes/resources/effects_shader.tres" type="Shader" id=2]
 [ext_resource path="res://assets/misc/melt.png" type="Texture" id=3]
-[ext_resource path="res://assets/fighter/fighter-attack-side.png" type="Texture" id=4]
+[ext_resource path="res://assets/fighter/fighter-down.png" type="Texture" id=4]
 [ext_resource path="res://scenes/animations/enemy_die.tres" type="Animation" id=5]
 [ext_resource path="res://assets/fighter/fighter-attack-down.png" type="Texture" id=6]
-[ext_resource path="res://assets/fighter/fighter-down.png" type="Texture" id=7]
+[ext_resource path="res://assets/fighter/fighter-attack-side.png" type="Texture" id=7]
 [ext_resource path="res://assets/fighter/fighter-side.png" type="Texture" id=8]
 [ext_resource path="res://scenes/animations/take_damage.tres" type="Animation" id=9]
 [ext_resource path="res://assets/fighter/fighter-attack-up.png" type="Texture" id=10]
@@ -66,7 +66,7 @@ tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 7 ) ] }
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 4 ) ] }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:hframes")
 tracks/1/interp = 1
@@ -92,7 +92,7 @@ tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 4 ) ] }
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 7 ) ] }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:hframes")
 tracks/1/interp = 1
@@ -149,7 +149,7 @@ tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 4 ) ] }
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ ExtResource( 7 ) ] }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:hframes")
 tracks/1/interp = 1
@@ -341,9 +341,6 @@ TRIGGER_DISTANCE = 100
 
 material/material = SubResource( 2 )
 texture = ExtResource( 4 )
-flip_h = true
-hframes = 7
-frame = 6
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
