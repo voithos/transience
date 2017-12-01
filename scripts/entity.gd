@@ -6,7 +6,7 @@ extends KinematicBody2D
 # - Sprite
 # - AnimationPlayer
 # - SamplePlayer
-# - Tween
+# - CollisionShape2D
 #
 # For the animation player, expects the following animations to be defined:
 # - *_idle
@@ -37,7 +37,7 @@ onready var sprite = get_node("Sprite")
 onready var hitbox = get_node("Hitbox")
 onready var animation_player = get_node("AnimationPlayer")
 onready var sample_player = get_node("SamplePlayer")
-onready var tween_node = get_node("Tween")
+onready var collision_shape = get_node("CollisionShape2D")
 var previous_animation = null
 
 const STATE_IDLE = "IDLE"
@@ -200,6 +200,8 @@ func on_damaged(damage):
 func on_died():
 	var successful = change_state(STATE_DYING)
 	if successful:
+		# Disable the collisions.
+		collision_shape.set_trigger(true)
 		play_animation("die")
 
 func on_die_finished():
