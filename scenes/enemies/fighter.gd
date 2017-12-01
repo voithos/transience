@@ -17,6 +17,12 @@ func on_attack_triggered():
 	sample_player.play("slice")
 	.on_attack_triggered()
 
+func on_damaged(damage):
+	# Fighters are tough. :)
+	# If they get hit while in stagger, they won't re-stagger.
+	if current_state != STATE_STAGGER:
+		.on_damaged(damage)
+
 func get_attack_range():
 	return 25
 
