@@ -95,7 +95,7 @@ func use_flux(amount):
 	emit_signal("flux_changed", flux_ratio())
 
 func flux_ratio():
-	return flux / MAX_FLUX
+	return float(flux) / MAX_FLUX
 
 func can_throwback(steps):
 	var enough_flux = (steps * FLUX_PER_THROWBACK_STEP) <= flux

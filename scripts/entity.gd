@@ -213,8 +213,7 @@ func take_damage(damage):
 	if health <= 0:
 		health = 0
 		emit_signal("died")
-	else:
-		emit_signal("health_changed", health_ratio())
+	emit_signal("health_changed", health_ratio())
 	return true
 
 func on_damaged(damage):
@@ -252,4 +251,4 @@ func can_take_damage_or_heal():
 	return current_state in [STATE_IDLE, STATE_MOVE, STATE_ATTACK, STATE_STAGGER]
 
 func health_ratio():
-	return health / MAX_HEALTH
+	return float(health) / MAX_HEALTH
