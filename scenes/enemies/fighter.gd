@@ -1,4 +1,7 @@
 extends "res://scripts/enemy.gd"
 
 func _ready():
-	pass
+	set_process(true)
+
+func _process(delta):
+	enemy_process(delta)

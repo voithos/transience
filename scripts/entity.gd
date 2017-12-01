@@ -25,6 +25,7 @@ export (int) var ATTACK_SLIDE_SPEED = 10 # Pixels/second
 export (int) var ATTACK_DAMAGE = 15
 onready var health = MAX_HEALTH
 
+const DIRECTIONS = ["up", "down", "left", "right"]
 const DIR_TO_MOTION = {
 	"left": Vector2(-1, 0),
 	"up": Vector2(0, -1),
@@ -81,6 +82,12 @@ func on_animation_finished():
 func handle_next_action(action):
 	pass
 
+func play_dir_animation(dir, animation):
+	if dir != current_dir:
+		previous_dir = current_dir
+		current_dir = dir
+	play_animation(dir + "_" + animation)
+
 func play_animation(animation):
 	previous_animation = animation
 	animation_player.play(animation)
@@ -108,11 +115,11 @@ func move_entity(motion, dir):
 	if dir and dir != previous_dir:
 		change_state(STATE_MOVE)
 		# TODO: Change this to *_move.
-		play_animation(dir + "_idle")
+		play_dir_animation(dir, "idle")
 	else:
 		change_state(STATE_IDLE)
 		if previous_dir:
-			play_animation(previous_dir + "_idle")
+			play_dir_animation(previous_dir, "idle")
 
 	return move_and_slide(motion)
 
@@ -142,7 +149,7 @@ func get_dir():
 	var separator = animation.find("_")
 	if separator != -1:
 		var dir = animation.left(separator)
-		if dir in ["up", "down", "left", "right"]:
+		if dir in DIRECTIONS:
 			return dir
 
 	# Default.
@@ -151,7 +158,7 @@ func get_dir():
 func attack():
 	change_state(STATE_ATTACK)
 	next_state = STATE_IDLE
-	play_animation(get_dir() + "_attack")
+	play_dir_animation(get_dir(), "attack")
 
 func slide_in_dir(dir, delta):
 	var motion = DIR_TO_MOTION[dir]
@@ -179,7 +186,7 @@ func detect_directional_area_attack_collisions(opposing_group="enemies"):
 			body.take_damage(ATTACK_DAMAGE)
 
 func on_attack_finished():
-	play_animation(get_dir() + "_idle")
+	play_dir_animation(get_dir(), "idle")
 
 func take_damage(damage):
 	if not can_take_damage_or_heal():
