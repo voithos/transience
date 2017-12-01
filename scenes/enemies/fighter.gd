@@ -17,13 +17,13 @@ func on_attack_triggered():
 	.on_attack_triggered()
 
 func get_attack_range():
-	# TODO: Adjust this
-	return 24
+	return 25
 
 func get_attack_range_buffer():
-	# TODO: Adjust this
-	return 0
+	return 5
 
 func get_attack_probability():
-	# TODO: Adjust this
-	return 1
+	return 0.7
+
+func get_attack_cooldown():
+	return 0.25 + randf()

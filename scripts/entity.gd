@@ -85,10 +85,13 @@ func on_animation_finished():
 func handle_next_action(action):
 	pass
 
-func play_dir_animation(dir, animation):
+func change_dir(dir):
 	if dir != current_dir:
 		previous_dir = current_dir
 		current_dir = dir
+
+func play_dir_animation(dir, animation):
+	change_dir(dir)
 	play_animation(dir + "_" + animation)
 
 func play_animation(animation):
@@ -111,9 +114,7 @@ func can_accept_input():
 #   dir: One of "up", "down", "left", "right", used for animation.
 #        Can also be null to designate no direction (idle)
 func move_entity(motion, dir):
-	if dir != current_dir:
-		previous_dir = current_dir
-		current_dir = dir
+	change_dir(dir)
 
 	if dir and dir != previous_dir:
 		change_state(STATE_MOVE)

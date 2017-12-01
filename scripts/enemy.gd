@@ -15,6 +15,8 @@ const AI_STATE_BATTLE = "BATTLE"
 
 var current_ai_state = AI_STATE_IDLE
 
+var cooldown = 0
+
 var char
 var navigation_node
 
@@ -53,6 +55,9 @@ func run_idle_ai(delta):
 		play_dir_animation(dir, "idle")
 
 func run_battle_ai(delta):
+	if cooldown > 0:
+		cooldown = max(0, cooldown - delta)
+		return
 	if not can_accept_input():
 		return
 
@@ -61,6 +66,8 @@ func run_battle_ai(delta):
 	var distance_to_char = get_global_pos().distance_squared_to(char.get_global_pos())
 	if distance_to_char < attack_range + get_attack_range_buffer():
 		if randf() < get_attack_probability():
+			# Change the enemy's direction right before attack.
+			change_dir(get_dir_from_motion(char.get_global_pos() - get_global_pos()))
 			attack()
 			return
 	
@@ -76,6 +83,10 @@ func run_battle_ai(delta):
 			var dir = get_dir_from_motion(motion)
 			move_entity(motion, dir)
 
+func on_attack_finished():
+	cooldown = get_attack_cooldown()
+	.on_attack_finished()
+
 # To be overridden in subscripts.
 func get_attack_range():
 	assert(false)
@@ -86,6 +97,10 @@ func get_attack_range_buffer():
 
 # To be overridden in subscripts.
 func get_attack_probability():
+	assert(false)
+
+# To be overridden in subscripts.
+func get_attack_cooldown():
 	assert(false)
 
 # Initiates a battle with an enemy.
