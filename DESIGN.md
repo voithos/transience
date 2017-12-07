@@ -14,7 +14,8 @@ restoring health, or otherwise dodging attacks.
 
 - The player will be able to move around the environment
 - The player will be able to perform normal attacks
-- The player will be able to use throwbacks in battles to dodge
+- The player will be able to use throwbacks in battles to dodge, and perhaps
+  move in other interesting ways
 - Attacks and throwbacks will consume "flux", a continuously-regenerating stat,
   similar to stamina
 
@@ -25,6 +26,9 @@ restoring health, or otherwise dodging attacks.
 
 ### Abilities
 
+Gameplay consists of fast-paced action sequences, with predictable and
+responsive controls.
+
 Attacks:
 
 - Short-range, sweeping (180 degree) attack
@@ -34,18 +38,19 @@ Movement:
 
 - Throwback: jump back to a previous location; cost and "throwback length"
   determined by length button is held down (with a max). Cannot go back further
-  than a certain amount (even if there is enough flux).
+  than a certain amount (even if there is enough flux). Short cooldown after
+  each throwback (to prevent spamming).
 
 ## Enemies
 
-Enemies are other transient, ethereal beings. All battle gameplay involves
-melee attacks (no projectiles). Enemies release health-particles upon defeat
-that the player can absorb.
+Enemies are beings that live in the visited world. Most battle gameplay is
+melee based. Enemies release health-particles upon defeat that the player can
+absorb.
 
 Enemies:
 
 - Jumper
-  Octopus-like (?) mob enemy, little health, swarms in numbers
+  Spider-like mob enemy, little health, swarms in numbers
   Winds-up and jumps at the player
 
 - Fighter
@@ -55,6 +60,19 @@ Boss:
 
 - Id
   TODO
+
+## Ambience
+
+To reinforce the transient/temporal vibe of the world, there will be certain
+instances where other transient beings (similar to the player) phase in and out
+of the game. This can be used either for ambience, or strategically in order to
+point out perhaps a hidden section or secret.
+
+### Network features
+
+The above mechanism can be extended to work over the network, and introduce a
+player-controlled transient avatar in another player's world. This will briefly
+allow the two to see each other, but not interact otherwise.
 
 ## Scenes / Levels
 
