@@ -1,14 +1,21 @@
-[gd_resource type="Animation" format=1]
+[gd_resource type="Animation" format=2]
 
 [resource]
 
-resource/name = "take_damage"
+resource_name = "take_damage"
 length = 0.25
 loop = false
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:material/material:shader_param/whitening")
+tracks/0/path = NodePath("Sprite:material:shader_param/whitening")
 tracks/0/interp = 1
+tracks/0/loop_wrap = true
 tracks/0/imported = false
-tracks/0/keys = { "times":FloatArray( 0, 0.05, 0.1 ), "transitions":FloatArray( 1, 1, 1 ), "update":0, "values":[ 0.0, 1.0, 0.0 ] }
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0, 0.0 ]
+}
 

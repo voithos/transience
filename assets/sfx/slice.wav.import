@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/slice.wav-be6651c945aaa2623b6fabe092b328ec.sample"
+
+[deps]
+
+source_file="res://assets/sfx/slice.wav"
+source_md5="d7910f6c77be693b701e814cb49de1ea"
+
+dest_files=[ "res://.import/slice.wav-be6651c945aaa2623b6fabe092b328ec.sample" ]
+dest_md5="1547979ae9b9c7a94c2f2ba3060e89be"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

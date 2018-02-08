@@ -1,7 +1,7 @@
 extends YSort
 
 # Base controller for levels.
-var char
+var player
 var music
 
 const STATE_IDLE = "IDLE"
@@ -14,13 +14,11 @@ const BATTLE_END_LAG = 2  # In seconds
 var battle_delta = 0
 
 func _ready():
-	var nodes = get_tree().get_nodes_in_group("char")
+	var nodes = get_tree().get_nodes_in_group("player")
 	assert(nodes.size() == 1)
-	char = nodes[0]
+	player = nodes[0]
 	music = get_node("/root/music")
 	add_to_group("level")
-
-	set_fixed_process(true)
 
 func change_state(new_state):
 	if new_state == current_state:
@@ -28,18 +26,18 @@ func change_state(new_state):
 	previous_state = current_state
 	current_state = new_state
 
-func _fixed_process(delta):
+func _physics_process(delta):
 	check_battle_triggers(delta)
 
 func check_battle_triggers(delta):
 	# TODO: Should this logic be in enemy.gd instead?
 	var is_in_battle = false
 	var enemies = get_tree().get_nodes_in_group("enemies")
-	var charpos = char.get_global_pos()
+	var playerpos = player.global_position
 
 	var enemy_in_range = false
 	for enemy in enemies:
-		var d = charpos.distance_squared_to(enemy.get_global_pos())
+		var d = playerpos.distance_squared_to(enemy.global_position)
 		if d < enemy.TRIGGER_DISTANCE_SQUARED:
 			enemy_in_range = true
 			start_battle()

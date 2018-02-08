@@ -2,5 +2,25 @@
 
 [resource]
 
-_code = { "fragment":"uniform float whitening = 0;\nuniform texture mask;\nuniform float strength = 0;\n\n// First, whiten the texture based on whitening param.\nvec4 texture_color = tex(TEXTURE, UV);\nvec4 whitened_color = vec4(mix(texture_color.rgb, vec3(1, 1, 1), whitening), texture_color.a);\n\n// Mask should be grayscale, so all we need is one color.\nfloat value = pow(tex(mask, UV).r, 5);\n\n// Finally, set the alpha effect.\nwhitened_color.a -= (pow(strength + 1, 10) - 1) * value;\nCOLOR = whitened_color;", "fragment_ofs":0, "light":"", "light_ofs":0, "vertex":"", "vertex_ofs":0 }
+_code = {
+"fragment": "uniform float whitening = 0;
+uniform texture mask;
+uniform float strength = 0;
+
+// First, whiten the texture based on whitening param.
+vec4 texture_color = tex(TEXTURE, UV);
+vec4 whitened_color = vec4(mix(texture_color.rgb, vec3(1, 1, 1), whitening), texture_color.a);
+
+// Mask should be grayscale, so all we need is one color.
+float value = pow(tex(mask, UV).r, 5);
+
+// Finally, set the alpha effect.
+whitened_color.a -= (pow(strength + 1, 10) - 1) * value;
+COLOR = whitened_color;",
+"fragment_ofs": 0,
+"light": "",
+"light_ofs": 0,
+"vertex": "",
+"vertex_ofs": 0
+}
 

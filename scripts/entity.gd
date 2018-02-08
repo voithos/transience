@@ -25,6 +25,10 @@ export (int) var ATTACK_SLIDE_SPEED = 10 # Pixels/second
 export (int) var ATTACK_DAMAGE = 15
 onready var health = MAX_HEALTH
 
+const SAMPLES = {
+	"slice": preload("res://assets/sfx/slice.wav")
+}
+
 const DIRECTIONS = ["up", "down", "left", "right"]
 const DIR_TO_MOTION = {
 	"left": Vector2(-1, 0),
@@ -65,14 +69,14 @@ func _ready():
 	connect("damaged", self, "on_damaged")
 	connect("healed", self, "on_healed")
 	connect("died", self, "on_died")
-	animation_player.connect("finished", self, "on_animation_finished")
+	animation_player.connect("animation_finished", self, "on_animation_finished")
 	
 	# Copy the material, blegh.
 	var material = sprite.get_material()
 	if material:
 		sprite.set_material(material.duplicate())
 
-func on_animation_finished():
+func on_animation_finished(animation):
 	if next_state:
 		change_state(next_state)
 		next_state = null
@@ -103,6 +107,11 @@ func play_animation(animation):
 	previous_animation = animation
 	animation_player.play(animation)
 
+func play_sample(sample):
+	var stream = SAMPLES[sample]
+	sample_player.stream = stream
+	sample_player.play()
+
 func change_state(new_state):
 	if new_state == current_state:
 		return false
@@ -114,11 +123,12 @@ func can_accept_input():
 	return current_state == STATE_IDLE or current_state == STATE_MOVE
 
 # Moves the entity in a given direction, and returns how much motion
-# remained before collision (if motion was completely successful, returns (0, 0)).
+# occurred before collision (if motion was completely successful, returns `motion`).
 #   motion: A Vector2() containing x/y motion.
 #   dir: One of "up", "down", "left", "right", used for animation.
 #        Can also be null to designate no direction (idle)
-func move_entity(motion, dir):
+#   delta: The delta time.
+func move_entity(motion, dir, delta):
 	change_dir(dir)
 
 	if dir:
@@ -131,20 +141,7 @@ func move_entity(motion, dir):
 		if successful:
 			play_dir_animation(previous_dir, "idle")
 
-	return move_and_slide(motion)
-
-func move_and_slide(motion):
-	var remainder = move(motion)
-	motion = remainder
-
-	# Make character slide nicely through the world
-	var slide_attempts = 4
-	while is_colliding() and slide_attempts > 0:
-		motion = get_collision_normal().slide(motion)
-		motion = move(motion)
-		slide_attempts -= 1
-
-	return remainder
+	return move_and_slide(motion, Vector2(0, 0), 1)
 
 # Returns the most recent direction that the entity is facing.
 # This is guaranteed to return an actual direction, not null.
@@ -155,7 +152,7 @@ func get_dir():
 		return previous_dir
 
 	# Both dirs are null; must be a newly created entity.
-	var animation = animation_player.get_current_animation()
+	var animation = animation_player.current_animation
 	var separator = animation.find("_")
 	if separator != -1:
 		var dir = animation.left(separator)
@@ -183,9 +180,9 @@ func attack():
 	next_state = STATE_IDLE
 	play_dir_animation(get_dir(), "attack")
 
-func slide_in_dir(dir, delta):
+func slide_in_dir(dir):
 	var motion = DIR_TO_MOTION[dir]
-	motion = motion.normalized() * ATTACK_SLIDE_SPEED * delta
+	motion = motion.normalized() * ATTACK_SLIDE_SPEED
 	move_and_slide(motion)
 
 # Triggered by AnimationPlayer on the appropriate "attack" frame.
@@ -235,7 +232,7 @@ func on_died():
 	var successful = change_state(STATE_DYING)
 	if successful:
 		# Disable the collisions.
-		collision_shape.set_trigger(true)
+		collision_shape.disabled = true
 		play_animation("die")
 
 func on_die_finished(free=true):

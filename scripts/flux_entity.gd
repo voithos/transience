@@ -37,10 +37,10 @@ const TIME_BEFORE_QUEUEING_NEW_ACTION = 0.2
 
 func _ready():
 	throwback_positions.resize(MAX_THROWBACKS)
-	throwback_tween_node.connect("tween_complete", self, "on_throwback_complete")
+	throwback_tween_node.connect("tween_completed", self, "on_throwback_complete")
 	footprint_switch_threshold = footprint_particles.get_lifetime() / footprint_particles.get_amount()
 
-func flux_fixed_process(delta):
+func flux_physics_process(delta):
 	# Footprint mechanics.
 	footprint_particles.set_emitting(can_accept_input())
 	footprint_switch_delta += delta
@@ -50,21 +50,22 @@ func flux_fixed_process(delta):
 
 	# Attack slide motion.
 	if current_state == STATE_ATTACK:
-		slide_in_dir(get_dir(), delta)
+		slide_in_dir(get_dir())
 
-func move_entity(motion, dir):
-	var remainder = .move_entity(motion, dir)
+func move_entity(motion, dir, delta):
+	var amount_moved = .move_entity(motion, dir, delta)
+	var remainder = motion - amount_moved
 
 	# Perform certain operations only when we actually move without collisions, or is "sliding".
 	var is_sliding = remainder.x and remainder.y
-	if motion.length_squared() and (not remainder.length_squared() or is_sliding):
-		on_actual_move(motion, dir)
+	if (motion * delta).length_squared() and (not remainder.length_squared() or is_sliding):
+		on_actual_move(motion, dir, delta)
 	else:
-		on_non_actual_move(motion, dir)
-	return remainder
+		on_non_actual_move(motion, dir, delta)
+	return amount_moved
 
-func on_actual_move(motion, dir):
-	heal_flux(motion.length_squared() * FLUX_GAIN_RATE)
+func on_actual_move(motion, dir, delta):
+	heal_flux((motion * delta).length_squared() * FLUX_GAIN_RATE)
 	cache_throwback_position()
 
 	# Update footprint particles.
@@ -78,9 +79,9 @@ func on_actual_move(motion, dir):
 	if footprint_swapped:
 		offset *= -1
 
-	footprint_particles.set_pos(Vector2(0, FOOTPRINT_PARTICLE_OFFSET_Y) + offset)
+	footprint_particles.position = Vector2(0, FOOTPRINT_PARTICLE_OFFSET_Y) + offset
 
-func on_non_actual_move(motion, dir):
+func on_non_actual_move(motion, dir, delta):
 	footprint_particles.set_emitting(false)
 
 func heal_flux(amount):
@@ -105,7 +106,7 @@ func can_throwback(steps):
 
 # Caches the throwback position in the cyclic throwback array.
 func cache_throwback_position():
-	throwback_positions[throwback_i] = get_pos()
+	throwback_positions[throwback_i] = position
 	throwback_i = (throwback_i + 1) % MAX_THROWBACKS
 	throwback_count = min(throwback_count + 1, MAX_THROWBACKS)
 
@@ -119,23 +120,23 @@ func throwback(steps):
 		throwback_i += MAX_THROWBACKS
 	throwback_count -= steps
 
-	throwback_tween_node.interpolate_property(self, "transform/pos", get_pos(), throwback_positions[throwback_i], \
+	throwback_tween_node.interpolate_property(self, "position", position, throwback_positions[throwback_i], \
 			THROWBACK_TWEEN_TIME, Tween.TRANS_QUAD, Tween.EASE_OUT)
 	throwback_tween_node.start()
 	on_throwback_start()
 
 func on_throwback_start():
 	# Disable collisions - e.g. enemy attacks, etc.
-	set_layer_mask(0)
-	set_collision_mask(0)
-	sprite.set_opacity(THROWBACK_OPACITY)
+	set_collision_layer_bit(0, 0)
+	set_collision_mask_bit(0, 0)
+	sprite.modulate = Color(1, 1, 1, THROWBACK_OPACITY)
 	change_state(STATE_THROWBACK)
 
 func on_throwback_complete(object, key):
 	# Re-enable collisions.
-	set_layer_mask(1)
-	set_collision_mask(1)
-	sprite.set_opacity(1)
+	set_collision_layer_bit(0, 1)
+	set_collision_mask_bit(0, 1)
+	sprite.modulate = Color(1, 1, 1, 1)
 	change_state(STATE_IDLE)
 
 func can_attack():
@@ -148,7 +149,7 @@ func attack():
 
 func on_attack_triggered():
 	# TODO: Make this play earlier so that the sound syncs up.
-	sample_player.play("slice")
+	play_sample("slice")
 	.on_attack_triggered()
 
 func react_to_motion_controls(delta):
@@ -171,8 +172,8 @@ func react_to_motion_controls(delta):
 		motion.x += 1
 		dir = "right"
 
-	motion = motion.normalized() * SPEED * delta
-	move_entity(motion, dir)
+	motion = motion.normalized() * SPEED
+	move_entity(motion, dir, delta)
 
 func react_to_action_controls(event):
 	var action = null
@@ -188,7 +189,7 @@ func react_to_action_controls(event):
 		
 		# If we reach here, it means we're currently in an animation.
 		# Check for the amount of time left before we can trigger a new action.
-		var time_left = animation_player.get_current_animation_length() - animation_player.get_current_animation_pos()
+		var time_left = animation_player.current_animation_length - animation_player.current_animation_position
 		if time_left < TIME_BEFORE_QUEUEING_NEW_ACTION:
 			next_action = action
 
