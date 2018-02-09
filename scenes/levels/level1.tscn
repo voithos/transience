@@ -8,7 +8,7 @@
 [ext_resource path="res://scenes/enemies/jumper.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/ui/ui_bars.tscn" type="PackedScene" id=7]
 
-[node name="YSort" type="YSort"]
+[node name="YSort" type="YSort" index="0"]
 
 sort_enabled = true
 script = ExtResource( 1 )
