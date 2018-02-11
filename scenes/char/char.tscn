@@ -599,7 +599,7 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Gravity", "Spread" ]
 
-[node name="Char" type="KinematicBody2D"]
+[node name="Char" type="KinematicBody2D" index="0"]
 
 position = Vector2( 0, -8 )
 input_pickable = false
