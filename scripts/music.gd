@@ -40,7 +40,6 @@ func create_player(stream):
 	return player
 
 func on_fade_complete(object, key, tween):
-	print('mwahahah fade complete')
 	if object.volume_db == MIN_DB:
 		tween.remove_all()
 		last_playback_pos = object.get_playback_position()
