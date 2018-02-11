@@ -238,7 +238,7 @@ func on_damaged_bleed(damage, attacked_direction):
 
 # Emits particle effects simulating bleeding based on direction the entity is facing
 func bleed(attack_dir):
-	#TODO: Figure out how to angle the particles based on the attack direction
+	# TODO: Figure out how to angle the particles based on the attack direction
 	bleed_particles.set_emitting(true)
 
 func on_died():
