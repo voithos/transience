@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://scenes/char/char.gd" type="Script" id=1]
 [ext_resource path="res://scenes/resources/effects_material.tres" type="Material" id=2]
@@ -560,6 +560,45 @@ height = 52.2131
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
 
+[sub_resource type="ParticlesMaterial" id=14]
+
+render_priority = 0
+trail_divisor = 1
+emission_shape = 0
+flag_align_y = false
+flag_rotate_y = false
+flag_disable_z = true
+spread = 45.0
+flatness = 0.0
+gravity = Vector3( 0, 98, 0 )
+initial_velocity = 1.0
+initial_velocity_random = 0.0
+angular_velocity = 0.0
+angular_velocity_random = 0.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 0.0
+linear_accel_random = 0.0
+radial_accel = 0.0
+radial_accel_random = 0.0
+tangential_accel = 0.0
+tangential_accel_random = 0.0
+damping = 0.0
+damping_random = 0.0
+angle = 0.0
+angle_random = 0.0
+scale = 1.0
+scale_random = 0.0
+color = Color( 1, 1, 1, 1 )
+hue_variation = 0.0
+hue_variation_random = 0.0
+anim_speed = 0.0
+anim_speed_random = 0.0
+anim_offset = 0.0
+anim_offset_random = 0.0
+anim_loop = false
+_sections_unfolded = [ "Gravity", "Spread" ]
+
 [node name="Char" type="KinematicBody2D"]
 
 position = Vector2( 0, -8 )
@@ -599,7 +638,7 @@ texture = null
 normal_map = null
 h_frames = 1
 v_frames = 1
-_sections_unfolded = [ "Drawing", "Process Material", "Textures", "Time" ]
+_sections_unfolded = [ "Drawing", "Material", "Pause", "Process Material", "Textures", "Time", "Transform", "Visibility", "Z Index" ]
 
 [node name="Sprite" type="Sprite" parent="." index="1"]
 
@@ -680,6 +719,7 @@ shape = SubResource( 12 )
 position = Vector2( -0.00850701, 8.55884 )
 scale = Vector2( 0.379173, 0.339025 )
 shape = SubResource( 13 )
+_sections_unfolded = [ "Material", "Transform", "Visibility", "Z Index" ]
 
 [node name="SamplePlayer" type="AudioStreamPlayer" parent="." index="6"]
 
@@ -789,5 +829,28 @@ playback_speed = 1.0
 playback/active = false
 playback/repeat = false
 playback/speed = 1.0
+
+[node name="BleedParticles" type="Particles2D" parent="." index="13"]
+
+self_modulate = Color( 0.135283, 0.121124, 0.574219, 1 )
+emitting = false
+amount = 8
+lifetime = 0.33
+one_shot = true
+preprocess = 0.0
+speed_scale = 0.75
+explosiveness = 0.33
+randomness = 0.0
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = false
+draw_order = 0
+process_material = SubResource( 14 )
+texture = null
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Drawing", "Material", "Pause", "Process Material", "Textures", "Time", "Transform", "Visibility", "Z Index" ]
 
 

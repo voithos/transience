@@ -43,6 +43,7 @@ onready var hitbox = get_node("Hitbox")
 onready var animation_player = get_node("AnimationPlayer")
 onready var sample_player = get_node("SamplePlayer")
 onready var collision_shape = get_node("CollisionShape2D")
+onready var bleed_particles = get_node("BleedParticles")
 var previous_animation = null
 
 const STATE_IDLE = "IDLE"
@@ -67,6 +68,7 @@ const MOTION_EPSILON = 0.001
 
 func _ready():
 	connect("damaged", self, "on_damaged")
+	connect("damaged", self, "on_damaged_bleed")
 	connect("healed", self, "on_healed")
 	connect("died", self, "on_died")
 	animation_player.connect("animation_finished", self, "on_animation_finished")
@@ -204,29 +206,40 @@ func detect_directional_area_attack_collisions(opposing_group="enemies"):
 		var body = area.get_parent()
 		if body != null and body.is_in_group(opposing_group):
 			# Found an opposer!
-			body.take_damage(ATTACK_DAMAGE)
+			body.take_damage(ATTACK_DAMAGE, dir)
 			total_damage += ATTACK_DAMAGE
 	return total_damage
 
 func on_attack_finished():
 	play_dir_animation(get_dir(), "idle")
 
-func take_damage(damage):
+func take_damage(damage, attacked_direction):
 	if not can_take_damage_or_heal():
 		return false
 
 	health -= damage
-	emit_signal("damaged", damage)
+	emit_signal("damaged", damage, attacked_direction)
 	if health <= 0:
 		health = 0
 		emit_signal("died")
 	emit_signal("health_changed", health_ratio())
 	return true
 
-func on_damaged(damage):
+func on_damaged(damage, attacked_direction):
 	change_state(STATE_STAGGER)
 	next_state = STATE_IDLE
 	play_animation("take_damage")
+
+func on_damaged_bleed(damage, attacked_direction):
+	if current_state == STATE_DYING or current_state == STATE_DEAD:
+		return
+	
+	bleed(attacked_direction)
+
+# Emits particle effects simulating bleeding based on direction the entity is facing
+func bleed(attack_dir):
+	#TODO: Figure out how to angle the particles based on the attack direction
+	bleed_particles.set_emitting(true)
 
 func on_died():
 	var successful = change_state(STATE_DYING)
