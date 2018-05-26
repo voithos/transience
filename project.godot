@@ -19,6 +19,7 @@ name="transience"
 
 music="*res://scripts/music.gd"
 screen="*res://scripts/screen.gd"
+util="*res://scripts/util.gd"
 
 [display]
 

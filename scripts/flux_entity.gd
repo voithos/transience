@@ -12,15 +12,16 @@ onready var flux = 0
 
 const FLUX_PER_THROWBACK_STEP = .4 # Multiplied with THROWBACK_STEPS
 const FLUX_GAIN_RATE = .1 # Arbitrary, for now
-const THROWBACK_STEPS = 32
+const THROWBACK_STEPS = 48
 
 onready var throwback_tween_node = get_node("ThrowbackTween")
 const MAX_THROWBACKS = 512
-var throwback_positions = []
-var throwback_i = 0
+var throwback_snapshots = []
+var throwback_i = 0 # Index of the next throwback snapshot (not the most-recent one)
+var throwback_i_previous = 0 # Previous index used while performing throwback animation
 var throwback_count = 0
 
-const THROWBACK_TWEEN_TIME = 0.15
+const THROWBACK_TWEEN_TIME = 0.55
 const THROWBACK_OPACITY = 0.2
 
 const FLUX_PER_ATTACK = 5
@@ -36,7 +37,7 @@ var footprint_switch_delta = 0
 const TIME_BEFORE_QUEUEING_NEW_ACTION = 0.2
 
 func _ready():
-	throwback_positions.resize(MAX_THROWBACKS)
+	throwback_snapshots.resize(MAX_THROWBACKS)
 	throwback_tween_node.connect("tween_completed", self, "on_throwback_complete")
 	footprint_switch_threshold = footprint_particles.get_lifetime() / footprint_particles.get_amount()
 
@@ -106,7 +107,13 @@ func can_throwback(steps):
 
 # Caches the throwback position in the cyclic throwback array.
 func cache_throwback_position():
-	throwback_positions[throwback_i] = position
+	if not can_accept_input():
+		return
+	var snapshot = {
+		position = position,
+		dir = current_dir,
+	}
+	throwback_snapshots[throwback_i] = snapshot
 	throwback_i = (throwback_i + 1) % MAX_THROWBACKS
 	throwback_count = min(throwback_count + 1, MAX_THROWBACKS)
 
@@ -114,13 +121,16 @@ func throwback(steps):
 	assert(can_throwback(steps))
 	use_flux(steps * FLUX_PER_THROWBACK_STEP)
 	
-	# GDScript's modulo operator doesn't work on negatives, so "wrap" manually.
-	throwback_i -= steps
-	if throwback_i < 0:
-		throwback_i += MAX_THROWBACKS
+	# Cache previous values in order to use them in the step function.
+	# throwback_i is the index of the next throwback value (so it can be Nil),
+	# so we subtract one.
+	throwback_i_previous = int(util.modulo(throwback_i - 1, MAX_THROWBACKS))
+
+	# Set the new throwback index that we will animate towards.
+	throwback_i = int(util.modulo(throwback_i - steps, MAX_THROWBACKS))
 	throwback_count -= steps
 
-	throwback_tween_node.interpolate_property(self, "position", position, throwback_positions[throwback_i], \
+	throwback_tween_node.interpolate_method(self, "on_throwback_step", 0, steps, \
 			THROWBACK_TWEEN_TIME, Tween.TRANS_QUAD, Tween.EASE_OUT)
 	throwback_tween_node.start()
 	on_throwback_start()
@@ -131,6 +141,22 @@ func on_throwback_start():
 	set_collision_mask_bit(0, 0)
 	sprite.modulate = Color(1, 1, 1, THROWBACK_OPACITY)
 	change_state(STATE_THROWBACK)
+
+func on_throwback_step(offset):
+	var progress = util.modulo(throwback_i_previous - offset, MAX_THROWBACKS)
+	# i and j are the two indices that have relevant positions for the animation.
+	var i = int(progress)
+	var j = int(util.modulo(i + 1, MAX_THROWBACKS))
+	var fraction = progress - i
+	
+	var snapshot_i = throwback_snapshots[i]
+	var new_pos = snapshot_i.position
+	# Account for any fractional interpolation.
+	if fraction > 0:
+		new_pos = new_pos.linear_interpolate(throwback_snapshots[j].position, fraction)
+	# TODO: Change this to the running animation.
+	play_dir_animation(snapshot_i.dir, "idle")
+	position = new_pos
 
 func on_throwback_complete(object, key):
 	# Re-enable collisions.
