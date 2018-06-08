@@ -599,7 +599,7 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Gravity", "Spread" ]
 
-[node name="Char" type="KinematicBody2D" index="0"]
+[node name="Char" type="KinematicBody2D"]
 
 position = Vector2( 0, -8 )
 input_pickable = false
@@ -647,7 +647,7 @@ position = Vector2( 0, 8 )
 texture = ExtResource( 3 )
 offset = Vector2( 0, -8.07695 )
 hframes = 3
-_sections_unfolded = [ "Material", "Transform" ]
+_sections_unfolded = [ "Animation", "Material", "Offset", "Transform" ]
 
 [node name="Camera2D" type="Camera2D" parent="." index="2"]
 
