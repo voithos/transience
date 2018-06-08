@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/levels/level1.gd" type="Script" id=1]
 [ext_resource path="res://assets/misc/background.png" type="Texture" id=2]
@@ -6,7 +6,8 @@
 [ext_resource path="res://scenes/char/char.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/enemies/fighter.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/enemies/jumper.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scenes/ui/ui_bars.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/effects/light_particles.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/ui/ui_bars.tscn" type="PackedScene" id=8]
 
 [sub_resource type="Environment" id=1]
 
@@ -87,58 +88,7 @@ adjustment_contrast = 1.0
 adjustment_saturation = 1.0
 _sections_unfolded = [ "Background", "Glow" ]
 
-[sub_resource type="Gradient" id=2]
-
-offsets = PoolRealArray( 0, 0.337802, 0.699732, 1 )
-colors = PoolColorArray( 0, 0, 0, 0, 15, 15, 15, 1, 15, 15, 15, 1, 1, 1, 1, 0 )
-
-[sub_resource type="GradientTexture" id=3]
-
-flags = 4
-gradient = SubResource( 2 )
-width = 2048
-
-[sub_resource type="ParticlesMaterial" id=4]
-
-render_priority = 0
-trail_divisor = 1
-emission_shape = 2
-emission_box_extents = Vector3( 480, 270, 1 )
-flag_align_y = false
-flag_rotate_y = false
-flag_disable_z = true
-spread = 180.0
-flatness = 0.0
-gravity = Vector3( 0, 0, 0 )
-initial_velocity = 10.0
-initial_velocity_random = 1.0
-angular_velocity = 10.0
-angular_velocity_random = 0.0
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-linear_accel = 1.0
-linear_accel_random = 0.5
-radial_accel = 0.0
-radial_accel_random = 0.0
-tangential_accel = 0.0
-tangential_accel_random = 0.0
-damping = 0.0
-damping_random = 0.0
-angle = 0.0
-angle_random = 0.0
-scale = 2.0
-scale_random = 0.5
-color_ramp = SubResource( 3 )
-hue_variation = 0.0
-hue_variation_random = 0.0
-anim_speed = 0.0
-anim_speed_random = 0.0
-anim_offset = 0.0
-anim_offset_random = 0.0
-anim_loop = false
-_sections_unfolded = [ "Angular Velocity", "Color", "Emission Shape", "Gravity", "Hue Variation", "Initial Velocity", "Linear Accel", "Scale", "Spread", "Trail" ]
-
-[node name="YSort" type="YSort" index="0"]
+[node name="YSort" type="YSort"]
 
 sort_enabled = true
 script = ExtResource( 1 )
@@ -240,28 +190,8 @@ ATTACK_SLIDE_SPEED = 10
 position = Vector2( 568, 760 )
 ATTACK_SLIDE_SPEED = 10
 
-[node name="Particles2D" type="Particles2D" parent="." index="12"]
+[node name="LightParticles" parent="." index="12" instance=ExtResource( 7 )]
 
-emitting = true
-amount = 15
-lifetime = 4.0
-one_shot = false
-preprocess = 0.0
-speed_scale = 1.0
-explosiveness = 0.0
-randomness = 0.69
-fixed_fps = 0
-fract_delta = true
-visibility_rect = Rect2( -100, -100, 200, 200 )
-local_coords = false
-draw_order = 0
-process_material = SubResource( 4 )
-texture = null
-normal_map = null
-h_frames = 1
-v_frames = 1
-_sections_unfolded = [ "Drawing", "Process Material", "Time" ]
-
-[node name="CanvasLayer" parent="." index="13" instance=ExtResource( 7 )]
+[node name="CanvasLayer" parent="." index="13" instance=ExtResource( 8 )]
 
 
