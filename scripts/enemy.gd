@@ -42,7 +42,7 @@ func configure_nodes():
 	assert(nodes.size() == 1)
 	navigation_node = nodes[0].get_node("Navigation2D")
 
-func enemy_process(delta):
+func enemy_physics_process(delta):
 	if current_ai_state == AI_STATE_IDLE:
 		run_idle_ai(delta)
 	elif current_ai_state == AI_STATE_BATTLE:

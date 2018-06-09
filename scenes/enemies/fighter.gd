@@ -1,9 +1,8 @@
 extends "res://scripts/enemy.gd"
 
-func _process(delta):
-	enemy_process(delta)
-
 func _physics_process(delta):
+	enemy_physics_process(delta)
+
 	# Attack slide motion.
 	if current_state == STATE_ATTACK:
 		slide_in_dir(get_dir())
