@@ -21,6 +21,8 @@ var throwback_i = 0 # Index of the next throwback snapshot (not the most-recent 
 var throwback_i_previous = 0 # Previous index used while performing throwback animation
 var throwback_count = 0
 
+onready var throwback_particles = get_node("ThrowbackParticles")
+
 const THROWBACK_TWEEN_TIME = 0.55
 const THROWBACK_OPACITY = 0.2
 
@@ -38,6 +40,7 @@ const TIME_BEFORE_QUEUEING_NEW_ACTION = 0.2
 
 func _ready():
 	throwback_snapshots.resize(MAX_THROWBACKS)
+	throwback_particles.set_emitting(false)
 	throwback_tween_node.connect("tween_completed", self, "on_throwback_complete")
 	footprint_switch_threshold = footprint_particles.get_lifetime() / footprint_particles.get_amount()
 
@@ -139,6 +142,7 @@ func on_throwback_start():
 	# Disable collisions - e.g. enemy attacks, etc.
 	set_collision_layer_bit(0, 0)
 	set_collision_mask_bit(0, 0)
+	throwback_particles.set_emitting(true)
 	sprite.modulate = Color(1, 1, 1, THROWBACK_OPACITY)
 	change_state(STATE_THROWBACK)
 
@@ -162,6 +166,7 @@ func on_throwback_complete(object, key):
 	# Re-enable collisions.
 	set_collision_layer_bit(0, 1)
 	set_collision_mask_bit(0, 1)
+	throwback_particles.set_emitting(false)
 	sprite.modulate = Color(1, 1, 1, 1)
 	change_state(STATE_IDLE)
 

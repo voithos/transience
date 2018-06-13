@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://scenes/char/char.gd" type="Script" id=1]
 [ext_resource path="res://scenes/resources/effects_material.tres" type="Material" id=2]
@@ -600,6 +600,69 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Gravity", "Spread" ]
 
+[sub_resource type="Gradient" id=16]
+
+offsets = PoolRealArray( 0, 0.182131, 1 )
+colors = PoolColorArray( 0.0148926, 0.931135, 0.953125, 0, 0.0148926, 1.5, 1.5, 1, 0.0148926, 0.931135, 0.953125, 0 )
+
+[sub_resource type="GradientTexture" id=17]
+
+flags = 4
+gradient = SubResource( 16 )
+width = 2048
+
+[sub_resource type="Gradient" id=18]
+
+offsets = PoolRealArray( 0, 1 )
+colors = PoolColorArray( 0, 0, 0, 1, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=19]
+
+flags = 4
+gradient = SubResource( 18 )
+width = 2048
+
+[sub_resource type="ParticlesMaterial" id=15]
+
+render_priority = 0
+trail_divisor = 1
+trail_color_modifier = SubResource( 19 )
+emission_shape = 2
+emission_box_extents = Vector3( 5, 10, 1 )
+flag_align_y = false
+flag_rotate_y = false
+flag_disable_z = true
+spread = 180.0
+flatness = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 1.0
+initial_velocity_random = 0.5
+angular_velocity = 0.0
+angular_velocity_random = 0.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 0.0
+linear_accel_random = 0.0
+radial_accel = 0.0
+radial_accel_random = 0.0
+tangential_accel = 0.0
+tangential_accel_random = 0.0
+damping = 0.0
+damping_random = 0.0
+angle = 0.0
+angle_random = 0.0
+scale = 1.0
+scale_random = 0.0
+color_ramp = SubResource( 17 )
+hue_variation = 0.0
+hue_variation_random = 0.0
+anim_speed = 0.0
+anim_speed_random = 0.0
+anim_offset = 0.0
+anim_offset_random = 0.0
+anim_loop = false
+_sections_unfolded = [ "Angular Velocity", "Animation", "Color", "Emission Shape", "Gravity", "Hue Variation", "Initial Velocity", "Linear Accel", "Orbit Velocity", "Radial Accel", "Spread", "Tangential Accel", "Trail" ]
+
 [node name="Char" type="KinematicBody2D" index="0"]
 
 position = Vector2( 0, -8 )
@@ -854,5 +917,28 @@ normal_map = null
 h_frames = 1
 v_frames = 1
 _sections_unfolded = [ "Drawing", "Material", "Pause", "Process Material", "Textures", "Time", "Transform", "Visibility", "Z Index" ]
+
+[node name="ThrowbackParticles" type="Particles2D" parent="." index="14"]
+
+modulate = Color( 1.5, 1.5, 1.5, 1 )
+emitting = true
+amount = 50
+lifetime = 5.0
+one_shot = false
+preprocess = 0.0
+speed_scale = 5.0
+explosiveness = 0.0
+randomness = 0.0
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = false
+draw_order = 0
+process_material = SubResource( 15 )
+texture = null
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Drawing", "Process Material", "Time", "Transform", "Visibility" ]
 
 

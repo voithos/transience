@@ -60,9 +60,9 @@ anim_speed_random = 0.0
 anim_offset = 0.0
 anim_offset_random = 0.0
 anim_loop = false
-_sections_unfolded = [ "Angular Velocity", "Color", "Hue Variation", "Linear Accel", "Resource", "Scale" ]
+_sections_unfolded = [ "Angular Velocity", "Color", "Emission Shape", "Hue Variation", "Linear Accel", "Resource", "Scale", "Trail" ]
 
-[node name="LightParticles" type="Particles2D" index="0"]
+[node name="LightParticles" type="Particles2D"]
 
 modulate = Color( 1.5, 1.5, 1.5, 1 )
 emitting = true
