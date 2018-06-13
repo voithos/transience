@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/misc/particle.png" type="Texture" id=1]
 [ext_resource path="res://scenes/effects/light_particles.gd" type="Script" id=2]
@@ -15,9 +15,16 @@ gradient = SubResource( 1 )
 width = 2048
 _sections_unfolded = [ "Resource" ]
 
-[sub_resource type="ParticlesMaterial" id=3]
+[sub_resource type="CanvasItemMaterial" id=3]
+
+render_priority = 1
+blend_mode = 0
+light_mode = 0
+
+[sub_resource type="ParticlesMaterial" id=4]
 
 render_priority = 0
+next_pass = SubResource( 3 )
 trail_divisor = 1
 emission_shape = 2
 emission_box_extents = Vector3( 480, 270, 1 )
@@ -53,10 +60,11 @@ anim_speed_random = 0.0
 anim_offset = 0.0
 anim_offset_random = 0.0
 anim_loop = false
-_sections_unfolded = [ "Angular Velocity", "Color", "Emission Shape", "Gravity", "Hue Variation", "Initial Velocity", "Linear Accel", "Resource", "Scale", "Spread", "Trail" ]
+_sections_unfolded = [ "Angular Velocity", "Color", "Hue Variation", "Linear Accel", "Resource", "Scale" ]
 
 [node name="LightParticles" type="Particles2D" index="0"]
 
+modulate = Color( 1.5, 1.5, 1.5, 1 )
 emitting = true
 amount = 15
 lifetime = 6.0
@@ -70,12 +78,12 @@ fract_delta = true
 visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = false
 draw_order = 0
-process_material = SubResource( 3 )
+process_material = SubResource( 4 )
 texture = ExtResource( 1 )
 normal_map = null
 h_frames = 1
 v_frames = 1
 script = ExtResource( 2 )
-_sections_unfolded = [ "Drawing", "Process Material", "Textures", "Time" ]
+_sections_unfolded = [ "Drawing", "Material", "Process Material", "Textures", "Time", "Visibility" ]
 
 
