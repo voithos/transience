@@ -88,7 +88,7 @@ adjustment_contrast = 1.0
 adjustment_saturation = 1.0
 _sections_unfolded = [ "Background", "Glow", "Glow/levels" ]
 
-[node name="YSort" type="YSort"]
+[node name="YSort" type="YSort" index="0"]
 
 sort_enabled = true
 script = ExtResource( 1 )

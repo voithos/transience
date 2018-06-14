@@ -600,33 +600,33 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Gravity", "Spread" ]
 
-[sub_resource type="Gradient" id=16]
+[sub_resource type="Gradient" id=15]
 
 offsets = PoolRealArray( 0, 0.182131, 1 )
 colors = PoolColorArray( 0.0148926, 0.931135, 0.953125, 0, 0.0148926, 1.5, 1.5, 1, 0.0148926, 0.931135, 0.953125, 0 )
 
-[sub_resource type="GradientTexture" id=17]
+[sub_resource type="GradientTexture" id=16]
 
 flags = 4
-gradient = SubResource( 16 )
+gradient = SubResource( 15 )
 width = 2048
 
-[sub_resource type="Gradient" id=18]
+[sub_resource type="Gradient" id=17]
 
 offsets = PoolRealArray( 0, 1 )
 colors = PoolColorArray( 0, 0, 0, 1, 1, 1, 1, 1 )
 
-[sub_resource type="GradientTexture" id=19]
+[sub_resource type="GradientTexture" id=18]
 
 flags = 4
-gradient = SubResource( 18 )
+gradient = SubResource( 17 )
 width = 2048
 
-[sub_resource type="ParticlesMaterial" id=15]
+[sub_resource type="ParticlesMaterial" id=19]
 
 render_priority = 0
 trail_divisor = 1
-trail_color_modifier = SubResource( 19 )
+trail_color_modifier = SubResource( 18 )
 emission_shape = 2
 emission_box_extents = Vector3( 5, 10, 1 )
 flag_align_y = false
@@ -653,7 +653,7 @@ angle = 0.0
 angle_random = 0.0
 scale = 1.0
 scale_random = 0.0
-color_ramp = SubResource( 17 )
+color_ramp = SubResource( 16 )
 hue_variation = 0.0
 hue_variation_random = 0.0
 anim_speed = 0.0
@@ -663,7 +663,7 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Angular Velocity", "Animation", "Color", "Emission Shape", "Gravity", "Hue Variation", "Initial Velocity", "Linear Accel", "Orbit Velocity", "Radial Accel", "Spread", "Tangential Accel", "Trail" ]
 
-[node name="Char" type="KinematicBody2D" index="0"]
+[node name="Char" type="KinematicBody2D"]
 
 position = Vector2( 0, -8 )
 input_pickable = false
@@ -921,7 +921,7 @@ _sections_unfolded = [ "Drawing", "Material", "Pause", "Process Material", "Text
 [node name="ThrowbackParticles" type="Particles2D" parent="." index="14"]
 
 modulate = Color( 1.5, 1.5, 1.5, 1 )
-emitting = true
+emitting = false
 amount = 50
 lifetime = 5.0
 one_shot = false
@@ -934,7 +934,7 @@ fract_delta = true
 visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = false
 draw_order = 0
-process_material = SubResource( 15 )
+process_material = SubResource( 19 )
 texture = null
 normal_map = null
 h_frames = 1

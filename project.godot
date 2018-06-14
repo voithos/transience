@@ -23,8 +23,8 @@ util="*res://scripts/util.gd"
 
 [display]
 
-window/size/width=480
-window/size/height=270
+window/size/width=320
+window/size/height=180
 window/size/test_width=960
 window/size/test_height=540
 window/vsync/use_vsync=false
