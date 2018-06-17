@@ -208,10 +208,9 @@ func react_to_motion_controls(delta):
 
 func react_to_action_controls(event):
 	var action = null
-	if event.is_action_pressed("trans_accept"):
-		action = "trans_accept"
-	if event.is_action_pressed("trans_cancel"):
-		action = "trans_cancel"
+	for trans_action in ["trans_accept", "trans_attack", "trans_dodge"]:
+		if event.is_action_pressed(trans_action):
+			action = trans_action
 
 	if action:
 		if can_accept_input():
@@ -227,10 +226,10 @@ func react_to_action_controls(event):
 		# Otherwise, just drop the input.
 
 func immediately_run_action(action):
-	if action == "trans_accept":
+	if action == "trans_dodge":
 		if can_throwback(THROWBACK_STEPS):
 			throwback(THROWBACK_STEPS)
-	if action == "trans_cancel":
+	if action == "trans_attack":
 		if can_attack():
 			attack()
 
