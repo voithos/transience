@@ -5,7 +5,7 @@ signal speech_completed
 onready var sample_player = get_node("SamplePlayer")
 
 onready var timer = get_node("Timer")
-const TIMER_NORMAL = 0.05
+const TIMER_NORMAL = 0.035
 const TIMER_DELAYED = 1.0
 
 onready var label = get_node("RichTextLabel")
