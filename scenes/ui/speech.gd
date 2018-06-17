@@ -1,4 +1,4 @@
-extends Sprite
+extends CanvasLayer
 
 signal speech_completed
 
@@ -11,7 +11,12 @@ const TIMER_DELAYED = 1.0
 onready var label = get_node("RichTextLabel")
 
 # The speech data as an array of strings.
-var speech_data = ["[center]It's dangerous to go alone...\nYou have no chance to survive\nmake your time[/center]", "Welcome to a thing"]
+var speech_data = [
+"""
+It's dangerous to go alone...
+You have no chance to survive
+make your time
+""", "Welcome to a thing"]
 var page = 0
 
 func _ready():
@@ -48,7 +53,12 @@ func start_current_page():
 	# Reset timer speed in case we transitioned in the middle
 	# of a slow character.
 	timer.wait_time = TIMER_NORMAL
-	label.bbcode_text = speech_data[page]
+	
+	# Process page speech text.
+	var speech_text = speech_data[page]
+	speech_text = speech_text.strip_edges()
+	speech_text = "[center]" + speech_text + "[/center]"
+	label.bbcode_text = speech_text
 	label.visible_characters = 0
 
 func is_page_complete():
