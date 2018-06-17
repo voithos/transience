@@ -2,6 +2,8 @@ extends Sprite
 
 signal speech_completed
 
+onready var sample_player = get_node("SamplePlayer")
+
 onready var timer = get_node("Timer")
 const TIMER_NORMAL = 0.05
 const TIMER_DELAYED = 1.0
@@ -52,7 +54,11 @@ func start_current_page():
 func is_page_complete():
 	return label.visible_characters == label.get_total_character_count()
 
+func print_character():
+	label.visible_characters = label.visible_characters + 1
+	sample_player.play()
+
 func on_timeout():
 	# TODO: Add delay support.
 	if not is_page_complete():
-		label.visible_characters = label.visible_characters + 1
+		print_character()
