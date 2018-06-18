@@ -19,8 +19,7 @@ var speech_data = [
 """
 .###.###.###It was a dark night.###.###.###
 You have no chance to survive
-make## your### time####
-""", "Welcome to a thing"]
+make## your### time""", "Welcome to a thing"]
 var page = 0
 # A dictionary of character position -> delay pairs.
 var char_delays = {}
@@ -101,12 +100,19 @@ func collect_char_delays(speech_text):
 				index_offset += 1
 
 func is_page_complete():
-	return label.visible_characters == label.get_total_character_count()
+	return label.visible_characters == len(label.text)
+
+# Increments the visible character count and return the index of the
+# most recently printed character.
+func increment_visible_characters():
+	if label.visible_characters < len(label.text):
+		label.visible_characters = label.visible_characters + 1
+	return label.visible_characters - 1
 
 func print_character():
-	label.visible_characters = label.visible_characters + 1
+	var text_pos = increment_visible_characters()
 	# Special case: don't play the sound for periods '.'.
-	if label.text[label.visible_characters - 1] != '.':
+	if label.text[text_pos] != '.':
 		sample_player.play()
 
 	# Clear wait time in case we were delayed from the last char.
