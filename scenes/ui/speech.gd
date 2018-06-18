@@ -105,8 +105,9 @@ func is_page_complete():
 
 func print_character():
 	label.visible_characters = label.visible_characters + 1
-	# TODO: Don't play the sound on periods '.'.
-	sample_player.play()
+	# Special case: don't play the sound for periods '.'.
+	if label.text[label.visible_characters - 1] != '.':
+		sample_player.play()
 
 	# Clear wait time in case we were delayed from the last char.
 	timer.wait_time = TIMER_NORMAL
