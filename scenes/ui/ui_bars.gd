@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+# UI bars for the in-game UI. Monitors health and flux.
+
 const BAR_TWEEN_TIME = 0.2
 
 onready var health_bar = get_node("HealthBar")
