@@ -7,10 +7,10 @@ path="res://.import/speech-box.png-c7b6e4532903183eb0121f5d4411a757.stex"
 [deps]
 
 source_file="res://assets/ui/speech-box.png"
-source_md5="b1c3c403176fa449f7d6cd623db49e47"
+source_md5="2b4b422f0bec4e88d61c0083bf7c922d"
 
 dest_files=[ "res://.import/speech-box.png-c7b6e4532903183eb0121f5d4411a757.stex" ]
-dest_md5="a852a914df69798af3b02b59e91ed015"
+dest_md5="017bc344b133c4f6c28260c438defffc"
 
 [params]
 

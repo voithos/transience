@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/levels/level1.gd" type="Script" id=1]
 [ext_resource path="res://assets/misc/background.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://scenes/enemies/jumper.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/effects/light_particles.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/ui/ui_bars.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/ui/speech.tscn" type="PackedScene" id=9]
 
 [sub_resource type="Environment" id=1]
 
@@ -88,7 +89,7 @@ adjustment_contrast = 1.0
 adjustment_saturation = 1.0
 _sections_unfolded = [ "Background", "Glow", "Glow/levels" ]
 
-[node name="YSort" type="YSort"]
+[node name="YSort" type="YSort" index="0"]
 
 sort_enabled = true
 script = ExtResource( 1 )
@@ -193,6 +194,8 @@ ATTACK_SLIDE_SPEED = 10
 
 [node name="LightParticles" parent="." index="12" instance=ExtResource( 7 )]
 
-[node name="CanvasLayer" parent="." index="13" instance=ExtResource( 8 )]
+[node name="UIBars" parent="." index="13" instance=ExtResource( 8 )]
+
+[node name="Speech" parent="." index="14" instance=ExtResource( 9 )]
 
 

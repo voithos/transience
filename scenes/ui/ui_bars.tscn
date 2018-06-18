@@ -5,7 +5,7 @@
 [ext_resource path="res://assets/ui/health-bar-full.png" type="Texture" id=3]
 [ext_resource path="res://assets/ui/flux-bar-full.png" type="Texture" id=4]
 
-[node name="CanvasLayer" type="CanvasLayer"]
+[node name="UIBars" type="CanvasLayer"]
 
 layer = 1
 offset = Vector2( 0, 0 )

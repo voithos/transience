@@ -5,7 +5,7 @@
 [ext_resource path="res://assets/fonts/pixeled.tres" type="DynamicFont" id=3]
 [ext_resource path="res://assets/sfx/blip.wav" type="AudioStream" id=4]
 
-[node name="CanvasLayer" type="CanvasLayer" index="0"]
+[node name="Speech" type="CanvasLayer"]
 
 layer = 1
 offset = Vector2( 160, 145 )
