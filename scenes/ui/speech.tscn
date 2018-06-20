@@ -5,7 +5,7 @@
 [ext_resource path="res://assets/fonts/pixeled.tres" type="DynamicFont" id=3]
 [ext_resource path="res://assets/sfx/blip.wav" type="AudioStream" id=4]
 
-[node name="Speech" type="CanvasLayer"]
+[node name="Speech" type="CanvasLayer" index="0"]
 
 layer = 1
 offset = Vector2( 160, 145 )
@@ -24,9 +24,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = -70.0
+margin_left = -85.0
 margin_top = -20.0
-margin_right = 70.0
+margin_right = 85.0
 margin_bottom = 20.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = true

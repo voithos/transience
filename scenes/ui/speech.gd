@@ -62,7 +62,6 @@ func start_current_page():
 	speech_text = speech_text.strip_edges()
 	
 	collect_char_delays(speech_text)
-	print(char_delays)
 	speech_text = speech_text.replace(DELAY_CHAR, '')
 	
 	speech_text = "[center]" + speech_text + "[/center]"
@@ -94,6 +93,9 @@ func collect_char_delays(speech_text):
 				# effectively 1-based, but we don't add 1 to the index
 				# because the relevant char is actually the previous character
 				# already.
+				
+				# TODO: Remove final char delays, as they don't make sense and
+				# cause an extra audible noise.
 				var char_pos = i - index_offset
 				char_delays[char_pos] = (
 					char_delays[char_pos] if char_delays.has(char_pos) else 0) + TIMER_DELAY

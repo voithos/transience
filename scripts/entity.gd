@@ -11,6 +11,7 @@ extends KinematicBody2D
 # For the animation player, expects the following animations to be defined:
 # - *_idle
 # - *_move
+# - *_attack
 # - take_damage
 # - die
 
@@ -63,6 +64,9 @@ var next_action = null
 # Valid dirs are "up", "down", "left", "right", and null, denoting idleness.
 var current_dir = null
 var previous_dir = null
+# Keeps track of the last non-null dir. To get a non-null dir for the entity, use
+# `get_dir()`, which handles default states as well.
+var facing_dir = null
 
 const MOTION_EPSILON = 0.001
 
@@ -100,6 +104,8 @@ func change_dir(dir):
 	if dir != current_dir:
 		previous_dir = current_dir
 		current_dir = dir
+		if dir != null:
+			facing_dir = dir
 
 func play_dir_animation(dir, animation):
 	change_dir(dir)
@@ -148,12 +154,10 @@ func move_entity(motion, dir, delta):
 # Returns the most recent direction that the entity is facing.
 # This is guaranteed to return an actual direction, not null.
 func get_dir():
-	if current_dir != null:
-		return current_dir
-	if previous_dir != null:
-		return previous_dir
+	if facing_dir != null:
+		return facing_dir
 
-	# Both dirs are null; must be a newly created entity.
+	# Facing dir is null; must be a newly created entity that hasn't changed dirs yet.
 	var animation = animation_player.current_animation
 	var separator = animation.find("_")
 	if separator != -1:
