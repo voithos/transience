@@ -10,9 +10,10 @@ signal flux_changed
 export (int) var MAX_FLUX = 100
 onready var flux = 0
 
-const FLUX_PER_THROWBACK_STEP = .4 # Multiplied with THROWBACK_STEPS
-const FLUX_GAIN_RATE = .1 # Arbitrary, for now
+const FLUX_PER_THROWBACK_STEP = .8 # Multiplied with THROWBACK_STEPS
+const FLUX_GAIN_RATE = 30 # Arbitrary, for now
 const THROWBACK_STEPS = 48
+const FLUX_PER_ATTACK = 20
 
 onready var throwback_tween_node = get_node("ThrowbackTween")
 const MAX_THROWBACKS = 512
@@ -25,8 +26,6 @@ onready var throwback_particles = get_node("ThrowbackParticles")
 
 const THROWBACK_TWEEN_TIME = 0.55
 const THROWBACK_OPACITY = 0.2
-
-const FLUX_PER_ATTACK = 5
 
 onready var footprint_particles = get_node("FootprintParticles")
 const FOOTPRINT_PARTICLE_OFFSET_Y = 11
@@ -45,6 +44,10 @@ func _ready():
 	footprint_switch_threshold = footprint_particles.get_lifetime() / footprint_particles.get_amount()
 
 func flux_physics_process(delta):
+	# Flux recovery.
+	if current_state == STATE_IDLE or current_state == STATE_MOVE:
+		heal_flux(delta * FLUX_GAIN_RATE)
+
 	# Footprint mechanics.
 	footprint_particles.set_emitting(can_accept_input())
 	footprint_switch_delta += delta
@@ -69,7 +72,6 @@ func move_entity(motion, dir, delta):
 	return amount_moved
 
 func on_actual_move(motion, dir, delta):
-	heal_flux((motion * delta).length_squared() * FLUX_GAIN_RATE)
 	cache_throwback_position()
 
 	# Update footprint particles.
