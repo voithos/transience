@@ -20,8 +20,11 @@ func _ready():
 	call_deferred("configure_nodes")
 
 func _input(event):
-	# TODO: This particular line seems to blow up if there are mouse events present before
-	# the node is ready...? Godot bug?
+	# Handle any edge cases where input is queued before the player is initialized.
+	# Most apparent while debugging a scene.
+	if not player:
+		return
+
 	if self.global_position.distance_squared_to(player.global_position) < DIALOGUE_DISTANCE_SQUARED:
 		if event.is_action_pressed("trans_accept") and is_player_facing_npc():
 			begin_dialogue()
