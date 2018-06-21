@@ -37,6 +37,9 @@ func _input(event):
 			start_current_page()
 		else:
 			# Close the dialog.
+			# First mark the event so that other nodes know not to re-open the dialog
+			# due to this very same input.
+			event.set_meta("consumed_by", "speech")
 			emit_signal("speech_completed")
 			queue_free()
 

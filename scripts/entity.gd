@@ -38,6 +38,8 @@ const DIR_TO_MOTION = {
 	"down": Vector2(0, 1)
 }
 
+onready var cutscene = get_node("/root/cutscene")
+
 # Nodes common to all entities.
 onready var sprite = get_node("Sprite")
 onready var hitbox = get_node("Hitbox")

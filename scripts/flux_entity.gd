@@ -186,8 +186,8 @@ func on_attack_triggered():
 	.on_attack_triggered()
 
 func react_to_motion_controls(delta):
-	if not can_accept_input():
-		return
+	if cutscene.is_in_cutscene: return
+	if not can_accept_input(): return
 
 	var motion = Vector2()
 	var dir = null
@@ -209,6 +209,8 @@ func react_to_motion_controls(delta):
 	move_entity(motion, dir, delta)
 
 func react_to_action_controls(event):
+	if cutscene.is_in_cutscene: return
+
 	var action = null
 	for trans_action in ["trans_accept", "trans_attack", "trans_dodge"]:
 		if event.is_action_pressed(trans_action):

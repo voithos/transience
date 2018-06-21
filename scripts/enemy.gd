@@ -58,8 +58,7 @@ func run_battle_ai(delta):
 	if cooldown > 0:
 		cooldown = max(0, cooldown - delta)
 		return
-	if not can_accept_input():
-		return
+	if not can_accept_input(): return
 
 	# Check for distance-to-player and attack.
 	var attack_range = pow(get_attack_range(), 2)
