@@ -5,7 +5,13 @@ const speech_scene = preload("res://scenes/ui/speech.tscn")
 # Common code for NPCs.
 # Specific NPCs should override the `speech_data` field to setup dialogue.
 
+# `speech_data` should be a list of lists, each sublist representing a single
+# conversation.
 var speech_data = []
+# Each NPC may have a series of separate conversations that increment as
+# the player talks to them, until there are no more left. At that point,
+# the last conversation is repeated.
+var conversation = 0
 
 onready var cutscene = get_node("/root/cutscene")
 var player
@@ -37,16 +43,18 @@ func _input(event):
 			start_dialogue()
 
 func start_dialogue():
-	# TODO: Do not allow motion (nor new speech dialogs) from getting created while
-	# in a dialogue. Also, connect to the speech complete signal.
+	assert(len(speech_data) >= 1)
+
 	var speech = speech_scene.instance()
 	add_child(speech)
 	cutscene.start_cutscene()
 	speech.connect("speech_completed", self, "end_dialogue")
-	speech.init(speech_data)
+	speech.init(speech_data[conversation])
 
 func end_dialogue():
 	cutscene.end_cutscene()
+	if conversation < len(speech_data) - 1:
+		conversation += 1
 
 func is_player_facing_npc():
 	var dir = player.get_dir()
@@ -63,7 +71,7 @@ func is_player_facing_npc():
 	return false
 
 func configure_nodes():
-	# Get a ref to the player so we can chase it.
+	# Get a ref to the player.
 	var tree = get_tree()
 	var nodes = tree.get_nodes_in_group("player")
 	assert(nodes.size() == 1)
