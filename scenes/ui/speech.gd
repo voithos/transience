@@ -15,13 +15,10 @@ const TIMER_DELAY = 0.15  # Extra delay added by a single delay char.
 const DELAY_CHAR = '#'
 
 # The speech data as an array of strings.
-var speech_data = [
-"""
-.###.###.###It was a dark night.###.###.###
-You have no chance to survive
-make## your### time""", "Welcome to a thing"]
+# Enter something in the default array to test out the speech dialog.
+var speech_data = []
 var page = 0
-# A dictionary of character position -> delay pairs.
+# A dictionary of (character position, delay) pairs.
 var char_delays = {}
 
 func _ready():
