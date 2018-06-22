@@ -9,10 +9,12 @@ signal speech_completed
 onready var sample_player = get_node("SamplePlayer")
 onready var timer = get_node("Timer")
 onready var label = get_node("RichTextLabel")
+onready var label_rect = label.get_rect()
 
 const TIMER_NORMAL = 0.035
 const TIMER_DELAY = 0.15  # Extra delay added by a single delay char.
 const DELAY_CHAR = '#'
+const MAX_LINES = 3  # The max number of lines for the speech box. Used to calculate offsets.
 
 # The speech data as an array of strings.
 # Enter something in the default array to test out the speech dialog.
@@ -64,9 +66,20 @@ func start_current_page():
 	collect_char_delays(speech_text)
 	speech_text = speech_text.replace(DELAY_CHAR, '')
 	
+	reposition_label(speech_text)
+	
 	speech_text = "[center]" + speech_text + "[/center]"
 	label.bbcode_text = speech_text
 	label.visible_characters = 0
+
+func reposition_label(speech_text):
+	var regex = RegEx.new()
+	regex.compile("\\n")
+	var linecount = len(regex.search_all(speech_text)) + 1
+
+	var line_offset = label_rect.size.y / MAX_LINES / 2
+	var top_offset = line_offset * (MAX_LINES - linecount)
+	label.set_margin(MARGIN_TOP, label_rect.position.y + top_offset)
 
 func collect_char_delays(speech_text):
 	char_delays.clear()
