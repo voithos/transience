@@ -7,72 +7,76 @@ const FADE_TIME = 2.5
 const MIN_DB = -80.0
 const MAX_DB = -20.0
 
-# TODO: Clean this up into a class.
+class MusicBox extends Node:
+	var player
+	var tween
+	var last_playback_pos = 0
+	
+	func _init(stream):
+		player = AudioStreamPlayer.new()
+		add_child(player)
+		player.set_stream(stream)
+		player.volume_db = MIN_DB
+		
+		tween = Tween.new()
+		add_child(tween)
+		self.tween.connect("tween_completed", self, "on_fade_complete")
+
+	func fade_in():
+		player.play(last_playback_pos)
+		last_playback_pos = 0
+		tween.remove_all()
+		tween.interpolate_property(player, "volume_db", player.volume_db, MAX_DB, \
+				FADE_TIME, Tween.TRANS_EXPO, Tween.EASE_OUT)
+		tween.start()
+
+	func fade_out():
+		tween.remove_all()
+		tween.interpolate_property(player, "volume_db", player.volume_db, MIN_DB, \
+				FADE_TIME, Tween.TRANS_EXPO, Tween.EASE_IN)
+		tween.start()
+
+	func is_active():
+		return tween.is_active()
+
+	func play():
+		player.volume_db = MAX_DB
+		player.play()
+
+	func on_fade_complete(object, key):
+		if player.volume_db == MIN_DB:
+			tween.remove_all()
+			last_playback_pos = player.get_playback_position()
+			player.stop()
+
 var level1_theme = preload("res://assets/music/level1.ogg")
-var level1_player
-var level1_tween
-
 var battle_theme = preload("res://assets/music/battle.ogg")
-var battle_player
-var battle_tween
 
-# The last AudioStreamPlayer that was active.
-var last_stream_player = null
-var last_tween = null
-var last_playback_pos = 0
+var level1_musicbox
+var battle_musicbox
+
+# The last MusicBox that was active.
+var last_musicbox = null
 
 func _ready():
-	level1_player = create_player(level1_theme)
-	level1_tween = Tween.new()
-	add_child(level1_tween)
-	level1_tween.connect("tween_completed", self, "on_fade_complete", [level1_tween])
+	level1_musicbox = MusicBox.new(level1_theme)
+	add_child(level1_musicbox)
 
-	battle_player = create_player(battle_theme)
-	battle_tween = Tween.new()
-	add_child(battle_tween)
-	battle_tween.connect("tween_completed", self, "on_fade_complete", [battle_tween])
-	battle_player.volume_db = MIN_DB
-
-func create_player(stream):
-	var player = AudioStreamPlayer.new()
-	add_child(player)
-	player.set_stream(stream)
-	return player
-
-func on_fade_complete(object, key, tween):
-	if object.volume_db == MIN_DB:
-		tween.remove_all()
-		last_playback_pos = object.get_playback_position()
-		object.stop()
-
-func fade_in(player, tween):
-	player.play(last_playback_pos)
-	last_playback_pos = 0
-	tween.remove_all()
-	tween.interpolate_property(player, "volume_db", player.volume_db, MAX_DB, \
-			FADE_TIME, Tween.TRANS_EXPO, Tween.EASE_OUT)
-	tween.start()
-
-func fade_out(player, tween):
-	tween.remove_all()
-	tween.interpolate_property(player, "volume_db", player.volume_db, MIN_DB, \
-			FADE_TIME, Tween.TRANS_EXPO, Tween.EASE_IN)
-	tween.start()
+	battle_musicbox = MusicBox.new(battle_theme)
+	add_child(battle_musicbox)
 
 func play_level1():
-	level1_player.volume_db = MAX_DB
-	level1_player.play()
-	last_stream_player = level1_player
-	last_tween = level1_tween
+	level1_musicbox.play()
+	last_musicbox = level1_musicbox
 
 func battle_start():
-	fade_out(last_stream_player, last_tween)
+	last_musicbox.fade_out()
 
 	# Battle music restarts each time (unless the fade-out isn't done).
-	if not battle_tween.is_active():
-		battle_player.play(0)
-	fade_in(battle_player, battle_tween)
+	if not battle_musicbox.is_active():
+		battle_musicbox.last_playback_pos = 0
+	battle_musicbox.fade_in()
 
 func battle_end():
-	fade_out(battle_player, battle_tween)
-	fade_in(last_stream_player, last_tween)
+	battle_musicbox.fade_out()
+	last_musicbox.fade_in()
