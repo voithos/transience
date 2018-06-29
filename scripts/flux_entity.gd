@@ -136,7 +136,7 @@ func throwback(steps):
 	throwback_count -= steps
 
 	throwback_tween_node.interpolate_method(self, "on_throwback_step", 0, steps, \
-			THROWBACK_TWEEN_TIME, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+			THROWBACK_TWEEN_TIME, Tween.TRANS_QUAD, Tween.EASE_IN)
 	throwback_tween_node.start()
 	on_throwback_start()
 
