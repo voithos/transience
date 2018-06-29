@@ -789,7 +789,7 @@ _sections_unfolded = [ "Material", "Transform", "Visibility", "Z Index" ]
 [node name="SamplePlayer" type="AudioStreamPlayer" parent="." index="6"]
 
 stream = null
-volume_db = -20.0
+volume_db = -15.0
 autoplay = false
 mix_target = 0
 bus = "Master"
