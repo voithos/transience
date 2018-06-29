@@ -24,8 +24,8 @@ var throwback_count = 0
 
 onready var throwback_particles = get_node("ThrowbackParticles")
 
-const THROWBACK_TWEEN_TIME = 0.55
-const THROWBACK_OPACITY = 0.2
+const THROWBACK_TWEEN_TIME = 0.4
+const THROWBACK_OPACITY = 0.3
 
 onready var footprint_particles = get_node("FootprintParticles")
 const FOOTPRINT_PARTICLE_OFFSET_Y = 11
@@ -136,7 +136,7 @@ func throwback(steps):
 	throwback_count -= steps
 
 	throwback_tween_node.interpolate_method(self, "on_throwback_step", 0, steps, \
-			THROWBACK_TWEEN_TIME, Tween.TRANS_QUAD, Tween.EASE_OUT)
+			THROWBACK_TWEEN_TIME, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	throwback_tween_node.start()
 	on_throwback_start()
 
