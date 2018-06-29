@@ -186,6 +186,10 @@ func on_attack_triggered():
 	play_sample("slice")
 	.on_attack_triggered()
 
+func on_damaged(damage, attacked_direction):
+	play_sample("damaged")
+	.on_damaged(damage, attacked_direction)
+
 func react_to_motion_controls(delta):
 	if cutscene.is_in_cutscene: return
 	if not can_accept_input(): return

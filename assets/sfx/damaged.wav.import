@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/damaged.wav-0743b2bb1b9efae40548d4be6391535b.sample"
+
+[deps]
+
+source_file="res://assets/sfx/damaged.wav"
+source_md5="ca854862715face2ed48383e76dd7120"
+
+dest_files=[ "res://.import/damaged.wav-0743b2bb1b9efae40548d4be6391535b.sample" ]
+dest_md5="1be581a9f44421f98ca822b6d623fdf4"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

@@ -8,8 +8,9 @@ func _physics_process(delta):
 		slide_in_dir(get_dir())
 
 func on_attack_triggered():
-	detect_directional_area_attack_collisions("player")
-	play_sample("slice")
+	var total_damage = detect_directional_area_attack_collisions("player")
+	if total_damage == 0:
+		play_sample("slice")
 	.on_attack_triggered()
 
 func on_damaged(damage, attacked_direction):

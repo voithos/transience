@@ -29,6 +29,7 @@ onready var health = MAX_HEALTH
 const SAMPLES = {
 	"slice": preload("res://assets/sfx/slice.wav"),
 	"throwback": preload("res://assets/sfx/throwback.wav"),
+	"damaged": preload("res://assets/sfx/damaged.wav"),
 }
 
 const DIRECTIONS = ["up", "down", "left", "right"]
