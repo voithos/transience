@@ -27,7 +27,8 @@ export (int) var ATTACK_DAMAGE = 15
 onready var health = MAX_HEALTH
 
 const SAMPLES = {
-	"slice": preload("res://assets/sfx/slice.wav")
+	"slice": preload("res://assets/sfx/slice.wav"),
+	"throwback": preload("res://assets/sfx/throwback.wav"),
 }
 
 const DIRECTIONS = ["up", "down", "left", "right"]

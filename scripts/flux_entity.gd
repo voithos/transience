@@ -141,6 +141,7 @@ func throwback(steps):
 	on_throwback_start()
 
 func on_throwback_start():
+	play_sample("throwback")
 	# Disable collisions - e.g. enemy attacks, etc.
 	set_collision_layer_bit(0, 0)
 	set_collision_mask_bit(0, 0)

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/throwback.wav-e3e626b059bc5d3f2227f76fc2ca3808.sample"
+
+[deps]
+
+source_file="res://assets/sfx/throwback.wav"
+source_md5="f8f866a635ae661e0ee89f67e04313a5"
+
+dest_files=[ "res://.import/throwback.wav-e3e626b059bc5d3f2227f76fc2ca3808.sample" ]
+dest_md5="e392c5f637a3d7dae29a1031956ddd51"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0
