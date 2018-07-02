@@ -4,12 +4,15 @@ extends CanvasLayer
 
 signal resurrection_completed
 
+const flame_scene = preload("res://scenes/transitions/death_flame.tscn")
+
 # Animation transition times, in seconds.
-const GRAY_TWEEN_TIME = 2
-const FLAME_TWEEN_TIME = 2
+const GRAY_TWEEN_TIME = .5
+const FLAME_TWEEN_TIME = .5
 
 var tween
-onready var particles = get_node("Flame")
+onready var flame = get_node("Flame")
+var flame2
 onready var filter_rect = get_node("GrayscaleFilter/GrayscaleRect")
 
 const STAGE_GRAY = 'gray'
@@ -21,15 +24,29 @@ var stage = STAGE_GRAY
 
 const RESURRECTION_STEP = 0.07
 const RESURRECTION_DECAY = 0.003
+const RESURRECTION_FLAME_MULTIPLIER = 3
 var resurrection_progress = 0
 var resurrection_tween_progress = 0
+
+# Initial material values, used for lerping.
+var flame_initial_lifetime
+var flame_initial_velocity
+var flame_initial_radius
+var flame_initial_scale
 
 func _ready():
 	tween = Tween.new()
 	add_child(tween)
 	tween.connect("tween_completed", self, "on_tween_complete")
 
-	particles.modulate = Color(1, 1, 1, 0)
+	# Create a duplicate particle system for the resurrection feedback
+	# animation. For details on why this is necessary, see update_resurrection_progress_effects.
+	flame2 = flame_scene.instance()
+	add_child(flame2)
+	flame2.modulate.a = 0
+
+	# Reset scene.
+	flame.modulate.a = 0
 	set_gray_intensity(0)
 	set_white_mix(0)
 
@@ -77,6 +94,23 @@ func update_resurrection_progress_effects(delta):
 	# Second half of transition fades into white.
 	set_white_mix(max(0, v - 0.5) * 2)
 	
+	# Adjust flame properties.
+	for particles in [flame, flame2]:
+		# Unfortunately, we can't adjust the particle amount without causing the particle
+		# system to reset, so instead we fake it by having a duplicate flame particle system
+		# and slowly showing that instead.
+		particles.lifetime = lerp(
+				flame_initial_lifetime, flame_initial_lifetime * RESURRECTION_FLAME_MULTIPLIER / 2, v)
+		particles.process_material.initial_velocity = lerp(
+				flame_initial_velocity, flame_initial_velocity * RESURRECTION_FLAME_MULTIPLIER, v)
+		particles.process_material.emission_sphere_radius = lerp(
+				flame_initial_radius, flame_initial_radius * RESURRECTION_FLAME_MULTIPLIER, v)
+		particles.process_material.scale = lerp(
+				flame_initial_scale, flame_initial_scale * RESURRECTION_FLAME_MULTIPLIER / 2, v)
+
+	# Apply the color modulation for the duplicate flame only.
+	flame2.modulate.a = v
+
 	# Check for completion condition.
 	if 1.0 - resurrection_tween_progress < 0.001:
 		stage = STAGE_COMPLETE
@@ -95,8 +129,12 @@ func start_transition():
 func on_tween_complete(object, key):
 	if stage == STAGE_GRAY:
 		stage = STAGE_FLAME
-		tween.interpolate_property(particles, "modulate", Color(1, 1, 1, 0), Color(1, 1, 1, 1), FLAME_TWEEN_TIME, \
+		tween.interpolate_property(flame, "modulate", Color(1, 1, 1, 0), Color(1, 1, 1, 1), FLAME_TWEEN_TIME, \
 				Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		tween.start()
 	elif stage == STAGE_FLAME:
 		stage = STAGE_FEEDBACK
+		flame_initial_lifetime = flame.lifetime
+		flame_initial_velocity = flame.process_material.initial_velocity
+		flame_initial_radius = flame.process_material.emission_sphere_radius
+		flame_initial_scale = flame.process_material.scale
