@@ -9,7 +9,7 @@
 [ext_resource path="res://scenes/effects/light_particles.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/ui/ui_bars.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/npcs/npc1.tscn" type="PackedScene" id=9]
-[ext_resource path="res://scenes/effects/grayscale_filter.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/transitions/death_transition.tscn" type="PackedScene" id=10]
 
 [sub_resource type="Environment" id=1]
 
@@ -201,6 +201,6 @@ ATTACK_SLIDE_SPEED = 10
 
 position = Vector2( 140.447, 37.3746 )
 
-[node name="GrayscaleFilter" parent="." index="15" instance=ExtResource( 10 )]
+[node name="DeathTransition" parent="." index="15" instance=ExtResource( 10 )]
 
 
