@@ -1,6 +1,7 @@
 extends "res://scripts/flux_entity.gd"
 
 const PERCENT_DAMAGE_HEALED = 0.2
+onready var death_controller = get_node("/root/death_controller")
 
 func _ready():
 	add_to_group("player")
@@ -22,3 +23,4 @@ func on_attack_triggered():
 func on_die_finished():
 	# *Don't* queue_free the main player, unlike how we handle other entities.
 	.on_die_finished(false)
+	death_controller.show_death_transition()

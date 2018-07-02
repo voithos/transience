@@ -67,7 +67,7 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Angle", "Angular Velocity", "Animation", "Color", "Emission Shape", "Flags", "Gravity", "Hue Variation", "Initial Velocity", "Scale", "Spread", "Trail" ]
 
-[node name="Explosion" type="Particles2D" index="0"]
+[node name="Explosion" type="Particles2D"]
 
 position = Vector2( 160, 90 )
 emitting = true

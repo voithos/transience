@@ -127,6 +127,7 @@ func update_resurrection_progress_effects(delta):
 	# Check for completion condition.
 	if 1.0 - resurrection_tween_progress < 0.001:
 		stage = STAGE_COMPLETE
+		emit_signal("resurrection_completed")
 
 func set_gray_intensity(v):
 	filter_rect.material.set_shader_param("gray_intensity", v)
