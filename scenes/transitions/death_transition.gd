@@ -5,14 +5,16 @@ extends CanvasLayer
 signal resurrection_completed
 
 const flame_scene = preload("res://scenes/transitions/death_flame.tscn")
+const explosion_scene = preload("res://scenes/transitions/death_explosion.tscn")
 
 # Animation transition times, in seconds.
-const GRAY_TWEEN_TIME = .5
-const FLAME_TWEEN_TIME = .5
+const GRAY_TWEEN_TIME = 2
+const FLAME_TWEEN_TIME = 2
 
 var tween
 onready var flame = get_node("Flame")
 var flame2
+onready var filter = get_node("GrayscaleFilter")
 onready var filter_rect = get_node("GrayscaleFilter/GrayscaleRect")
 
 const STAGE_GRAY = 'gray'
@@ -33,6 +35,8 @@ var flame_initial_lifetime
 var flame_initial_velocity
 var flame_initial_radius
 var flame_initial_scale
+
+var explosion_initial_velocity = 75
 
 func _ready():
 	tween = Tween.new()
@@ -59,6 +63,7 @@ func _input(event):
 
 	if Input.is_action_just_pressed("trans_accept"):
 		adjust_resurrection_progress_by(RESURRECTION_STEP)
+		emit_explosion()
 
 func _process(delta):
 	# Only process resurrection progress during feedback.
@@ -82,6 +87,14 @@ func adjust_resurrection_progress_by(v):
 		# Resurrection complete!
 		if resurrection_progress == 1.0:
 			stage = STAGE_FEEDBACK_COMPLETE
+
+func emit_explosion():
+	var explosion = explosion_scene.instance()
+	add_child_below_node(filter, explosion)
+	explosion.one_shot = true
+	explosion.emitting = true
+	explosion.process_material.initial_velocity = lerp(
+			explosion_initial_velocity, explosion_initial_velocity * RESURRECTION_FLAME_MULTIPLIER * 2, resurrection_tween_progress)
 
 # Called by the tween to fluidly update the effects of resurrection progress.
 func update_resurrection_progress_effects(delta):
