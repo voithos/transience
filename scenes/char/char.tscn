@@ -3,7 +3,7 @@
 [ext_resource path="res://scenes/char/char.gd" type="Script" id=1]
 [ext_resource path="res://scenes/resources/effects_material.tres" type="Material" id=2]
 [ext_resource path="res://assets/char/char-down.png" type="Texture" id=3]
-[ext_resource path="res://scenes/char/char_camera.gd" type="Script" id=4]
+[ext_resource path="res://scenes/char/char_camera.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/animations/char_die.tres" type="Animation" id=5]
 [ext_resource path="res://assets/char/char-attack-down.png" type="Texture" id=6]
 [ext_resource path="res://assets/char/char-attack-side.png" type="Texture" id=7]
@@ -713,32 +713,7 @@ offset = Vector2( 0, -8.07695 )
 hframes = 3
 _sections_unfolded = [ "Animation", "Material", "Offset", "Transform" ]
 
-[node name="Camera2D" type="Camera2D" parent="." index="2"]
-
-anchor_mode = 1
-rotating = false
-current = true
-zoom = Vector2( 1, 1 )
-limit_left = -10000000
-limit_top = -10000000
-limit_right = 10000000
-limit_bottom = 10000000
-limit_smoothed = false
-drag_margin_h_enabled = true
-drag_margin_v_enabled = true
-smoothing_enabled = true
-smoothing_speed = 4.0
-offset_v = 0.0
-offset_h = 0.0
-drag_margin_left = 0.0
-drag_margin_top = 0.0
-drag_margin_right = 0.0
-drag_margin_bottom = 0.0
-editor_draw_screen = true
-editor_draw_limits = false
-editor_draw_drag_margin = false
-script = ExtResource( 4 )
-_sections_unfolded = [ "Material" ]
+[node name="CharCamera" parent="." index="2" instance=ExtResource( 4 )]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
 

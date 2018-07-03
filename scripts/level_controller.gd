@@ -1,5 +1,8 @@
 extends YSort
 
+# TODO: Rename this to remove the _controller suffix, as that's reserved
+# for service-like objects that are autoloaded.
+
 # Base controller for levels.
 var player
 var music
