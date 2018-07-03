@@ -21,7 +21,7 @@ music="*res://scripts/music.gd"
 screen="*res://scripts/screen.gd"
 util="*res://scripts/util.gd"
 cutscene="*res://scripts/cutscene.gd"
-death_controller="*res://scripts/death_controller.gd"
+death_controller="*res://scripts/controllers/death_controller.gd"
 
 [display]
 
