@@ -38,7 +38,7 @@ flag_disable_z = true
 spread = 180.0
 flatness = 0.0
 gravity = Vector3( 0, 0, 0 )
-initial_velocity = 75.0
+initial_velocity = 100.0
 initial_velocity_random = 0.5
 angular_velocity = 0.0
 angular_velocity_random = 0.0
@@ -67,7 +67,7 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Angle", "Angular Velocity", "Animation", "Color", "Emission Shape", "Flags", "Gravity", "Hue Variation", "Initial Velocity", "Scale", "Spread", "Trail" ]
 
-[node name="Explosion" type="Particles2D"]
+[node name="Explosion" type="Particles2D" index="0"]
 
 position = Vector2( 160, 90 )
 emitting = true

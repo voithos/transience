@@ -11,6 +11,8 @@ const explosion_scene = preload("res://scenes/transitions/death_explosion.tscn")
 const GRAY_TWEEN_TIME = 2
 const FLAME_TWEEN_TIME = 2
 
+onready var camera_controller = get_node("/root/camera_controller")
+
 var tween
 onready var flame = get_node("Flame")
 var flame2
@@ -36,7 +38,7 @@ var flame_initial_velocity
 var flame_initial_radius
 var flame_initial_scale
 
-var explosion_initial_velocity = 75
+var explosion_initial_velocity = 100
 
 func _ready():
 	tween = Tween.new()
@@ -62,8 +64,7 @@ func _input(event):
 		return
 
 	if Input.is_action_just_pressed("trans_accept"):
-		adjust_resurrection_progress_by(RESURRECTION_STEP)
-		emit_explosion()
+		progress_resurrection()
 
 func _process(delta):
 	# Only process resurrection progress during feedback.
@@ -77,6 +78,18 @@ func _physics_process(delta):
 	if stage != STAGE_FEEDBACK:
 		return
 
+	regress_resurrection()
+
+func progress_resurrection():
+	adjust_resurrection_progress_by(RESURRECTION_STEP)
+	emit_explosion()
+	camera_controller.shake(
+		lerp(camera_controller.SHAKE_LIGHT_DURATION / 2, camera_controller.SHAKE_LIGHT_DURATION * 2, resurrection_tween_progress),
+		lerp(camera_controller.SHAKE_LIGHT_FREQUENCY / 2, camera_controller.SHAKE_LIGHT_FREQUENCY * 2 , resurrection_tween_progress),
+		lerp(camera_controller.SHAKE_LIGHT_AMPLITUDE / 2, camera_controller.SHAKE_LIGHT_AMPLITUDE * 2, resurrection_tween_progress)
+	)
+
+func regress_resurrection():
 	adjust_resurrection_progress_by(-RESURRECTION_DECAY)
 
 func adjust_resurrection_progress_by(v):
@@ -120,8 +133,9 @@ func update_resurrection_progress_effects(delta):
 				flame_initial_radius, flame_initial_radius * RESURRECTION_FLAME_MULTIPLIER, v)
 		particles.process_material.scale = lerp(
 				flame_initial_scale, flame_initial_scale * RESURRECTION_FLAME_MULTIPLIER / 2, v)
+		
 
-	# Apply the color modulation for the duplicate flame only.
+	# Apply the opacity modulation for the duplicate flame only.
 	flame2.modulate.a = v
 
 	# Check for completion condition.
