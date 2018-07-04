@@ -188,6 +188,7 @@ func on_attack_triggered():
 
 func on_damaged(damage, attacked_direction):
 	play_sample("damaged")
+	camera_controller.shake_light()
 	.on_damaged(damage, attacked_direction)
 
 func react_to_motion_controls(delta):

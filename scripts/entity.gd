@@ -41,6 +41,7 @@ const DIR_TO_MOTION = {
 }
 
 onready var cutscene = get_node("/root/cutscene")
+onready var camera_controller = get_node("/root/camera_controller")
 
 # Nodes common to all entities.
 onready var sprite = get_node("Sprite")

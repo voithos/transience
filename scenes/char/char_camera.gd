@@ -13,18 +13,9 @@ var _previous_x = 0.0
 var _previous_y = 0.0
 var _previous_offset = Vector2(0, 0)
 
-# Predefined shake forms.
-const SHAKE_LIGHT_DURATION = 0.2
-const SHAKE_LIGHT_FREQUENCY = 30
-const SHAKE_LIGHT_AMPLITUDE = 4
-
 func _ready():
 	# Make the camera available for retrieval elsewhere.
 	add_to_group("camera")
-
-func _input(event):
-	if Input.is_action_just_pressed("trans_accept"):
-		shake(0.2, 30, 4)
 
 func _process(delta):
 	if not _shaking:

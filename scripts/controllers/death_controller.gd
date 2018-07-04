@@ -1,5 +1,8 @@
 extends Node
 
+# A controller that instantiates the death transition
+# and processes subsequent behavior.
+
 const death_transition_scene = preload("res://scenes/transitions/death_transition.tscn")
 
 func _ready():
