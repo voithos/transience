@@ -13,7 +13,7 @@ outlines = [ PoolVector2Array( -8, -8, -8, 8, 8, 8, 8, -8 ) ]
 custom_solver_bias = 0.0
 extents = Vector2( 8, 8 )
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" index="0"]
 
 [node name="floor_diamond_nw" type="Sprite" parent="." index="0"]
 

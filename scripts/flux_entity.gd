@@ -8,7 +8,7 @@ extends "res://scripts/entity.gd"
 signal flux_changed
 
 export (int) var MAX_FLUX = 100
-onready var flux = 0
+onready var flux = MAX_FLUX
 
 const FLUX_PER_THROWBACK_STEP = .8 # Multiplied with THROWBACK_STEPS
 const FLUX_GAIN_RATE = 30 # Arbitrary, for now
