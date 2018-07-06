@@ -35,7 +35,7 @@ var footprint_swapped = false
 var footprint_switch_threshold
 var footprint_switch_delta = 0
 
-const TIME_BEFORE_QUEUEING_NEW_ACTION = 0.2
+const TIME_BEFORE_QUEUEING_NEW_ACTION = 0.3
 
 func _ready():
 	throwback_snapshots.resize(MAX_THROWBACKS)
@@ -142,12 +142,21 @@ func throwback(steps):
 
 func on_throwback_start():
 	play_sample("throwback")
+
 	# Disable collisions - e.g. enemy attacks, etc.
 	set_collision_layer_bit(0, 0)
 	set_collision_mask_bit(0, 0)
+
+	enable_throwback_visuals()
+	change_state(STATE_THROWBACK)
+
+func enable_throwback_visuals():
 	throwback_particles.set_emitting(true)
 	sprite.modulate = Color(1, 1, 1, THROWBACK_OPACITY)
-	change_state(STATE_THROWBACK)
+
+func disable_throwback_visuals():
+	throwback_particles.set_emitting(false)
+	sprite.modulate = Color(1, 1, 1, 1)
 
 func on_throwback_step(offset):
 	var progress = util.modulo(throwback_i_previous - offset, MAX_THROWBACKS)
@@ -169,9 +178,12 @@ func on_throwback_complete(object, key):
 	# Re-enable collisions.
 	set_collision_layer_bit(0, 1)
 	set_collision_mask_bit(0, 1)
-	throwback_particles.set_emitting(false)
-	sprite.modulate = Color(1, 1, 1, 1)
+
+	disable_throwback_visuals()
 	change_state(STATE_IDLE)
+
+	# Handle any queued action.
+	handle_next_action_if_needed()
 
 func can_attack():
 	return FLUX_PER_ATTACK <= flux
@@ -230,8 +242,11 @@ func react_to_action_controls(event):
 		# If we reach here, it means we're currently in an animation.
 		# Check for the amount of time left before we can trigger a new action.
 		var time_left = animation_player.current_animation_length - animation_player.current_animation_position
+		# Special case for tween-based states.
+		if current_state == STATE_THROWBACK:
+			time_left = throwback_tween_node.get_runtime() - throwback_tween_node.tell()
 		if time_left < TIME_BEFORE_QUEUEING_NEW_ACTION:
-			next_action = action
+			set_next_action_if_unset(action)
 
 		# Otherwise, just drop the input.
 
@@ -244,5 +259,6 @@ func immediately_run_action(action):
 			attack()
 
 func handle_next_action(action):
+	# Run the queued action.
 	immediately_run_action(action)
 	.handle_next_action(action)

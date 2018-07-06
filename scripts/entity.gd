@@ -97,9 +97,16 @@ func on_animation_finished(animation):
 	elif previous_animation == "die":
 		on_die_finished()
 
+	handle_next_action_if_needed()
+
+func handle_next_action_if_needed():
 	if next_action:
 		handle_next_action(next_action)
 		next_action = null
+
+func set_next_action_if_unset(action):
+	if not next_action:
+		next_action = action
 
 # Override in subscripts.
 func handle_next_action(action):
