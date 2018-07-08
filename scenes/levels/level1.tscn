@@ -20,6 +20,7 @@ script = ExtResource( 1 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="." index="1"]
 
+editor/display_folded = true
 layer = -1
 offset = Vector2( 0, 0 )
 rotation = 0.0
@@ -31,12 +32,14 @@ scroll_base_scale = Vector2( 1, 1 )
 scroll_limit_begin = Vector2( 0, 0 )
 scroll_limit_end = Vector2( 0, 0 )
 scroll_ignore_camera_zoom = true
+_sections_unfolded = [ "Scroll" ]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground" index="0"]
 
 motion_scale = Vector2( 0.1, 0.1 )
 motion_offset = Vector2( 0, 0 )
 motion_mirroring = Vector2( 0, 0 )
+_sections_unfolded = [ "Motion" ]
 
 [node name="Background" type="Sprite" parent="ParallaxBackground/ParallaxLayer" index="0"]
 
@@ -45,6 +48,8 @@ texture = ExtResource( 3 )
 _sections_unfolded = [ "Material", "Region", "Transform", "Visibility" ]
 
 [node name="Navigation2D" type="Navigation2D" parent="." index="2"]
+
+editor/display_folded = true
 
 [node name="TileMap" type="TileMap" parent="Navigation2D" index="0"]
 

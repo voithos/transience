@@ -5,13 +5,13 @@ extends YSort
 
 # Base controller for levels.
 var player
-var music
+onready var music = get_node("/root/music")
 
-const STATE_IDLE = "IDLE"
+const STATE_EXPLORING = "EXPLORING"
 const STATE_BATTLE = "BATTLE"
 
-var current_state = STATE_IDLE
-var previous_state = STATE_IDLE
+var current_state = STATE_EXPLORING
+var previous_state = STATE_EXPLORING
 
 const BATTLE_END_LAG = 2  # In seconds
 var battle_delta = 0
@@ -20,7 +20,6 @@ func _ready():
 	var nodes = get_tree().get_nodes_in_group("player")
 	assert(nodes.size() == 1)
 	player = nodes[0]
-	music = get_node("/root/music")
 	add_to_group("level")
 
 func change_state(new_state):
@@ -60,7 +59,7 @@ func start_battle():
 	music.battle_start()
 
 func stop_battle():
-	if current_state == STATE_IDLE:
+	if current_state == STATE_EXPLORING:
 		return
-	change_state(STATE_IDLE)
+	change_state(STATE_EXPLORING)
 	music.battle_end()

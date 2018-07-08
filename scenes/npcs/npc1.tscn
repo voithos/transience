@@ -22,7 +22,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 2, 1, 0, 1, 2, 3, 2, 1, 0 ]
 }
 
-[node name="Sprite" type="Sprite" index="0"]
+[node name="NPC1" type="Sprite" index="0"]
 
 position = Vector2( 2.91962, -5.02784 )
 texture = ExtResource( 1 )

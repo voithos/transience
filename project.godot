@@ -10,9 +10,9 @@ config_version=3
 
 [application]
 
-run/main_scene="res://scenes/levels/level1.tscn"
+run/main_scene="res://scenes/levels/debug_level.tscn"
 icon="res://icon.png"
-main_scene="res://scenes/levels/level1.tscn"
+main_scene="res://scenes/levels/debug_level.tscn"
 name="transience"
 
 [autoload]
