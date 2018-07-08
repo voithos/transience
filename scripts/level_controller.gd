@@ -7,6 +7,12 @@ extends YSort
 var player
 onready var music = get_node("/root/music")
 
+# Common scenes to add to each level.
+const world_environment_scene = preload("res://scenes/levels/world_environment.tscn")
+const ui_bars_scene = preload("res://scenes/ui/ui_bars.tscn")
+const light_particles_scene = preload("res://scenes/effects/light_particles.tscn")
+
+# Level state.
 const STATE_EXPLORING = "EXPLORING"
 const STATE_BATTLE = "BATTLE"
 
@@ -21,6 +27,17 @@ func _ready():
 	assert(nodes.size() == 1)
 	player = nodes[0]
 	add_to_group("level")
+	
+	add_common_nodes()
+
+# Adds nodes that are common to all "levels".
+func add_common_nodes():
+	var world_environment = world_environment_scene.instance()
+	add_child(world_environment)
+	move_child(world_environment, 0)
+	
+	add_child(light_particles_scene.instance())
+	add_child(ui_bars_scene.instance())
 
 func change_state(new_state):
 	if new_state == current_state:
