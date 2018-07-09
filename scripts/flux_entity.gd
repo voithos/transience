@@ -200,6 +200,7 @@ func on_attack_triggered():
 
 func on_damaged(damage, attacked_direction):
 	play_sample("damaged")
+	audio_alt.trigger_pain_effect()
 	camera_controller.shake_light()
 	.on_damaged(damage, attacked_direction)
 

@@ -15,6 +15,8 @@ func _ready():
 
 func configure_nodes():
 	var nodes = get_tree().get_nodes_in_group("camera")
+	# TODO: Come up with a more consistent way to detect issues without breaking running
+	# individual scenes (e.g. F6). Maybe printerr() ?
 	assert(nodes.size() == 1)
 	camera = nodes[0]
 

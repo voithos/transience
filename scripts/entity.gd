@@ -34,6 +34,7 @@ const DIR_TO_MOTION = {
 }
 
 onready var cutscene = get_node("/root/cutscene")
+onready var audio_alt = get_node("/root/audio_alt")
 onready var sfx = get_node("/root/sfx")
 onready var camera_controller = get_node("/root/camera_controller")
 
