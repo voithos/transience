@@ -548,7 +548,7 @@ anim_offset = 0.0
 anim_offset_random = 0.0
 anim_loop = false
 
-[node name="Fighter" type="KinematicBody2D" index="0"]
+[node name="Fighter" type="KinematicBody2D"]
 
 position = Vector2( 0, -8 )
 input_pickable = false
@@ -612,15 +612,7 @@ position = Vector2( -0.00850701, 8.55884 )
 scale = Vector2( 0.379173, 0.339025 )
 shape = SubResource( 10 )
 
-[node name="SamplePlayer" type="AudioStreamPlayer" parent="." index="4"]
-
-stream = null
-volume_db = -20.0
-autoplay = false
-mix_target = 0
-bus = "SFX"
-
-[node name="down_attack_area" type="Area2D" parent="." index="5"]
+[node name="down_attack_area" type="Area2D" parent="." index="4"]
 
 editor/display_folded = true
 visible = false
@@ -640,7 +632,7 @@ audio_bus_name = "Master"
 build_mode = 0
 polygon = PoolVector2Array( -6.93889, 0.491861, -16.5746, 6.15994, -6.18315, 15.9846, -0.70401, 17.4016, 4.77514, 16.1735, 10.4432, 9.65525, 8.08151, 1.34207, 3.35811, 5.87653, -2.68784, 5.59313 )
 
-[node name="left_attack_area" type="Area2D" parent="." index="6"]
+[node name="left_attack_area" type="Area2D" parent="." index="5"]
 
 editor/display_folded = true
 visible = false
@@ -661,7 +653,7 @@ position = Vector2( -8.31318, -4.25106 )
 build_mode = 0
 polygon = PoolVector2Array( 0.33514, 2.38122, -5.89975, 2.28675, -11.7568, 8.23823, -9.30059, 12.1114, 1.27982, 14.1897, 21.2126, 8.80504, 11.6713, 3.3259, 4.68066, 6.15994, -1.17635, 6.15994 )
 
-[node name="right_attack_area" type="Area2D" parent="." index="7"]
+[node name="right_attack_area" type="Area2D" parent="." index="6"]
 
 editor/display_folded = true
 visible = false
@@ -682,7 +674,7 @@ position = Vector2( -8.31318, -4.25106 )
 build_mode = 0
 polygon = PoolVector2Array( 15.9223, 3.0425, 22.4406, 2.19229, 27.7308, 6.82121, 27.6364, 11.3557, 16.7726, 14.4731, -4.10485, 9.74972, 4.8696, 3.13696, 12.427, 6.15994, 17.8117, 5.971 )
 
-[node name="up_attack_area" type="Area2D" parent="." index="8"]
+[node name="up_attack_area" type="Area2D" parent="." index="7"]
 
 editor/display_folded = true
 visible = false
@@ -703,7 +695,7 @@ position = Vector2( -8.31318, -4.25106 )
 build_mode = 0
 polygon = PoolVector2Array( 21.496, 6.72675, 23.4798, 0.491861, 12.7104, -8.95493, 3.54705, -9.0494, -2.7823, -2.72005, -1.55422, 5.971, 6.00322, 1.71995, 12.0492, 1.71995 )
 
-[node name="Tween" type="Tween" parent="." index="9"]
+[node name="Tween" type="Tween" parent="." index="8"]
 
 repeat = false
 playback_process_mode = 1
@@ -712,7 +704,7 @@ playback/active = false
 playback/repeat = false
 playback/speed = 1.0
 
-[node name="BleedParticles" type="Particles2D" parent="." index="10"]
+[node name="BleedParticles" type="Particles2D" parent="." index="9"]
 
 self_modulate = Color( 0.10321, 0.695312, 0.112462, 1 )
 emitting = false

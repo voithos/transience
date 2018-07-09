@@ -5,7 +5,6 @@ extends KinematicBody2D
 # - Hitbox (Area2D)
 # - Sprite
 # - AnimationPlayer
-# - SamplePlayer
 # - CollisionShape2D
 #
 # For the animation player, expects the following animations to be defined:
@@ -26,13 +25,6 @@ export (int) var ATTACK_SLIDE_SPEED = 10 # Pixels/second
 export (int) var ATTACK_DAMAGE = 15
 onready var health = MAX_HEALTH
 
-# TODO: Pull this out into an SFX controller.
-const SAMPLES = {
-	"slice": preload("res://assets/sfx/slice.wav"),
-	"throwback": preload("res://assets/sfx/throwback.wav"),
-	"damaged": preload("res://assets/sfx/damaged.wav"),
-}
-
 const DIRECTIONS = ["up", "down", "left", "right"]
 const DIR_TO_MOTION = {
 	"left": Vector2(-1, 0),
@@ -42,13 +34,13 @@ const DIR_TO_MOTION = {
 }
 
 onready var cutscene = get_node("/root/cutscene")
+onready var sfx = get_node("/root/sfx")
 onready var camera_controller = get_node("/root/camera_controller")
 
 # Nodes common to all entities.
 onready var sprite = get_node("Sprite")
 onready var hitbox = get_node("Hitbox")
 onready var animation_player = get_node("AnimationPlayer")
-onready var sample_player = get_node("SamplePlayer")
 onready var collision_shape = get_node("CollisionShape2D")
 onready var bleed_particles = get_node("BleedParticles")
 var previous_animation = null
@@ -129,9 +121,7 @@ func play_animation(animation):
 	animation_player.play(animation)
 
 func play_sample(sample):
-	var stream = SAMPLES[sample]
-	sample_player.stream = stream
-	sample_player.play()
+	sfx.play(sample)
 
 func change_state(new_state):
 	if new_state == current_state:

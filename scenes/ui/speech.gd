@@ -6,6 +6,7 @@ extends CanvasLayer
 
 signal speech_completed
 
+# TODO: Move this to the sfx autoload?
 onready var sample_player = get_node("SamplePlayer")
 onready var timer = get_node("Timer")
 onready var label = get_node("RichTextLabel")

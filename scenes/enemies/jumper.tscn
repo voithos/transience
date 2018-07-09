@@ -97,7 +97,7 @@ anim_offset = 0.0
 anim_offset_random = 0.0
 anim_loop = false
 
-[node name="Jumper" type="KinematicBody2D" index="0"]
+[node name="Jumper" type="KinematicBody2D"]
 
 position = Vector2( 0, -5.96642 )
 input_pickable = false
@@ -129,15 +129,7 @@ anims/jump_down = SubResource( 1 )
 anims/take_damage = ExtResource( 6 )
 blend_times = [  ]
 
-[node name="SamplePlayer" type="AudioStreamPlayer" parent="." index="2"]
-
-stream = null
-volume_db = -20.0
-autoplay = false
-mix_target = 0
-bus = "SFX"
-
-[node name="Hitbox" type="Area2D" parent="." index="3"]
+[node name="Hitbox" type="Area2D" parent="." index="2"]
 
 editor/display_folded = true
 position = Vector2( 0, 4.60566 )
@@ -157,13 +149,13 @@ position = Vector2( -0.0707495, -1.29941 )
 scale = Vector2( 0.379173, 0.339025 )
 shape = SubResource( 2 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="4"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="3"]
 
 position = Vector2( -0.0707495, 3.30625 )
 scale = Vector2( 0.379173, 0.339025 )
 shape = SubResource( 3 )
 
-[node name="Tween" type="Tween" parent="." index="5"]
+[node name="Tween" type="Tween" parent="." index="4"]
 
 repeat = false
 playback_process_mode = 1
@@ -172,7 +164,7 @@ playback/active = false
 playback/repeat = false
 playback/speed = 1.0
 
-[node name="BleedParticles" type="Particles2D" parent="." index="6"]
+[node name="BleedParticles" type="Particles2D" parent="." index="5"]
 
 self_modulate = Color( 0.832031, 0.0910034, 0.0910034, 1 )
 emitting = false
