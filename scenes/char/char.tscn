@@ -767,7 +767,7 @@ stream = null
 volume_db = -15.0
 autoplay = false
 mix_target = 0
-bus = "Master"
+bus = "SFX"
 
 [node name="Tween" type="Tween" parent="." index="7"]
 

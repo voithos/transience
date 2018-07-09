@@ -23,6 +23,7 @@ util="*res://scripts/util.gd"
 cutscene="*res://scripts/cutscene.gd"
 camera_controller="*res://scripts/controllers/camera_controller.gd"
 death_controller="*res://scripts/controllers/death_controller.gd"
+audio_alt="*res://scripts/audio_alt.gd"
 
 [display]
 

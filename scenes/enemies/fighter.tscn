@@ -548,7 +548,7 @@ anim_offset = 0.0
 anim_offset_random = 0.0
 anim_loop = false
 
-[node name="Fighter" type="KinematicBody2D"]
+[node name="Fighter" type="KinematicBody2D" index="0"]
 
 position = Vector2( 0, -8 )
 input_pickable = false
@@ -618,7 +618,7 @@ stream = null
 volume_db = -20.0
 autoplay = false
 mix_target = 0
-bus = "Master"
+bus = "SFX"
 
 [node name="down_attack_area" type="Area2D" parent="." index="5"]
 

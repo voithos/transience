@@ -26,6 +26,7 @@ export (int) var ATTACK_SLIDE_SPEED = 10 # Pixels/second
 export (int) var ATTACK_DAMAGE = 15
 onready var health = MAX_HEALTH
 
+# TODO: Pull this out into an SFX controller.
 const SAMPLES = {
 	"slice": preload("res://assets/sfx/slice.wav"),
 	"throwback": preload("res://assets/sfx/throwback.wav"),
