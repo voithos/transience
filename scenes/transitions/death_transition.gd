@@ -1,4 +1,4 @@
-extends CanvasLayer
+extends Node2D
 
 # The "death" transition scene, which is created when the player dies.
 
@@ -15,7 +15,7 @@ onready var camera_controller = get_node("/root/camera_controller")
 
 var tween
 onready var flame = get_node("Flame")
-var flame2
+onready var flame2 = get_node("Flame2")
 onready var filter = get_node("GrayscaleFilter")
 onready var filter_rect = get_node("GrayscaleFilter/GrayscaleRect")
 
@@ -45,14 +45,11 @@ func _ready():
 	add_child(tween)
 	tween.connect("tween_completed", self, "on_tween_complete")
 
-	# Create a duplicate particle system for the resurrection feedback
-	# animation. For details on why this is necessary, see update_resurrection_progress_effects.
-	flame2 = flame_scene.instance()
-	add_child(flame2)
-	flame2.modulate.a = 0
-
 	# Reset scene.
 	flame.modulate.a = 0
+	# We have a duplicate particle system for the resurrection feedback
+	# animation. For details on why this is necessary, see update_resurrection_progress_effects.
+	flame2.modulate.a = 0
 	set_gray_intensity(0)
 	set_white_mix(0)
 
@@ -84,9 +81,9 @@ func progress_resurrection():
 	adjust_resurrection_progress_by(RESURRECTION_STEP)
 	emit_explosion()
 	camera_controller.shake(
-		lerp(camera_controller.SHAKE_LIGHT_DURATION / 2, camera_controller.SHAKE_LIGHT_DURATION * 2, resurrection_tween_progress),
-		lerp(camera_controller.SHAKE_LIGHT_FREQUENCY / 2, camera_controller.SHAKE_LIGHT_FREQUENCY * 2 , resurrection_tween_progress),
-		lerp(camera_controller.SHAKE_LIGHT_AMPLITUDE / 2, camera_controller.SHAKE_LIGHT_AMPLITUDE * 2, resurrection_tween_progress)
+		lerp(camera_controller.SHAKE_LIGHT_DURATION / 2, camera_controller.SHAKE_LIGHT_DURATION, resurrection_tween_progress),
+		lerp(camera_controller.SHAKE_LIGHT_FREQUENCY / 2, camera_controller.SHAKE_LIGHT_FREQUENCY , resurrection_tween_progress),
+		lerp(camera_controller.SHAKE_LIGHT_AMPLITUDE / 2, camera_controller.SHAKE_LIGHT_AMPLITUDE, resurrection_tween_progress)
 	)
 
 func regress_resurrection():
@@ -150,6 +147,10 @@ func set_white_mix(v):
 	filter_rect.material.set_shader_param("white_mix", v)
 
 func start_transition():
+	# First we center the flames in the camera.
+	self.global_position = camera_controller.get_camera_pos()
+
+	# Then we begin the animation.
 	tween.interpolate_method(self, "set_gray_intensity", 0, 1.0, GRAY_TWEEN_TIME, \
 			Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	tween.start()

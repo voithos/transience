@@ -23,3 +23,6 @@ func shake_light():
 
 func shake(duration, frequency, amplitude):
 	camera.shake(duration, frequency, amplitude)
+
+func get_camera_pos():
+	return camera.global_position

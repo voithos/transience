@@ -4,17 +4,20 @@
 [ext_resource path="res://scenes/transitions/death_flame.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/effects/grayscale_filter.tscn" type="PackedScene" id=3]
 
-[node name="DeathTransition" type="CanvasLayer" index="0"]
+[node name="DeathTransition" type="Node2D" index="0"]
 
-layer = 1
-offset = Vector2( 0, 0 )
-rotation = 0.0
-scale = Vector2( 1, 1 )
-transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+z_index = 1
 script = ExtResource( 1 )
+_sections_unfolded = [ "Z Index" ]
 
 [node name="Flame" parent="." index="0" instance=ExtResource( 2 )]
 
-[node name="GrayscaleFilter" parent="." index="1" instance=ExtResource( 3 )]
+position = Vector2( 0, 0 )
+
+[node name="Flame2" parent="." index="1" instance=ExtResource( 2 )]
+
+position = Vector2( 0, 0 )
+
+[node name="GrayscaleFilter" parent="." index="2" instance=ExtResource( 3 )]
 
 
