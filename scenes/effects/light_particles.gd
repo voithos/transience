@@ -1,9 +1,7 @@
 extends Particles2D
 
+onready var camera_controller = get_node("/root/camera_controller")
+
 func _process(delta):
 	# Simply follow the camera.
-	var nodes = get_tree().get_nodes_in_group("camera")
-	if nodes.size() != 0:
-		assert(nodes.size() == 1)
-		var camera = nodes[0]
-		self.global_position = camera.global_position
+	self.global_position = camera_controller.get_camera_pos()

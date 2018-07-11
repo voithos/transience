@@ -4,8 +4,8 @@ extends YSort
 # for service-like objects that are autoloaded.
 
 # Base controller for levels.
-var player
 onready var music = get_node("/root/music")
+onready var player_controller = get_node("/root/player_controller")
 
 # Common scenes to add to each level.
 const world_environment_scene = preload("res://scenes/levels/world_environment.tscn")
@@ -23,9 +23,6 @@ const BATTLE_END_LAG = 2  # In seconds
 var battle_delta = 0
 
 func _ready():
-	var nodes = get_tree().get_nodes_in_group("player")
-	assert(nodes.size() == 1)
-	player = nodes[0]
 	add_to_group("level")
 	
 	add_common_nodes()
@@ -52,7 +49,7 @@ func check_battle_triggers(delta):
 	# TODO: Should this logic be in enemy.gd instead?
 	var is_in_battle = false
 	var enemies = get_tree().get_nodes_in_group("enemies")
-	var playerpos = player.global_position
+	var playerpos = player_controller.get_player_pos()
 
 	var enemy_in_range = false
 	for enemy in enemies:

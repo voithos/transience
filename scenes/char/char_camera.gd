@@ -3,6 +3,8 @@ extends Camera2D
 # An extended camera that supports shaking.
 # Taken and modified from https://godotengine.org/qa/438/camera2d-screen-shake-extension?show=438#q438
 
+onready var camera_controller = get_node("/root/camera_controller")
+
 var _shaking = false
 var _duration = 0.0
 var _stopwatch = 0.0
@@ -14,8 +16,8 @@ var _previous_y = 0.0
 var _previous_offset = Vector2(0, 0)
 
 func _ready():
-	# Make the camera available for retrieval elsewhere.
 	add_to_group("camera")
+	camera_controller.set_camera(self)
 
 func _process(delta):
 	if not _shaking:

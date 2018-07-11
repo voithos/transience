@@ -5,9 +5,6 @@ extends Node
 
 const death_transition_scene = preload("res://scenes/transitions/death_transition.tscn")
 
-func _ready():
-	pass
-
 func show_death_transition():
 	var nodes = get_tree().get_nodes_in_group("level")
 	assert(nodes.size() == 1)

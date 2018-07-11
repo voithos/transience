@@ -14,7 +14,7 @@ var speech_data = []
 var conversation = 0
 
 onready var cutscene = get_node("/root/cutscene")
-var player
+onready var player_controller = get_node("/root/player_controller")
 
 # The distance that the player has to be from the npc in order to trigger dialogue.
 var DIALOGUE_DISTANCE = 25
@@ -38,7 +38,7 @@ func _input(event):
 	if event.has_meta("consumed_by") and event.get_meta("consumed_by") == "speech":
 		return
 
-	if self.global_position.distance_squared_to(player.global_position) < DIALOGUE_DISTANCE_SQUARED:
+	if self.global_position.distance_squared_to(player_controller.get_player_pos()) < DIALOGUE_DISTANCE_SQUARED:
 		if Input.is_action_just_pressed("trans_accept") and is_player_facing_npc():
 			start_dialogue()
 
@@ -57,22 +57,16 @@ func end_dialogue():
 		conversation += 1
 
 func is_player_facing_npc():
-	var dir = player.get_dir()
+	var playerpos = player_controller.get_player_pos()
+	var dir = player_controller.get_player_dir()
 	# Check the directions.
-	if dir == "left" and self.global_position.x < player.global_position.x:
+	if dir == "left" and self.global_position.x < playerpos.x:
 		return true
-	elif dir == "right" and self.global_position.x > player.global_position.x:
+	elif dir == "right" and self.global_position.x > playerpos.x:
 		return true
-	elif dir == "up" and self.global_position.y < player.global_position.y:
+	elif dir == "up" and self.global_position.y < playerpos.y:
 		return true
-	elif dir == "down" and self.global_position.y > player.global_position.y:
+	elif dir == "down" and self.global_position.y > playerpos.y:
 		return true
 
 	return false
-
-func configure_nodes():
-	# Get a ref to the player.
-	var tree = get_tree()
-	var nodes = tree.get_nodes_in_group("player")
-	assert(nodes.size() == 1)
-	player = nodes[0]

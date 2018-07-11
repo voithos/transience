@@ -17,7 +17,6 @@ var current_ai_state = AI_STATE_IDLE
 
 var cooldown = 0
 
-var player
 var navigation_node
 
 func _ready():
@@ -31,14 +30,8 @@ func _ready():
 	call_deferred("configure_nodes")
 
 func configure_nodes():
-	# Get a ref to the player so we can chase it.
-	var tree = get_tree()
-	var nodes = tree.get_nodes_in_group("player")
-	assert(nodes.size() == 1)
-	player = nodes[0]
-
 	# Also get the level's navigation node so that we can navigate.
-	nodes = tree.get_nodes_in_group("level")
+	var nodes = get_tree().get_nodes_in_group("level")
 	assert(nodes.size() == 1)
 	navigation_node = nodes[0].get_node("Navigation2D")
 
@@ -62,16 +55,16 @@ func run_battle_ai(delta):
 
 	# Check for distance-to-player and attack.
 	var attack_range = pow(get_attack_range(), 2)
-	var distance_to_player = global_position.distance_squared_to(player.global_position)
+	var distance_to_player = global_position.distance_squared_to(player_controller.get_player_pos())
 	if distance_to_player < attack_range + get_attack_range_buffer():
 		if randf() < get_attack_probability():
 			# Change the enemy's direction right before attack.
-			change_dir(get_dir_from_motion(player.global_position - global_position))
+			change_dir(get_dir_from_motion(player_controller.get_player_pos() - global_position))
 			attack()
 			return
 	
 	# Check path to player.
-	var path = navigation_node.get_simple_path(global_position, player.global_position, false)
+	var path = navigation_node.get_simple_path(global_position, player_controller.get_player_pos(), false)
 	# The first point is always the start node.
 	if path.size() > 1:
 		var vector = path[1] - global_position

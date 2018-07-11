@@ -4,9 +4,9 @@ const PERCENT_DAMAGE_HEALED = 0.2
 onready var death_controller = get_node("/root/death_controller")
 
 func _ready():
-	add_to_group("player")
-	
 	play_animation("down_idle")
+	add_to_group("player")
+	player_controller.set_player(self)
 
 func _physics_process(delta):
 	flux_physics_process(delta)
