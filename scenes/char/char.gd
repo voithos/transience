@@ -1,4 +1,4 @@
-extends "res://scripts/flux_entity.gd"
+extends "res://scripts/base_scripts/flux_entity.gd"
 
 const PERCENT_DAMAGE_HEALED = 0.2
 onready var death_controller = get_node("/root/death_controller")

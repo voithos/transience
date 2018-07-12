@@ -1,4 +1,4 @@
-extends "res://scripts/enemy.gd"
+extends "res://scripts/base_scripts/enemy.gd"
 
 func _physics_process(delta):
 	enemy_physics_process(delta)

@@ -1,4 +1,4 @@
-extends "res://scripts/npc.gd"
+extends "res://scripts/base_scripts/npc.gd"
 
 const SPEECH_DATA = [[
 """

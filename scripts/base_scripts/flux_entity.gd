@@ -1,4 +1,4 @@
-extends "res://scripts/entity.gd"
+extends "res://scripts/base_scripts/entity.gd"
 
 # Flux-based entity management. This contains a lot of the logic for the
 # player character (perhaps the filename is a misnomer...).

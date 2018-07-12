@@ -1,4 +1,4 @@
-extends "res://scripts/entity.gd"
+extends "res://scripts/base_scripts/entity.gd"
 
 # Base script for all enemy types.
 
