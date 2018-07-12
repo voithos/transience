@@ -1,16 +1,16 @@
 [gd_scene load_steps=31 format=2]
 
-[ext_resource path="res://scenes/char/char.gd" type="Script" id=1]
+[ext_resource path="res://scenes/player/player.gd" type="Script" id=1]
 [ext_resource path="res://scenes/resources/effects_material.tres" type="Material" id=2]
-[ext_resource path="res://assets/char/char-down.png" type="Texture" id=3]
-[ext_resource path="res://scenes/char/char_camera.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/player/player-down.png" type="Texture" id=3]
+[ext_resource path="res://scenes/player/player_camera.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/animations/char_die.tres" type="Animation" id=5]
-[ext_resource path="res://assets/char/char-attack-down.png" type="Texture" id=6]
-[ext_resource path="res://assets/char/char-attack-side.png" type="Texture" id=7]
-[ext_resource path="res://assets/char/char-side.png" type="Texture" id=8]
+[ext_resource path="res://assets/player/player-attack-down.png" type="Texture" id=6]
+[ext_resource path="res://assets/player/player-attack-side.png" type="Texture" id=7]
+[ext_resource path="res://assets/player/player-side.png" type="Texture" id=8]
 [ext_resource path="res://scenes/animations/char_take_damage.tres" type="Animation" id=9]
-[ext_resource path="res://assets/char/char-attack-up.png" type="Texture" id=10]
-[ext_resource path="res://assets/char/char-up.png" type="Texture" id=11]
+[ext_resource path="res://assets/player/player-attack-up.png" type="Texture" id=10]
+[ext_resource path="res://assets/player/player-up.png" type="Texture" id=11]
 
 [sub_resource type="Gradient" id=1]
 
@@ -663,7 +663,7 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Angular Velocity", "Animation", "Color", "Emission Shape", "Gravity", "Hue Variation", "Initial Velocity", "Linear Accel", "Orbit Velocity", "Radial Accel", "Spread", "Tangential Accel", "Trail" ]
 
-[node name="Char" type="KinematicBody2D" index="0"]
+[node name="Player" type="KinematicBody2D" index="0"]
 
 position = Vector2( 0, -8 )
 input_pickable = false
@@ -713,7 +713,7 @@ offset = Vector2( 0, -8.07695 )
 hframes = 3
 _sections_unfolded = [ "Animation", "Material", "Offset", "Transform" ]
 
-[node name="CharCamera" parent="." index="2" instance=ExtResource( 4 )]
+[node name="PlayerCamera" parent="." index="2" instance=ExtResource( 4 )]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
 

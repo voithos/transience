@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/footprint.png-f052626e614819397dc3307d8400c857.stex"
+path="res://.import/player-attack-down.png-389944d22503a05a726f21b245cc053c.stex"
 
 [deps]
 
-source_file="res://assets/char/footprint.png"
-source_md5="d0f712823fbc1601b4f5efe23f9d335a"
+source_file="res://assets/player/player-attack-down.png"
+source_md5="657a45d02ab2c56bedf8da43402a4675"
 
-dest_files=[ "res://.import/footprint.png-f052626e614819397dc3307d8400c857.stex" ]
-dest_md5="2f6d50f5f4e0ed4f497a2fdec47d0d63"
+dest_files=[ "res://.import/player-attack-down.png-389944d22503a05a726f21b245cc053c.stex" ]
+dest_md5="155e8fb2c68d7ee4c1350bc94823e7d8"
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/char-up.png-83fc55329817034bbf8a5fa3ad59ede3.stex"
+path="res://.import/player-attack-side.png-3e199a2f4705d89f0d5625411b372f08.stex"
 
 [deps]
 
-source_file="res://assets/char/char-up.png"
-source_md5="ba42bc617f90c0f89952cba5935c0977"
+source_file="res://assets/player/player-attack-side.png"
+source_md5="fbdfcd6baacae4bb08508fef23430aae"
 
-dest_files=[ "res://.import/char-up.png-83fc55329817034bbf8a5fa3ad59ede3.stex" ]
-dest_md5="7a7db4474ed691343d7adb3c20a336e2"
+dest_files=[ "res://.import/player-attack-side.png-3e199a2f4705d89f0d5625411b372f08.stex" ]
+dest_md5="7298f51469b10acfb9c3a61c152b1586"
 
 [params]
 

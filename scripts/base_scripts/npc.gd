@@ -23,14 +23,7 @@ var DIALOGUE_DISTANCE_SQUARED = DIALOGUE_DISTANCE * DIALOGUE_DISTANCE
 func _ready():
 	add_to_group("npcs")
 
-	# Need to defer it because not all _ready() functions have been called (and thus groups haven't been set up yet).
-	call_deferred("configure_nodes")
-
 func _input(event):
-	# Handle any edge cases where input is queued before the player is initialized.
-	# Most apparent while debugging a scene.
-	if not player: return
-
 	# Don't trigger a speech dialog if we're already in a cutscene.
 	if cutscene.is_in_cutscene: return
 

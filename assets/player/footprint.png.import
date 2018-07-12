@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/char-down.png-bafb6d1e818f9196be0352336003e078.stex"
+path="res://.import/footprint.png-f052626e614819397dc3307d8400c857.stex"
 
 [deps]
 
-source_file="res://assets/char/char-down.png"
-source_md5="78bf55383776d9497c79acdaccbdd483"
+source_file="res://assets/player/footprint.png"
+source_md5="d0f712823fbc1601b4f5efe23f9d335a"
 
-dest_files=[ "res://.import/char-down.png-bafb6d1e818f9196be0352336003e078.stex" ]
-dest_md5="5a2e2633adc5dc0e1743e9282b940c33"
+dest_files=[ "res://.import/footprint.png-f052626e614819397dc3307d8400c857.stex" ]
+dest_md5="2f6d50f5f4e0ed4f497a2fdec47d0d63"
 
 [params]
 
