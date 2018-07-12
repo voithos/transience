@@ -1,8 +1,5 @@
 extends YSort
 
-# TODO: Rename this to remove the _controller suffix, as that's reserved
-# for service-like objects that are autoloaded.
-
 # Base controller for levels.
 onready var music = get_node("/root/music")
 onready var player_controller = get_node("/root/player_controller")
