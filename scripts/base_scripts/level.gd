@@ -2,6 +2,7 @@ extends YSort
 
 # Base controller for levels.
 onready var music = get_node("/root/music")
+onready var level_controller = get_node("/root/level_controller")
 onready var player_controller = get_node("/root/player_controller")
 
 # Common scenes to add to each level.
@@ -20,9 +21,9 @@ const BATTLE_END_LAG = 2  # In seconds
 var battle_delta = 0
 
 func _ready():
-	add_to_group("level")
-	
 	add_common_nodes()
+	add_to_group("level")
+	level_controller.set_level(self)
 
 # Adds nodes that are common to all "levels".
 func add_common_nodes():

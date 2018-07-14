@@ -26,15 +26,6 @@ func _ready():
 	add_to_group("enemies")
 	randomize() # Re-seed.
 
-	# Need to defer it because not all _ready() functions have been called (and thus groups haven't been set up yet).
-	call_deferred("configure_nodes")
-
-func configure_nodes():
-	# Also get the level's navigation node so that we can navigate.
-	var nodes = get_tree().get_nodes_in_group("level")
-	assert(nodes.size() == 1)
-	navigation_node = nodes[0].get_node("Navigation2D")
-
 func enemy_physics_process(delta):
 	if current_ai_state == AI_STATE_IDLE:
 		run_idle_ai(delta)
@@ -64,7 +55,8 @@ func run_battle_ai(delta):
 			return
 	
 	# Check path to player.
-	var path = navigation_node.get_simple_path(global_position, player_controller.get_player_pos(), false)
+	var path = level_controller.get_navigation().get_simple_path(
+			global_position, player_controller.get_player_pos(), false)
 	# The first point is always the start node.
 	if path.size() > 1:
 		var vector = path[1] - global_position

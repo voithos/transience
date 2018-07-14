@@ -38,6 +38,7 @@ onready var audio_alt = get_node("/root/audio_alt")
 onready var sfx = get_node("/root/sfx")
 onready var camera_controller = get_node("/root/camera_controller")
 onready var player_controller = get_node("/root/player_controller")
+onready var level_controller = get_node("/root/level_controller")
 
 # Nodes common to all entities.
 onready var sprite = get_node("Sprite")
