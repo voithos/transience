@@ -4,11 +4,11 @@
 [ext_resource path="res://scenes/resources/effects_material.tres" type="Material" id=2]
 [ext_resource path="res://assets/player/player-down.png" type="Texture" id=3]
 [ext_resource path="res://scenes/player/player_camera.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scenes/animations/char_die.tres" type="Animation" id=5]
+[ext_resource path="res://scenes/animations/player_die.tres" type="Animation" id=5]
 [ext_resource path="res://assets/player/player-attack-down.png" type="Texture" id=6]
 [ext_resource path="res://assets/player/player-attack-side.png" type="Texture" id=7]
 [ext_resource path="res://assets/player/player-side.png" type="Texture" id=8]
-[ext_resource path="res://scenes/animations/char_take_damage.tres" type="Animation" id=9]
+[ext_resource path="res://scenes/animations/player_take_damage.tres" type="Animation" id=9]
 [ext_resource path="res://assets/player/player-attack-up.png" type="Texture" id=10]
 [ext_resource path="res://assets/player/player-up.png" type="Texture" id=11]
 

@@ -57,6 +57,8 @@ func check_battle_triggers(delta):
 			start_battle()
 			enemy.start_battle()
 
+	# TODO: This currently includes enemies that are undergoing the death animation,
+	# but it really shouldn't.
 	if enemy_in_range:
 		battle_delta = 0
 	else:
