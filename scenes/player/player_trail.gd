@@ -45,7 +45,8 @@ func _attempt_remove_point():
 
 	# Only remove new points if the distance has passed the threshold.
 	if _accumulated_distance <= 0:
-		remove_point(get_point_count() - 1)
+		if get_point_count() > 0:
+			remove_point(get_point_count() - 1)
 		_accumulated_distance += NEW_POINT_DISTANCE
 
 func _update_accumulated_distance(player_pos, negate=false):
@@ -61,6 +62,7 @@ func _remove_points_if_above_max():
 
 func _decay_points(delta):
 	_elapsed_time += delta
-	while _elapsed_time > TRAIL_POINT_LIFETIME and get_point_count() > 0:
-		remove_point(0)
+	while _elapsed_time > TRAIL_POINT_LIFETIME:
+		if get_point_count() > 0:
+			remove_point(0)
 		_elapsed_time -= TRAIL_POINT_LIFETIME
