@@ -27,33 +27,17 @@ onready var throwback_particles = get_node("ThrowbackParticles")
 const THROWBACK_TWEEN_TIME = 0.4
 const THROWBACK_OPACITY = 0.3
 
-onready var footprint_particles = get_node("FootprintParticles")
-const FOOTPRINT_PARTICLE_OFFSET_Y = 11
-const FOOTPRINT_PARTICLE_DISPLACEMENT_X = 2
-const FOOTPRINT_PARTICLE_DISPLACEMENT_Y = 1
-var footprint_swapped = false
-var footprint_switch_threshold
-var footprint_switch_delta = 0
-
 const TIME_BEFORE_QUEUEING_NEW_ACTION = 0.3
 
 func _ready():
 	throwback_snapshots.resize(MAX_THROWBACKS)
 	throwback_particles.set_emitting(false)
 	throwback_tween_node.connect("tween_completed", self, "on_throwback_complete")
-	footprint_switch_threshold = footprint_particles.get_lifetime() / footprint_particles.get_amount()
 
 func flux_physics_process(delta):
 	# Flux recovery.
 	if current_state == STATE_IDLE or current_state == STATE_MOVE:
 		heal_flux(delta * FLUX_GAIN_RATE)
-
-	# Footprint mechanics.
-	footprint_particles.set_emitting(can_accept_input())
-	footprint_switch_delta += delta
-	if footprint_switch_delta > footprint_switch_threshold:
-		footprint_swapped = not footprint_swapped
-		footprint_switch_delta = fmod(footprint_switch_delta, footprint_switch_threshold)
 
 	# Attack slide motion.
 	if current_state == STATE_ATTACK:
@@ -74,21 +58,8 @@ func move_entity(motion, dir, delta):
 func on_actual_move(motion, dir, delta):
 	cache_throwback_position()
 
-	# Update footprint particles.
-	footprint_particles.set_emitting(true)
-	var offset
-	if dir == "right" or dir == "left":
-		offset = Vector2(0, FOOTPRINT_PARTICLE_DISPLACEMENT_Y)
-	else:
-		offset = Vector2(FOOTPRINT_PARTICLE_DISPLACEMENT_X, 0)
-	
-	if footprint_swapped:
-		offset *= -1
-
-	footprint_particles.position = Vector2(0, FOOTPRINT_PARTICLE_OFFSET_Y) + offset
-
 func on_non_actual_move(motion, dir, delta):
-	footprint_particles.set_emitting(false)
+	pass
 
 func heal_flux(amount):
 	var previous_flux = flux
