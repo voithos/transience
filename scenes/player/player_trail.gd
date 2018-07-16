@@ -61,6 +61,6 @@ func _remove_points_if_above_max():
 
 func _decay_points(delta):
 	_elapsed_time += delta
-	while _elapsed_time > TRAIL_POINT_LIFETIME:
+	while _elapsed_time > TRAIL_POINT_LIFETIME and get_point_count() > 0:
 		remove_point(0)
 		_elapsed_time -= TRAIL_POINT_LIFETIME
