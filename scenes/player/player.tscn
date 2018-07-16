@@ -629,6 +629,7 @@ MAX_HEALTH = 100
 SPEED = 120
 ATTACK_SLIDE_SPEED = 10
 ATTACK_DAMAGE = 35
+ACCELERATION_TIME = 0.15
 MAX_FLUX = 100
 
 [node name="Sprite" type="Sprite" parent="." index="0"]

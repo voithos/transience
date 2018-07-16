@@ -48,6 +48,10 @@ onready var collision_shape = get_node("CollisionShape2D")
 onready var bleed_particles = get_node("BleedParticles")
 var previous_animation = null
 
+# Going from idle to full-speed takes a tiny bit of time.
+export (int) var ACCELERATION_TIME = 0.15
+var current_speed = 0  # Measure of speed percentage, value between 0-1.
+
 const STATE_IDLE = "IDLE"
 const STATE_MOVE = "MOVE"
 const STATE_THROWBACK = "THROWBACK"
@@ -131,7 +135,17 @@ func change_state(new_state):
 		return false
 	previous_state = current_state
 	current_state = new_state
+	state_change_triggers(previous_state, current_state)
 	return true
+
+# Controls changes to the node's internal state upon changes to its state machine.
+# Can be overridden in subclasses.
+#   prev: The previous state.
+#   new: The new state.
+func state_change_triggers(prev, new):
+	# Reset speed when idling.
+	if new == STATE_IDLE:
+		current_speed = 0
 
 func can_accept_input():
 	return current_state == STATE_IDLE or current_state == STATE_MOVE
@@ -142,10 +156,13 @@ func can_accept_input():
 #   dir: One of "up", "down", "left", "right", used for animation.
 #        Can also be null to designate no direction (idle)
 #   delta: The delta time.
-func move_entity(motion, dir, delta):
+#   accel_delay: Whether or not to add a short acceleration delay.
+func move_entity(motion, dir, delta, accel_delay=true):
 	change_dir(dir)
 
-	if dir:
+	var is_moving = dir != null
+
+	if is_moving:
 		var successful = change_state(STATE_MOVE)
 		if successful or dir != previous_dir:
 			# TODO: Change this to *_move.
@@ -155,6 +172,10 @@ func move_entity(motion, dir, delta):
 		if successful:
 			play_dir_animation(previous_dir, "idle")
 
+	if is_moving and accel_delay:
+		current_speed = min(current_speed + delta / ACCELERATION_TIME, 1.0)
+		motion *= current_speed
+	
 	return move_and_slide(motion, Vector2(0, 0), 1)
 
 # Returns the most recent direction that the entity is facing.
