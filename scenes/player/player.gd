@@ -1,5 +1,7 @@
 extends "res://scripts/base_scripts/flux_entity.gd"
 
+const player_trail = preload("res://scenes/player/player_trail.tscn")
+
 const PERCENT_DAMAGE_HEALED = 0.2
 onready var death_controller = get_node("/root/death_controller")
 
@@ -7,6 +9,11 @@ func _ready():
 	play_animation("down_idle")
 	add_to_group("player")
 	player_controller.set_player(self)
+	
+	call_deferred("_create_trail")
+
+func _create_trail():
+	level_controller.level.add_child(player_trail.instance())
 
 func _physics_process(delta):
 	flux_physics_process(delta)

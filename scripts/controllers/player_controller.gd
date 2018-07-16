@@ -12,3 +12,6 @@ func get_player_pos():
 
 func get_player_dir():
 	return player.get_dir()
+	
+func is_in_throwback():
+	return player.current_state == player.STATE_THROWBACK

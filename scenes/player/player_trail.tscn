@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/player/player_trail.gd" type="Script" id=1]
+
+[sub_resource type="Gradient" id=1]
+
+offsets = PoolRealArray( 0, 0.293785, 1 )
+colors = PoolColorArray( 0.196554, 0.394969, 0.404728, 0, 0.104599, 0.530934, 0.551901, 0.246463, 0.00279236, 0.681466, 0.714844, 0.519333 )
+
+[node name="PlayerTrail" type="Line2D" index="0"]
+
+points = PoolVector2Array(  )
+width = 4.0
+default_color = Color( 0.4, 0.5, 1, 1 )
+gradient = SubResource( 1 )
+texture_mode = -1082130432
+joint_mode = 1
+sharp_limit = 2.0
+round_precision = 8
+script = ExtResource( 1 )
+_sections_unfolded = [ "Border", "Capping", "Fill" ]
+
+
