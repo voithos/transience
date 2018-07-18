@@ -63,10 +63,9 @@ tile_data = PoolIntArray( -65535, 25, 0, -65534, 25, 0, -65533, 25, 0, -65532, 2
 
 [node name="Player" parent="." index="2" instance=ExtResource( 4 )]
 
-position = Vector2( 32.0298, 68.6773 )
+position = Vector2( 32.0298, 59.5864 )
 _sections_unfolded = [ "Collision", "Material", "Visibility" ]
 ATTACK_DAMAGE = 20
-ACCELERATION_TIME = 0.15
 
 [node name="Fighter" parent="." index="3" instance=ExtResource( 5 )]
 

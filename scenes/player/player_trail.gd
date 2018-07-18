@@ -15,7 +15,7 @@ const NEW_POINT_DISTANCE = 2
 const TRAIL_POINT_LIFETIME = .05
 
 # Offset so that the trail appears at the player's feet.
-const Y_OFFSET = 9
+const Y_OFFSET = 25
 
 var _last_pos = null
 var _accumulated_distance = NEW_POINT_DISTANCE + 1  # We want to unconditionally draw the first point.

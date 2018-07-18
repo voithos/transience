@@ -107,7 +107,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 3 ]
+"values": [ 1 ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Sprite:frame")
@@ -116,10 +116,10 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 1, 1.05, 1.1, 1.15, 4.55, 4.6, 4.65, 4.7 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 0, 1, 2, 1, 0, 1, 2, 1, 0 ]
+"values": [ 0 ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("Sprite:flip_h")
@@ -241,7 +241,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 3 ]
+"values": [ 1 ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("Sprite:frame")
@@ -250,10 +250,10 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 1, 1.05, 1.1, 1.15, 4.5, 4.55, 4.6, 4.65 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 0, 1, 2, 1, 0, 1, 2, 1, 0 ]
+"values": [ 0 ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -363,7 +363,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 3 ]
+"values": [ 1 ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("Sprite:frame")
@@ -372,10 +372,10 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 1, 1.05, 1.1, 1.15, 4.5, 4.55, 4.6, 4.65 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 0, 1, 2, 1, 0, 1, 2, 1, 0 ]
+"values": [ 0 ]
 }
 
 [sub_resource type="Animation" id=7]
@@ -613,9 +613,9 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Angular Velocity", "Animation", "Color", "Emission Shape", "Gravity", "Hue Variation", "Initial Velocity", "Linear Accel", "Orbit Velocity", "Radial Accel", "Spread", "Tangential Accel", "Trail" ]
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" index="0"]
 
-position = Vector2( 0, -8 )
+position = Vector2( 0, -23.7735 )
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
@@ -635,11 +635,10 @@ MAX_FLUX = 100
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
 material = ExtResource( 2 )
-position = Vector2( 0, 8 )
+position = Vector2( -0.0555573, 20.2019 )
 texture = ExtResource( 3 )
-offset = Vector2( 0, -8.07695 )
-hframes = 3
-_sections_unfolded = [ "Animation", "Material", "Offset", "Transform" ]
+offset = Vector2( 0.055557, -18.2789 )
+_sections_unfolded = [ "Animation", "Material", "Offset", "Region", "Transform" ]
 
 [node name="PlayerCamera" parent="." index="1" instance=ExtResource( 4 )]
 
@@ -665,7 +664,6 @@ _sections_unfolded = [ "Playback Options" ]
 
 [node name="Hitbox" type="Area2D" parent="." index="3"]
 
-editor/display_folded = true
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -678,13 +676,14 @@ audio_bus_name = "Master"
 
 [node name="HitboxShape" type="CollisionShape2D" parent="Hitbox" index="0"]
 
-position = Vector2( -0.0707509, -0.776039 )
-scale = Vector2( 0.379173, 0.339025 )
+position = Vector2( 0, 5.5 )
+scale = Vector2( 0.380293, 0.424287 )
 shape = SubResource( 9 )
+_sections_unfolded = [ "Transform" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="4"]
 
-position = Vector2( -0.00850701, 8.55884 )
+position = Vector2( 0, 22 )
 scale = Vector2( 0.379173, 0.339025 )
 shape = SubResource( 10 )
 _sections_unfolded = [ "Material", "Transform", "Visibility", "Z Index" ]

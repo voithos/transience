@@ -7,10 +7,10 @@ path="res://.import/player-down.png-fac8a83df52c9725ba3ffeb84332191b.stex"
 [deps]
 
 source_file="res://assets/player/player-down.png"
-source_md5="78bf55383776d9497c79acdaccbdd483"
+source_md5="5beefff323bc51c408444de79ffa9c6f"
 
 dest_files=[ "res://.import/player-down.png-fac8a83df52c9725ba3ffeb84332191b.stex" ]
-dest_md5="5a2e2633adc5dc0e1743e9282b940c33"
+dest_md5="46b18f1de2a8967e4ac50415628f69a4"
 
 [params]
 
