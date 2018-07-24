@@ -52,6 +52,9 @@ var previous_animation = null
 export (int) var ACCELERATION_TIME = 0.15
 var current_speed = 0  # Measure of speed percentage, value between 0-1.
 
+# Track historical motion.
+var current_motion = Vector2(0, 0)
+
 const STATE_IDLE = "IDLE"
 const STATE_MOVE = "MOVE"
 const STATE_THROWBACK = "THROWBACK"
@@ -146,6 +149,7 @@ func state_change_triggers(prev, new):
 	# Reset speed when idling.
 	if new == STATE_IDLE:
 		current_speed = 0
+		current_motion = Vector2(0, 0)
 
 func can_accept_input():
 	return current_state == STATE_IDLE or current_state == STATE_MOVE
@@ -176,6 +180,7 @@ func move_entity(motion, dir, delta, accel_delay=true):
 		current_speed = min(current_speed + delta / ACCELERATION_TIME, 1.0)
 		motion *= current_speed
 	
+	current_motion = motion
 	return move_and_slide(motion, Vector2(0, 0), 1)
 
 # Returns the most recent direction that the entity is facing.

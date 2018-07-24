@@ -2,9 +2,15 @@ extends "res://scripts/base_scripts/entity.gd"
 
 # Base script for all enemy types.
 
+onready var enemy_steering = get_node("/root/enemy_steering")
+
 # The distance that the player has to be from the enemy in order to trigger battle.
 export (int) var TRIGGER_DISTANCE = 100
 var TRIGGER_DISTANCE_SQUARED
+
+# Steering behavior data.
+export (int) var STEERING_FORCE = 5
+export (int) var MASS = 2
 
 const IDLE_CHANCE_TO_LOOK_AROUND = 0.3
 const CHASE_LOCATION_EPSILON = 1.5
@@ -16,8 +22,6 @@ const AI_STATE_BATTLE = "BATTLE"
 var current_ai_state = AI_STATE_IDLE
 
 var cooldown = 0
-
-var navigation_node
 
 func _ready():
 	# Cache the square since sqrt() operations are slow.
@@ -71,6 +75,7 @@ func on_attack_finished():
 	cooldown = get_attack_cooldown()
 	.on_attack_finished()
 
+# TODO: Make these just export vars? And perhaps replace with steering behavior.
 # To be overridden in subscripts.
 func get_attack_range():
 	assert(false)

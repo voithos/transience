@@ -70,5 +70,7 @@ ATTACK_DAMAGE = 20
 [node name="Jumper" parent="." index="3" instance=ExtResource( 5 )]
 
 position = Vector2( 243.492, 92.9399 )
+STEERING_FORCE = 5
+MASS = 2
 
 

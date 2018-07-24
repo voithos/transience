@@ -27,6 +27,8 @@ camera_controller="*res://scripts/controllers/camera_controller.gd"
 death_controller="*res://scripts/controllers/death_controller.gd"
 player_controller="*res://scripts/controllers/player_controller.gd"
 level_controller="*res://scripts/controllers/level_controller.gd"
+steering="*res://scripts/steering.gd"
+enemy_steering="*res://scripts/enemy_steering.gd"
 
 [display]
 

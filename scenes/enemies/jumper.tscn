@@ -68,6 +68,8 @@ ATTACK_SLIDE_SPEED = 0
 ATTACK_DAMAGE = 15
 ACCELERATION_TIME = 0.15
 TRIGGER_DISTANCE = 100
+STEERING_FORCE = 5
+MASS = 2
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
