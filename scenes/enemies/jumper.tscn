@@ -11,10 +11,10 @@
 custom_solver_bias = 0.0
 radius = 16.5003
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="CircleShape2D" id=4]
 
 custom_solver_bias = 0.0
-extents = Vector2( 10, 10 )
+radius = 10.0
 
 [sub_resource type="ParticlesMaterial" id=3]
 
@@ -54,7 +54,7 @@ anim_offset = 0.0
 anim_offset_random = 0.0
 anim_loop = false
 
-[node name="Jumper" type="KinematicBody2D"]
+[node name="Jumper" type="KinematicBody2D" index="0"]
 
 position = Vector2( 0, -5.96642 )
 input_pickable = false
@@ -88,7 +88,6 @@ blend_times = [  ]
 
 [node name="Hitbox" type="Area2D" parent="." index="2"]
 
-editor/display_folded = true
 position = Vector2( 0, 4.60566 )
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -103,15 +102,16 @@ audio_bus_name = "Master"
 [node name="HitboxShape" type="CollisionShape2D" parent="Hitbox" index="0"]
 
 position = Vector2( -0.070749, -4 )
-scale = Vector2( 0.6, 0.6 )
+scale = Vector2( 0.65, 0.65 )
 shape = SubResource( 1 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="3"]
 
-position = Vector2( -0.0707495, 3.30625 )
-scale = Vector2( 0.379173, 0.339025 )
-shape = SubResource( 2 )
+position = Vector2( 0, 3 )
+scale = Vector2( 1.2, 1.2 )
+shape = SubResource( 4 )
+_sections_unfolded = [ "Transform" ]
 
 [node name="Tween" type="Tween" parent="." index="4"]
 
