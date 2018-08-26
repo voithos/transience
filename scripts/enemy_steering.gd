@@ -9,5 +9,4 @@ func seek_player(enemy):
 	var ret = steering.wander(enemy.global_position, 100, 100, enemy.wander_angle, .5, \
 			enemy.current_motion)
 	enemy.wander_angle = ret[1]
-	print(enemy.wander_angle)
 	return steering.steer(ret[0], enemy.current_motion, enemy.SPEED / 3, enemy.STEERING_FORCE, enemy.MASS)

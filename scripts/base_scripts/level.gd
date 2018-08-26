@@ -1,4 +1,4 @@
-extends YSort
+extends Node2D
 
 # Base controller for levels.
 onready var music = get_node("/root/music")
