@@ -81,6 +81,9 @@ func can_throwback(steps):
 	var enough_throwback = steps <= throwback_count
 	return enough_flux and enough_throwback
 
+func is_in_throwback():
+	return current_state == STATE_THROWBACK
+
 # Caches the throwback position in the cyclic throwback array.
 func cache_throwback_position():
 	if not can_accept_input():
@@ -215,7 +218,7 @@ func react_to_action_controls(event):
 		# Check for the amount of time left before we can trigger a new action.
 		var time_left = animation_player.current_animation_length - animation_player.current_animation_position
 		# Special case for tween-based states.
-		if current_state == STATE_THROWBACK:
+		if is_in_throwback():
 			time_left = throwback_tween_node.get_runtime() - throwback_tween_node.tell()
 		if time_left < TIME_BEFORE_QUEUEING_NEW_ACTION:
 			set_next_action_if_unset(action)

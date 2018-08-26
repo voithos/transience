@@ -22,7 +22,7 @@ var _accumulated_distance = NEW_POINT_DISTANCE + 1  # We want to unconditionally
 var _elapsed_time = 0
 
 func _process(delta):
-	if not player_controller.is_in_throwback():
+	if not player_controller.player.is_in_throwback():
 		_attempt_add_point()
 	else:
 		_attempt_remove_point()
@@ -31,7 +31,7 @@ func _process(delta):
 	_decay_points(delta)
 
 func _attempt_add_point():
-	var player_pos = player_controller.get_player_pos()
+	var player_pos = player_controller.player.global_position
 	_update_accumulated_distance(player_pos)
 
 	# Only add new points if the distance is large enough.
@@ -40,7 +40,7 @@ func _attempt_add_point():
 		_accumulated_distance -= NEW_POINT_DISTANCE
 
 func _attempt_remove_point():
-	var player_pos = player_controller.get_player_pos()
+	var player_pos = player_controller.player.global_position
 	_update_accumulated_distance(player_pos, true) # negate
 
 	# Only remove new points if the distance has passed the threshold.

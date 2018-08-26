@@ -50,18 +50,19 @@ func run_battle_ai(delta):
 	if not can_accept_input(): return
 
 	# Check for distance-to-player and attack.
+	var player = player_controller.player
 	var attack_range = pow(get_attack_range(), 2)
-	var distance_to_player = global_position.distance_squared_to(player_controller.get_player_pos())
+	var distance_to_player = global_position.distance_squared_to(player.global_position)
 	if distance_to_player < attack_range + get_attack_range_buffer():
 		if randf() < get_attack_probability():
 			# Change the enemy's direction right before attack.
-			change_dir(get_dir_from_motion(player_controller.get_player_pos() - global_position))
+			change_dir(get_dir_from_motion(player.global_position - global_position))
 			attack()
 			return
 	
 	# Check path to player.
 	var path = level_controller.level.navigation.get_simple_path(
-			global_position, player_controller.get_player_pos(), false)
+			global_position, player.global_position, false)
 	# The first point is always the start node.
 	if path.size() > 1:
 		var vector = path[1] - global_position

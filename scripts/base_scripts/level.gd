@@ -60,7 +60,7 @@ func check_battle_triggers(delta):
 	# TODO: Should this logic be in enemy.gd instead?
 	var is_in_battle = false
 	var enemies = get_tree().get_nodes_in_group("enemies")
-	var playerpos = player_controller.get_player_pos()
+	var playerpos = player_controller.player.global_position
 
 	var enemy_in_range = false
 	for enemy in enemies:

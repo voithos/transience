@@ -14,10 +14,4 @@ func set_camera(camera):
 	self.camera = camera
 
 func shake_light():
-	shake(SHAKE_LIGHT_DURATION, SHAKE_LIGHT_FREQUENCY, SHAKE_LIGHT_AMPLITUDE)
-
-func shake(duration, frequency, amplitude):
-	camera.shake(duration, frequency, amplitude)
-
-func get_camera_pos():
-	return camera.global_position
+	camera.shake(SHAKE_LIGHT_DURATION, SHAKE_LIGHT_FREQUENCY, SHAKE_LIGHT_AMPLITUDE)

@@ -31,7 +31,7 @@ func _input(event):
 	if event.has_meta("consumed_by") and event.get_meta("consumed_by") == "speech":
 		return
 
-	if self.global_position.distance_squared_to(player_controller.get_player_pos()) < DIALOGUE_DISTANCE_SQUARED:
+	if self.global_position.distance_squared_to(player_controller.player.global_position) < DIALOGUE_DISTANCE_SQUARED:
 		if Input.is_action_just_pressed("trans_accept") and is_player_facing_npc():
 			start_dialogue()
 
@@ -50,8 +50,8 @@ func end_dialogue():
 		conversation += 1
 
 func is_player_facing_npc():
-	var playerpos = player_controller.get_player_pos()
-	var dir = player_controller.get_player_dir()
+	var playerpos = player_controller.player.global_position
+	var dir = player_controller.player.get_dir()
 	# Check the directions.
 	if dir == "left" and self.global_position.x < playerpos.x:
 		return true

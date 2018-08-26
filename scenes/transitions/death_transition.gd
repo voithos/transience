@@ -80,7 +80,7 @@ func _physics_process(delta):
 func progress_resurrection():
 	adjust_resurrection_progress_by(RESURRECTION_STEP)
 	emit_explosion()
-	camera_controller.shake(
+	camera_controller.camera.shake(
 		lerp(camera_controller.SHAKE_LIGHT_DURATION / 2, camera_controller.SHAKE_LIGHT_DURATION, resurrection_tween_progress),
 		lerp(camera_controller.SHAKE_LIGHT_FREQUENCY / 2, camera_controller.SHAKE_LIGHT_FREQUENCY , resurrection_tween_progress),
 		lerp(camera_controller.SHAKE_LIGHT_AMPLITUDE / 2, camera_controller.SHAKE_LIGHT_AMPLITUDE, resurrection_tween_progress)
@@ -148,7 +148,7 @@ func set_white_mix(v):
 
 func start_transition():
 	# First we center the flames in the camera.
-	self.global_position = camera_controller.get_camera_pos()
+	self.global_position = camera_controller.camera.global_position
 
 	# Then we begin the animation.
 	tween.interpolate_method(self, "set_gray_intensity", 0, 1.0, GRAY_TWEEN_TIME, \
