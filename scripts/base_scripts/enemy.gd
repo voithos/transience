@@ -11,6 +11,7 @@ var TRIGGER_DISTANCE_SQUARED
 # Steering behavior data.
 export (int) var STEERING_FORCE = 5
 export (int) var MASS = 2
+var wander_angle = 0
 
 const IDLE_CHANCE_TO_LOOK_AROUND = 0.3
 const CHASE_LOCATION_EPSILON = 1.5
