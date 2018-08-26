@@ -21,10 +21,29 @@ func flee(position, target, current_motion, max_speed):
 	var desired_motion = (position - target).normalized() * max_speed
 	return desired_motion - current_motion
 
+func _predict_target(position, target, target_motion, max_target_speed):
+	var distance = target - position
+	var prediction_factor = distance.length() / max_target_speed
+	return target + target_motion * prediction_factor
+
+# Pursues the target, attempting to predict where target will go based on current motion.
+# Based on: https://gamedevelopment.tutsplus.com/tutorials/understanding-steering-behaviors-pursuit-and-evade--gamedev-2946
+# Returns the desired steering vector.
+func pursue(position, target, current_motion, target_motion, max_speed, max_target_speed):
+	var future_target = _predict_target(position, target, target_motion, max_target_speed)
+	return seek(position, future_target, current_motion, max_speed)
+
+# Evades the target, attempting to predict where target will go based on current motion.
+# Based on: https://gamedevelopment.tutsplus.com/tutorials/understanding-steering-behaviors-pursuit-and-evade--gamedev-2946
+# Returns the desired steering vector.
+func evade(position, target, current_motion, target_motion, max_speed, max_target_speed):
+	var future_target = _predict_target(position, target, target_motion, max_target_speed)
+	return flee(position, future_target, current_motion, max_speed)
+
 # Arrives at the target's position, slowing down after passing slow_radius.
 # Based on: https://gamedevelopment.tutsplus.com/tutorials/understanding-steering-behaviors-flee-and-arrival--gamedev-1303
 # Returns the desired steering vector.
-func arrival(position, target, slow_radius, current_motion, max_speed):
+func arrive(position, target, slow_radius, current_motion, max_speed):
 	var desired_motion = target - position
 	var distance = desired_motion.length()
 
