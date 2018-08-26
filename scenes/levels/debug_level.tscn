@@ -6,7 +6,7 @@
 [ext_resource path="res://scenes/player/player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/enemies/jumper.tscn" type="PackedScene" id=5]
 
-[node name="YSort" type="YSort"]
+[node name="YSort" type="YSort" index="0"]
 
 sort_enabled = true
 script = ExtResource( 1 )
@@ -70,7 +70,5 @@ ATTACK_DAMAGE = 20
 [node name="Jumper" parent="." index="3" instance=ExtResource( 5 )]
 
 position = Vector2( 243.492, 92.9399 )
-STEERING_FORCE = 5
-MASS = 2
 
 
