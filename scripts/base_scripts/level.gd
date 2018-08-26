@@ -5,6 +5,10 @@ onready var music = get_node("/root/music")
 onready var level_controller = get_node("/root/level_controller")
 onready var player_controller = get_node("/root/player_controller")
 
+# Common child nodes.
+onready var navigation = get_node("Navigation2D")
+onready var ysort = get_node("YSort")
+
 # Common scenes to add to each level.
 const world_environment_scene = preload("res://scenes/levels/world_environment.tscn")
 const ui_bars_scene = preload("res://scenes/ui/ui_bars.tscn")
@@ -27,12 +31,21 @@ func _ready():
 
 # Adds nodes that are common to all "levels".
 func add_common_nodes():
-	var world_environment = world_environment_scene.instance()
-	add_child(world_environment)
-	move_child(world_environment, 0)
+	prepend_child(world_environment_scene.instance())
 	
 	add_child(light_particles_scene.instance())
 	add_child(ui_bars_scene.instance())
+
+func prepend_child(node):
+	add_child(node)
+	move_child(node, 0)
+
+func add_child_before_ysort(node):
+	add_child(node)
+	move_child(node, ysort.get_index())
+
+func add_ysort_child(node):
+	ysort.add_child(node)
 
 func change_state(new_state):
 	if new_state == current_state:

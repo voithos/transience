@@ -60,7 +60,7 @@ func run_battle_ai(delta):
 			return
 	
 	# Check path to player.
-	var path = level_controller.get_navigation().get_simple_path(
+	var path = level_controller.level.navigation.get_simple_path(
 			global_position, player_controller.get_player_pos(), false)
 	# The first point is always the start node.
 	if path.size() > 1:

@@ -13,7 +13,7 @@ func _ready():
 	call_deferred("_create_trail")
 
 func _create_trail():
-	level_controller.level.add_child(player_trail.instance())
+	level_controller.level.add_child_before_ysort(player_trail.instance())
 
 func _physics_process(delta):
 	flux_physics_process(delta)
