@@ -2,15 +2,13 @@ extends "res://scripts/base_scripts/entity.gd"
 
 # Base script for all enemy types.
 
-onready var enemy_steering = get_node("/root/enemy_steering")
-
 # The distance that the player has to be from the enemy in order to trigger battle.
 export (int) var TRIGGER_DISTANCE = 100
-var TRIGGER_DISTANCE_SQUARED
+onready var TRIGGER_DISTANCE_SQUARED = TRIGGER_DISTANCE * TRIGGER_DISTANCE
 
 const IDLE_CHANCE_TO_LOOK_AROUND = 0.3
 const CHASE_LOCATION_EPSILON = 1.5
-var CHASE_LOCATION_EPSILON_SQUARED
+onready var CHASE_LOCATION_EPSILON_SQUARED = CHASE_LOCATION_EPSILON * CHASE_LOCATION_EPSILON
 
 const AI_STATE_IDLE = "IDLE"
 const AI_STATE_BATTLE = "BATTLE"
@@ -20,9 +18,6 @@ var current_ai_state = AI_STATE_IDLE
 var cooldown = 0
 
 func _ready():
-	# Cache the square since sqrt() operations are slow.
-	TRIGGER_DISTANCE_SQUARED = TRIGGER_DISTANCE * TRIGGER_DISTANCE
-	CHASE_LOCATION_EPSILON_SQUARED = CHASE_LOCATION_EPSILON * CHASE_LOCATION_EPSILON
 	add_to_group("enemies")
 	randomize() # Re-seed.
 

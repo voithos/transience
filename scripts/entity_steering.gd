@@ -8,11 +8,10 @@ onready var steering = get_node("/root/steering")
 # Common state.
 var entity
 var current_steering = Vector2(0, 0)
-var wander_angle
+var wander_angle = 0
 
-func _init(entity, wander_angle=0):
-	self.entity = entity
-	self.wander_angle = wander_angle
+func _ready():
+	entity = get_parent()
 
 func reset_wander_angle(wander_angle=0):
 	self.wander_angle = wander_angle
@@ -23,7 +22,7 @@ func seek(target_entity):
 		entity.current_motion, entity.SPEED)
 
 func flee(target_entity):
-	current_steering += steering.flee(
+	self.current_steering += steering.flee(
 		entity.global_position, target_entity.global_position,
 		entity.current_motion, entity.SPEED)
 

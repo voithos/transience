@@ -41,7 +41,7 @@ const DIR_TO_MOTION = {
 	"down": Vector2(0, 1)
 }
 
-const entity_steering = preload("res://scripts/entity_steering.gd")
+const entity_steering = preload("res://scripts/entity_steering.tscn")
 var steering
 
 onready var cutscene = get_node("/root/cutscene")
@@ -104,7 +104,7 @@ func _ready():
 		sprite.set_material(material.duplicate())
 
 func add_common_nodes():
-	steering = entity_steering.new(self)
+	steering = entity_steering.instance()
 	add_child(steering)
 
 func on_animation_finished(animation):
