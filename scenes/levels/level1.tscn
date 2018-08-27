@@ -8,7 +8,7 @@
 [ext_resource path="res://scenes/enemies/jumper.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/npcs/npc1.tscn" type="PackedScene" id=7]
 
-[node name="Level1" type="Node2D" index="0"]
+[node name="Level1" type="Node2D"]
 
 script = ExtResource( 1 )
 
@@ -74,67 +74,105 @@ sort_enabled = true
 position = Vector2( 32.0298, 68.6773 )
 _sections_unfolded = [ "Collision", "Material", "Visibility" ]
 ATTACK_DAMAGE = 20
+ARRIVE_RADIUS = 150
+WANDER_DISTANCE = 100
+WANDER_RADIUS = 100
+WANDER_ANGLE_CHANGE = 0.5
+STEERING_FORCE = 5
+MASS = 2
 
 [node name="Fighter1" parent="YSort" index="1" instance=ExtResource( 5 )]
 
 position = Vector2( 648, 80 )
 ATTACK_SLIDE_SPEED = 10
-ACCELERATION_TIME = 0.15
+ARRIVE_RADIUS = 150
+WANDER_DISTANCE = 100
+WANDER_RADIUS = 100
+WANDER_ANGLE_CHANGE = 0.5
 STEERING_FORCE = 5
 MASS = 2
+ACCELERATION_TIME = 0.15
 
 [node name="Jumper" parent="YSort" index="2" instance=ExtResource( 6 )]
 
 position = Vector2( 1048, 232 )
 ATTACK_SLIDE_SPEED = 10
+ARRIVE_RADIUS = 150
+WANDER_DISTANCE = 100
+WANDER_RADIUS = 100
+WANDER_ANGLE_CHANGE = 0.5
 
 [node name="Fighter2" parent="YSort" index="3" instance=ExtResource( 5 )]
 
 position = Vector2( 512, 456 )
 ATTACK_SLIDE_SPEED = 10
-ACCELERATION_TIME = 0.15
+ARRIVE_RADIUS = 150
+WANDER_DISTANCE = 100
+WANDER_RADIUS = 100
+WANDER_ANGLE_CHANGE = 0.5
 STEERING_FORCE = 5
 MASS = 2
+ACCELERATION_TIME = 0.15
 
 [node name="Fighter3" parent="YSort" index="4" instance=ExtResource( 5 )]
 
 position = Vector2( 792, 352 )
 ATTACK_SLIDE_SPEED = 10
-ACCELERATION_TIME = 0.15
+ARRIVE_RADIUS = 150
+WANDER_DISTANCE = 100
+WANDER_RADIUS = 100
+WANDER_ANGLE_CHANGE = 0.5
 STEERING_FORCE = 5
 MASS = 2
+ACCELERATION_TIME = 0.15
 
 [node name="Fighter4" parent="YSort" index="5" instance=ExtResource( 5 )]
 
 position = Vector2( 752, 464 )
 ATTACK_SLIDE_SPEED = 10
-ACCELERATION_TIME = 0.15
+ARRIVE_RADIUS = 150
+WANDER_DISTANCE = 100
+WANDER_RADIUS = 100
+WANDER_ANGLE_CHANGE = 0.5
 STEERING_FORCE = 5
 MASS = 2
+ACCELERATION_TIME = 0.15
 
 [node name="Fighter5" parent="YSort" index="6" instance=ExtResource( 5 )]
 
 position = Vector2( 552, 760 )
 ATTACK_SLIDE_SPEED = 10
-ACCELERATION_TIME = 0.15
+ARRIVE_RADIUS = 150
+WANDER_DISTANCE = 100
+WANDER_RADIUS = 100
+WANDER_ANGLE_CHANGE = 0.5
 STEERING_FORCE = 5
 MASS = 2
+ACCELERATION_TIME = 0.15
 
 [node name="Fighter6" parent="YSort" index="7" instance=ExtResource( 5 )]
 
 position = Vector2( 536, 760 )
 ATTACK_SLIDE_SPEED = 10
-ACCELERATION_TIME = 0.15
+ARRIVE_RADIUS = 150
+WANDER_DISTANCE = 100
+WANDER_RADIUS = 100
+WANDER_ANGLE_CHANGE = 0.5
 STEERING_FORCE = 5
 MASS = 2
+ACCELERATION_TIME = 0.15
 
 [node name="Fighter7" parent="YSort" index="8" instance=ExtResource( 5 )]
 
 position = Vector2( 568, 760 )
 ATTACK_SLIDE_SPEED = 10
-ACCELERATION_TIME = 0.15
+ARRIVE_RADIUS = 150
+WANDER_DISTANCE = 100
+WANDER_RADIUS = 100
+WANDER_ANGLE_CHANGE = 0.5
 STEERING_FORCE = 5
 MASS = 2
+ACCELERATION_TIME = 0.15
 
 [node name="Sprite" parent="YSort" index="9" instance=ExtResource( 7 )]
 

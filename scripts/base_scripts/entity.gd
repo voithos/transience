@@ -20,10 +20,18 @@ signal healed
 signal died
 
 export (int) var MAX_HEALTH = 100
-export (int) var SPEED = 120 # Pixels/second
-export (int) var ATTACK_SLIDE_SPEED = 10 # Pixels/second
+export (float) var ATTACK_SLIDE_SPEED = 10 # Pixels/second
 export (int) var ATTACK_DAMAGE = 15
 onready var health = MAX_HEALTH
+
+# Used by entity steering.
+export (float) var SPEED = 120 # Pixels/second
+export (float) var ARRIVE_RADIUS = 150
+export (float) var WANDER_DISTANCE = 100
+export (float) var WANDER_RADIUS = 100
+export (float) var WANDER_ANGLE_CHANGE = .5 # Radians
+export (float) var STEERING_FORCE = 5
+export (float) var MASS = 2
 
 const DIRECTIONS = ["up", "down", "left", "right"]
 const DIR_TO_MOTION = {
@@ -32,6 +40,9 @@ const DIR_TO_MOTION = {
 	"right": Vector2(1, 0),
 	"down": Vector2(0, 1)
 }
+
+const entity_steering = preload("res://scripts/entity_steering.gd")
+var steering
 
 onready var cutscene = get_node("/root/cutscene")
 onready var audio_alt = get_node("/root/audio_alt")
@@ -84,11 +95,17 @@ func _ready():
 	connect("healed", self, "on_healed")
 	connect("died", self, "on_died")
 	animation_player.connect("animation_finished", self, "on_animation_finished")
-	
+
+	add_common_nodes()
+
 	# Copy the material, blegh.
 	var material = sprite.get_material()
 	if material:
 		sprite.set_material(material.duplicate())
+
+func add_common_nodes():
+	steering = entity_steering.new(self)
+	add_child(steering)
 
 func on_animation_finished(animation):
 	if next_state:

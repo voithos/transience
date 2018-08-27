@@ -6,7 +6,7 @@
 [ext_resource path="res://scenes/player/player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/enemies/jumper.tscn" type="PackedScene" id=5]
 
-[node name="DebugLevel" type="Node2D"]
+[node name="DebugLevel" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
@@ -69,9 +69,20 @@ sort_enabled = true
 position = Vector2( 32.0298, 59.5864 )
 _sections_unfolded = [ "Collision", "Material", "Visibility" ]
 ATTACK_DAMAGE = 20
+ARRIVE_RADIUS = 150
+WANDER_DISTANCE = 100
+WANDER_RADIUS = 100
+WANDER_ANGLE_CHANGE = 0.5
+STEERING_FORCE = 5
+MASS = 2
 
 [node name="Jumper" parent="YSort" index="1" instance=ExtResource( 5 )]
 
 position = Vector2( 243.492, 92.9399 )
+ATTACK_SLIDE_SPEED = 10
+ARRIVE_RADIUS = 150
+WANDER_DISTANCE = 100
+WANDER_RADIUS = 100
+WANDER_ANGLE_CHANGE = 0.5
 
 
