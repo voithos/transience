@@ -7,10 +7,10 @@ path="res://.import/jumper-down.png-576ab73b8ff72af2ec78cbec62e452a2.stex"
 [deps]
 
 source_file="res://assets/jumper/jumper-down.png"
-source_md5="0d040c709784730f19897daef385c1b8"
+source_md5="1dc6803719b9de7e13f11c17b248ae5b"
 
 dest_files=[ "res://.import/jumper-down.png-576ab73b8ff72af2ec78cbec62e452a2.stex" ]
-dest_md5="b17ddcdd0192c1200726df333be31806"
+dest_md5="0e0762c465dd1826c0795db5c2705c20"
 
 [params]
 

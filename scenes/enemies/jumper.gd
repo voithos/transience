@@ -7,7 +7,6 @@ func _ready():
 
 func _physics_process(delta):
 	if current_ai_state == AI_STATE_BATTLE:
-		
 		steering.wander()
 		var motion = steering.steer()
 		move_entity(motion, 'down', delta)
