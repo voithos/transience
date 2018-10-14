@@ -43,8 +43,8 @@ func flux_physics_process(delta):
 	if current_state == STATE_ATTACK:
 		slide_in_dir(get_dir())
 
-func move_entity(motion, dir, delta):
-	var amount_moved = .move_entity(motion, dir, delta)
+func move_entity(motion, dir, delta, accel_delay=true):
+	var amount_moved = .move_entity(motion, dir, delta, accel_delay)
 	var remainder = motion - amount_moved
 
 	# Perform certain operations only when we actually move without collisions, or is "sliding".

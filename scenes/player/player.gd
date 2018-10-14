@@ -27,7 +27,7 @@ func on_attack_triggered():
 	heal(total_damage * PERCENT_DAMAGE_HEALED)
 	.on_attack_triggered()
 
-func on_die_finished():
+func on_die_finished(free=false):
 	# *Don't* queue_free the main player, unlike how we handle other entities.
 	.on_die_finished(false)
 	death_controller.show_death_transition()
